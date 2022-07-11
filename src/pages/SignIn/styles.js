@@ -33,6 +33,7 @@ export const Button = styled.button`
   color: #ffffff;
   font-weight: 600;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 export const Input = styled.input`

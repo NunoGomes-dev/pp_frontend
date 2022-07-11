@@ -8,12 +8,15 @@ import {
 import { AuthContext } from "./context/AuthContext";
 import { About, Dashboard, SignIn } from "./pages";
 
-const RequireAuth = ({ children }) => {
+const ProtectedRoute = ({ isPrivate, isSignIn, children }) => {
   const location = useLocation();
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, isLoading } = useContext(AuthContext);
 
-  if (!isAuthenticated) {
+  if (isPrivate && !isAuthenticated && !isLoading) {
     return <Navigate to="/signin" state={{ from: location }} replace />;
+  }
+  if (isSignIn && isAuthenticated && !isLoading) {
+    return <Navigate to="/" />;
   }
 
   return children;
@@ -22,21 +25,28 @@ const RequireAuth = ({ children }) => {
 const Routes = () => {
   return (
     <Router>
-      <Route path="/signin" element={<SignIn />} />
       <Route
         path="/about"
         element={
-          <RequireAuth>
+          <ProtectedRoute isPrivate>
             <About />
-          </RequireAuth>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/"
         element={
-          <RequireAuth>
+          <ProtectedRoute isPrivate>
             <Dashboard />
-          </RequireAuth>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/signin"
+        element={
+          <ProtectedRoute isSignIn>
+            <SignIn />
+          </ProtectedRoute>
         }
       />
     </Router>

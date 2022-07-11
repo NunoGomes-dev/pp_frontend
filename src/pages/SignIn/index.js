@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
 import pp_logo from "../../assets/pp_logo.png";
 import { AuthContext } from "../../context/AuthContext";
 import { Button, Container, Flex, Image, Input, Label } from "./styles";
 
 export const SignIn = () => {
   const { handleSubmit, register } = useForm();
-  const { handleLogin } = useContext(AuthContext);
+  const { handleLogin, isLoading } = useContext(AuthContext);
 
   const loginHandler = ({ email, password }) => {
     handleLogin({ email, password });
@@ -46,6 +45,7 @@ export const SignIn = () => {
             />
           </Flex>
           <Button type="submit">Submit</Button>
+          {isLoading && <div>isLoading</div>}
         </form>
       </Container>
     </Flex>
