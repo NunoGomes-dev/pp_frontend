@@ -7,7 +7,6 @@ const LinkItem = ({ isActive, LeftIcon, text, to }) => {
   return (
     <Link to={to} style={{ textDecoration: "none", width: "100%" }}>
       <Flex
-        width="100%"
         flexDirection="row"
         justifyContent="start"
         alignItems="center"

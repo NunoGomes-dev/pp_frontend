@@ -21,86 +21,88 @@ const Menu = () => {
   };
 
   return (
-    <Flex
-      width="16rem"
-      height="100%"
-      background="white"
-      padding="1rem"
-      flexDirection="column"
-      justifyContent="space-between"
-    >
+    <div style={{ height: "100%" }}>
       <Flex
-        width="100%"
+        width="14rem"
+        height="calc(100% - 1rem)"
+        padding="0 1rem 1rem 1rem"
+        background="white"
         flexDirection="column"
-        justifyContent="start"
-        gap="1rem"
+        justifyContent="space-between"
       >
-        <Image
-          src={banner}
-          alt="banner_pp"
+        <Flex
           width="100%"
-          height="auto"
-          objectFit="contain"
-          pointerEvents="none"
-          userSelect="none"
-          margin="1rem 0"
-        />
-        <UserItem user={user} />
-        <LinkItem
-          text={"Dashboard"}
-          isActive={location.pathname === "/"}
-          to="/"
-          LeftIcon={<MdOutlineSignalCellularAlt />}
-        />
-        <LinkItem
-          text={"Peças"}
-          LeftIcon={<FiSettings />}
-          to="parts"
-          isActive={activePath("/parts")}
-        />
-        <LinkItem
-          text={"Inventário"}
-          LeftIcon={<FiLayers />}
-          to="inventory"
-          isActive={activePath("/inventory")}
-        />
-        <LinkItem
-          text={"Encomendas"}
-          LeftIcon={<FiPackage />}
-          to="orders"
-          isActive={activePath("/orders")}
-        />
-        <LinkItem
-          text={"Fornecedores"}
-          LeftIcon={<FiTruck />}
-          to="providers"
-          isActive={activePath("/providers")}
-        />
-        <LinkItem
-          text={"Gavetas"}
-          LeftIcon={<ImDrawer2 />}
-          to="storages"
-          isActive={activePath("/storages")}
-        />
+          flexDirection="column"
+          justifyContent="start"
+          gap="1rem"
+        >
+          <Image
+            src={banner}
+            alt="banner_pp"
+            width="100%"
+            height="auto"
+            objectFit="contain"
+            pointerEvents="none"
+            userSelect="none"
+            margin="1rem 0"
+          />
+          <UserItem user={user} />
+          <LinkItem
+            text={"Dashboard"}
+            isActive={location.pathname === "/"}
+            to="/"
+            LeftIcon={<MdOutlineSignalCellularAlt />}
+          />
+          <LinkItem
+            text={"Peças"}
+            LeftIcon={<FiSettings />}
+            to="parts"
+            isActive={activePath("/parts")}
+          />
+          <LinkItem
+            text={"Inventário"}
+            LeftIcon={<FiLayers />}
+            to="inventory"
+            isActive={activePath("/inventory")}
+          />
+          <LinkItem
+            text={"Encomendas"}
+            LeftIcon={<FiPackage />}
+            to="orders"
+            isActive={activePath("/orders")}
+          />
+          <LinkItem
+            text={"Fornecedores"}
+            LeftIcon={<FiTruck />}
+            to="providers"
+            isActive={activePath("/providers")}
+          />
+          <LinkItem
+            text={"Gavetas"}
+            LeftIcon={<ImDrawer2 />}
+            to="storages"
+            isActive={activePath("/storages")}
+          />
+        </Flex>
+        <Flex
+          width="100%"
+          padding="0.5rem 0"
+          flexDirection="row"
+          justifyContent="center"
+          alignItems="center"
+          color="#4A5568"
+          background="#F7FAFC"
+          borderRadius="0.5rem"
+          cursor="pointer"
+          onClick={() => {
+            doLogout();
+          }}
+        >
+          <MdLogout />
+          Terminar Sessão
+        </Flex>
       </Flex>
-      <Flex
-        width="100%"
-        padding="0.5rem"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-        color="#4A5568"
-        background="#F7FAFC"
-        borderRadius="0.5rem"
-        cursor="pointer"
-        onClick={() => {
-          doLogout();
-        }}
-      >
-        <MdLogout />
-        Terminar Sessão
-      </Flex>
-    </Flex>
+    </div>
   );
 };
 
