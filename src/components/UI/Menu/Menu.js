@@ -9,10 +9,12 @@ import { MdOutlineSignalCellularAlt } from "react-icons/md";
 import { ImDrawer2 } from "react-icons/im";
 import { Flex, Image } from "../../styled";
 import { MdLogout } from "react-icons/md";
+import { useLogout } from "../../../hooks/useLogout";
 
 const Menu = () => {
   const { user } = useContext(AuthContext);
   const location = useLocation();
+  const doLogout = useLogout();
 
   const activePath = (path) => {
     return location.pathname.includes(path);
@@ -91,6 +93,9 @@ const Menu = () => {
         background="#F7FAFC"
         borderRadius="0.5rem"
         cursor="pointer"
+        onClick={() => {
+          doLogout();
+        }}
       >
         <MdLogout />
         Terminar Sessão

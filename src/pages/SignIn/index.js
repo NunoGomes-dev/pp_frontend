@@ -1,22 +1,11 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import pp_logo from "../../assets/pp_logo.png";
-import { AuthContext } from "../../context/AuthContext";
+import useSignIn from "../../hooks/useSignIn";
 import { Button, Container, Flex, Image, Input, Label } from "./styles";
 
 export const SignIn = () => {
   const { handleSubmit, register } = useForm();
-  const { handleLogin, isLoading } = useContext(AuthContext);
-
-  const loginHandler = ({ email, password }) => {
-    handleLogin({ email, password });
-  };
-
-  // const { mutate } = useMutation(handleLogin, {
-  //   onSuccess: (data) => {
-  //     console.log("da", data);
-  //   },
-  // });
+  const { mutate, isLoading, isError } = useSignIn();
 
   return (
     <Flex
@@ -28,7 +17,7 @@ export const SignIn = () => {
     >
       <Container>
         <Image src={pp_logo} alt="PeçaAPeça" />
-        <form onSubmit={handleSubmit(loginHandler)}>
+        <form onSubmit={handleSubmit(mutate)}>
           <Flex
             flexDirection="column"
             justifyContent="center"
@@ -51,7 +40,8 @@ export const SignIn = () => {
             />
           </Flex>
           <Button type="submit">Submit</Button>
-          {isLoading && <div>isLoading</div>}
+          {isLoading ? <div>Is Loading...</div> : null}
+          {isError ? <div>Is Error...</div> : null}
         </form>
       </Container>
     </Flex>

@@ -1,20 +1,21 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { Flex, Menu } from "./components";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 import Routes from "./Routes";
 
 function App() {
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
-    <AuthProvider>
-      <AppContainer>
-        <Flex width="100%" height="100%">
-          <Menu />
-          <RoutesContainer>
-            <Routes />
-          </RoutesContainer>
-        </Flex>
-      </AppContainer>
-    </AuthProvider>
+    <AppContainer>
+      <Flex width="100%" height="100%">
+        {isAuthenticated && <Menu />}
+        <RoutesContainer>
+          <Routes />
+        </RoutesContainer>
+      </Flex>
+    </AppContainer>
   );
 }
 
@@ -32,4 +33,10 @@ const RoutesContainer = styled.div`
   background: #fafafa;
   overflowy: auto;
   width: 100%;
+  height: 100%;
 `;
+
+//TODOS
+
+//CSS RESET (https://necolas.github.io/normalize.css/)
+//Design system - material ui/ braid
