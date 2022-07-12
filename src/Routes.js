@@ -6,7 +6,15 @@ import {
   useLocation,
 } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
-import { About, Dashboard, SignIn } from "./pages";
+import {
+  Dashboard,
+  SignIn,
+  Providers,
+  Storages,
+  Parts,
+  Inventory,
+  Orders,
+} from "./pages";
 
 const ProtectedRoute = ({ isPrivate, isSignIn, children }) => {
   const location = useLocation();
@@ -18,21 +26,12 @@ const ProtectedRoute = ({ isPrivate, isSignIn, children }) => {
   if (isSignIn && isAuthenticated && !isLoading) {
     return <Navigate to="/" />;
   }
-
   return children;
 };
 
 const Routes = () => {
   return (
     <Router>
-      <Route
-        path="/about"
-        element={
-          <ProtectedRoute isPrivate>
-            <About />
-          </ProtectedRoute>
-        }
-      />
       <Route
         path="/"
         element={
@@ -41,6 +40,47 @@ const Routes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/parts"
+        element={
+          <ProtectedRoute isPrivate>
+            <Parts />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory"
+        element={
+          <ProtectedRoute isPrivate>
+            <Inventory />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/orders"
+        element={
+          <ProtectedRoute isPrivate>
+            <Orders />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/providers"
+        element={
+          <ProtectedRoute isPrivate>
+            <Providers />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/storages"
+        element={
+          <ProtectedRoute isPrivate>
+            <Storages />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="/signin"
         element={

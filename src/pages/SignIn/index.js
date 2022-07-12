@@ -12,6 +12,12 @@ export const SignIn = () => {
     handleLogin({ email, password });
   };
 
+  // const { mutate } = useMutation(handleLogin, {
+  //   onSuccess: (data) => {
+  //     console.log("da", data);
+  //   },
+  // });
+
   return (
     <Flex
       width="100%"
