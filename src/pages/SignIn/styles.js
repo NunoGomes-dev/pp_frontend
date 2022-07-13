@@ -11,9 +11,7 @@ export const Flex = styled.div`
   flex-direction: ${(props) => props.flexDirection || "row"};
   align-items: ${(props) => props.alignItems || "start"};
   justify-content: ${(props) => props.justifyContent || "start"};
-  padding-bottom: 1rem;
-  width: ${(props) => props.width || "auto"};
-  height: ${(props) => props.height || "auto"};
+  width: 100%;
 `;
 
 export const Image = styled.img`
@@ -25,21 +23,10 @@ export const Image = styled.img`
   padding: 0 0 2rem 0;
 `;
 
-export const Button = styled.button`
-  background: #ddba92;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-`;
-
 export const Input = styled.input`
   width: 375px;
   height: 40px;
-  background: #fafafa;
+  background: red;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   color: #210203;

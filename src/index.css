@@ -179,6 +179,13 @@ input {
   overflow: visible;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000000000s 0s, color 600000000000s 0s;
+}
+input[data-autocompleted] {
+  background-color: transparent !important;
+}
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
  * 1. Remove the inheritance of text transform in Firefox.

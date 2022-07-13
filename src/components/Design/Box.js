@@ -4,14 +4,12 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const Button = styled.button`
-  cursor: pointer;
-  ${({ variant, theme }) => theme.components.button.variants[variant] || ``}
+const HStack = styled.div`
   ${(props) => props}
   ${sizes}
   ${spacings}
-  ${tipography}
-  ${colors}
+    ${tipography}
+    ${colors}
 `;
 
-export default Button;
+export default HStack;

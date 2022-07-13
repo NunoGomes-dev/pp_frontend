@@ -4,10 +4,10 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const Stack = styled.div`
+const HStack = styled.div`
   ${(props) => props}
   display: flex;
-  flex-direction: ${(props) => props.direction || "row"};
+  flex-direction: row;
   justify-content: ${(props) => props.justify || "start"};
   align-items: ${(props) => props.align || "start"};
   gap: ${(props) => props.theme.space[props.gap] || props.gap || "0.5rem"};
@@ -17,4 +17,4 @@ const Stack = styled.div`
     ${colors}
 `;
 
-export default Stack;
+export default HStack;

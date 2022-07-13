@@ -1,5 +1,3 @@
-import { Button } from "./Button";
-
 const space = {
   px: "1px",
   0.5: "0.125rem",
@@ -150,6 +148,42 @@ export const theme = {
     full: "9999px",
   },
   components: {
-    button: Button,
+    button: {
+      variants: {
+        solid: {
+          "background-color": "#ddba92",
+          color: "white",
+          padding: "1rem 0.5rem",
+          "border-radius": "8px",
+          border: "none",
+        },
+        light: {
+          "background-color": "rgba(221, 186, 146, 0.2)",
+          color: "#DDBA92",
+          padding: "1rem 0.5rem",
+          "border-radius": "8px",
+          border: "none",
+        },
+      },
+    },
+    input: {
+      baseStyle: `background: #FAFAFA;
+      color: #210203;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #E0E0E0;
+      &:hover {
+          background: white;
+      }
+      &:focus {
+          background: white;
+          outline: none;
+    -webkit-tap-highlight-color: transparent;
+      }
+      &:active {
+        -webkit-tap-highlight-color: transparent;
+      }
+    `,
+    },
   },
 };
