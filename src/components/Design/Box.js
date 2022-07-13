@@ -4,7 +4,7 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const HStack = styled.div`
+const Box = styled.div`
   ${(props) => props}
   ${sizes}
   ${spacings}
@@ -12,4 +12,4 @@ const HStack = styled.div`
     ${colors}
 `;
 
-export default HStack;
+export default Box;

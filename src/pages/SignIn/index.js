@@ -15,7 +15,13 @@ export const SignIn = () => {
   const { mutate, isLoading, isError } = useSignIn();
 
   return (
-    <Stack width="full" height="full" justify="center" align="center">
+    <Stack
+      width="full"
+      height="full"
+      justify="center"
+      align="center"
+      color="black"
+    >
       <VStack
         justify="start"
         align="center"
@@ -51,17 +57,11 @@ export const SignIn = () => {
             <Button variant="solid" width="full" type="submit">
               Submit
             </Button>
+            {isLoading ? <div>Is Loading...</div> : null}
+            {isError ? <div>Is Error...</div> : null}
           </VStack>
-          {isLoading ? <div>Is Loading...</div> : null}
-          {isError ? <div>Is Error...</div> : null}
         </form>
       </VStack>
     </Stack>
   );
 };
-
-// display: flex;
-//   flex-direction: ${(props) => props.flexDirection || "row"};
-//   align-items: ${(props) => props.alignItems || "start"};
-//   justify-content: ${(props) => props.justifyContent || "start"};
-//   width: 100%;

@@ -1,12 +1,6 @@
 export default function colors(props) {
-  return `${
-    (props.background || props.backgroundColor) &&
-    `background: ${
-      props.theme.colors[props.background || props.backgroundColor] ||
-      props.background ||
-      props.backgroundColor
-    };`
-  }${
+  const bg = props.background || props.backgroundColor || props.bg || null;
+  return `${bg && `background: ${props.theme.colors[bg] || bg};`}${
     props.color && `color: ${props.theme.colors[props.color] || props.color};`
   }`;
 }

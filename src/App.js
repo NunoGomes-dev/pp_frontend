@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { Flex, Menu } from "./components";
+import { ThemeProvider } from "styled-components";
+import { Box, HStack, Menu } from "./components";
 import { AuthContext } from "./context/AuthContext";
 import Routes from "./Routes";
 import { theme } from "./theme";
@@ -10,36 +10,27 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppContainer>
-        <Flex width="100%" height="100%">
+      <Box
+        height="100vh"
+        overflow="hidden"
+        position="relative"
+        background="#fafafa"
+      >
+        <HStack width="full" height="full" gap="0" background="#fafafa">
           {isAuthenticated && <Menu />}
-          <RoutesContainer>
+          <Box
+            flex="1"
+            background="#fafafa"
+            overflowY="auto"
+            width="full"
+            height="full"
+          >
             <Routes />
-          </RoutesContainer>
-        </Flex>
-      </AppContainer>
+          </Box>
+        </HStack>
+      </Box>
     </ThemeProvider>
   );
 }
 
 export default App;
-
-const AppContainer = styled.div`
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  background-color: #fafafa;
-`;
-
-const RoutesContainer = styled.div`
-  flex: 1;
-  background: #fafafa;
-  overflowy: auto;
-  width: 100%;
-  height: 100%;
-`;
-
-//TODOS
-
-//CSS RESET (https://necolas.github.io/normalize.css/)
-//Design system - material ui/ braid

@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
-import { Flex } from "../../styled";
+import { HStack } from "../../Design";
 
 const LinkItem = ({ isActive, LeftIcon, text, to }) => {
-  const background = isActive ? "#2978A0" : "white";
+  const background = isActive ? "#DDBA92" : "white";
   const color = isActive ? "white" : "#4A5568";
   return (
     <Link to={to} style={{ textDecoration: "none", width: "100%" }}>
-      <Flex
-        flexDirection="row"
-        justifyContent="start"
-        alignItems="center"
+      <HStack
+        align="center"
         padding="0.5rem"
         gap="0.5rem"
         borderRadius="4px"
@@ -18,7 +16,7 @@ const LinkItem = ({ isActive, LeftIcon, text, to }) => {
       >
         {LeftIcon ? LeftIcon : null}
         <div>{text}</div>
-      </Flex>
+      </HStack>
     </Link>
   );
 };
