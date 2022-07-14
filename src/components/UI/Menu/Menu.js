@@ -8,7 +8,7 @@ import { FiSettings, FiPackage, FiLayers, FiTruck } from "react-icons/fi";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
 import { ImDrawer2 } from "react-icons/im";
 import { MdLogout } from "react-icons/md";
-import { useLogout } from "../../../hooks/useLogout";
+import { useLogout } from "../../../hooks/Login/useLogout";
 import { HStack, Image, VStack } from "../../Design";
 
 const Menu = () => {

@@ -8,7 +8,7 @@ import {
   VStack,
   Image,
 } from "../../components";
-import useSignIn from "../../hooks/useSignIn";
+import useSignIn from "../../hooks/Login/useSignIn";
 
 export const SignIn = () => {
   const { handleSubmit, register } = useForm();

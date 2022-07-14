@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
-import api from "../services/api";
+import api from "../../services/api";
 
 const fetch = ({ token }) => {
   return api

@@ -1,15 +1,14 @@
-export default function tipography(props) {
-  return `${
-    props.fontWeight &&
-    `font-weight: ${props.theme.fontWeights[props.fontWeight]};`
-  }
-    ${props.fontSize && `font-size: ${props.theme.fontSizes[props.fontSize]};`}
-    ${
-      props.lineHeight &&
-      `line-height: ${props.theme.lineHeights[props.lineHeight]};`
-    }
-    ${
-      props.letterSpacing &&
-      `letter-spacing: ${props.theme.letterSpacings[props.letterSpacing]};`
-    }`;
+export default function tipography({
+  theme,
+  fontWeight,
+  fontSize,
+  lineHeight,
+  letterSpacing,
+}) {
+  return `${fontWeight && `font-weight: ${theme.fontWeights[fontWeight]};`}
+  ${fontSize && `font-size: ${theme.fontSizes[fontSize]};`}
+  ${lineHeight && `line-height: ${theme.lineHeights[lineHeight]};`}
+  ${
+    letterSpacing && `letter-spacing: ${theme.letterSpacings[letterSpacing]};`
+  }`;
 }

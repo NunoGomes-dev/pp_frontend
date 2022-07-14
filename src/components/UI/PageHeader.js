@@ -1,18 +1,16 @@
 import { HStack } from "../Design";
 
-const PageHeader = ({ name, children }) => {
+const PageHeader = ({ name, unstyled, children }) => {
   return (
     <HStack
       width="calc(100% - 3rem)"
-      height="73px"
+      maxHeight="calc(100% - 1.5rem)"
       justify="space-between"
       align="center"
       color="#2D3748"
-      paddingLeft="1.5rem"
-      paddingRight="1.5rem"
-      background="#FFFFFF"
-      border="1px solid #EDF2F7"
-      style={{ borderLeft: "0px", borderTop: "0px", borderRight: "0px" }}
+      padding="1.5rem"
+      background={unstyled ? "transparent" : "#FFFFFF"}
+      borderBottom={unstyled ? "none" : "1px solid #EDF2F7"}
     >
       <span style={{ fontWeight: 500, fontSize: "22px" }}>{name}</span>
       {children ? children : null}

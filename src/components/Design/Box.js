@@ -6,10 +6,10 @@ import tipography from "../../utils/tipography";
 
 const Box = styled.div`
   ${(props) => props}
-  ${sizes}
-  ${spacings}
-    ${tipography}
-    ${colors}
+  ${(props) => sizes(props)}
+  ${(props) => spacings(props)}
+  ${(props) => tipography(props)}
+  ${(props) => colors(props)}
 `;
 
 export default Box;

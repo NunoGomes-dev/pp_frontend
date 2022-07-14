@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useMutation } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import api from "../services/api";
+import { AuthContext } from "../../context/AuthContext";
+import api from "../../services/api";
 
 const fetch = (values) => {
   return api.post("/users/sign-in", values).then((res) => res.data);
