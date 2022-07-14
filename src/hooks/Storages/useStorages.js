@@ -6,9 +6,7 @@ const fetchStorages = () => {
 };
 
 export default function useStorages() {
-  const onSuccess = (data) => {
-    console.log("data", data);
-  };
+  const onSuccess = (data) => {};
   const onError = (error) => {
     console.log("error", error);
   };

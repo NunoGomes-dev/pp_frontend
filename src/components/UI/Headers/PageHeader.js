@@ -1,4 +1,4 @@
-import { HStack } from "../Design";
+import { HStack } from "../../Design";
 
 const PageHeader = ({ name, unstyled, children }) => {
   return (

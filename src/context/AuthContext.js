@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+
 import useRefreshToken from "../hooks/Login/useRefreshToken";
 
 const AuthContext = createContext();
@@ -6,17 +7,22 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [firstLoading, setFirstLoading] = useState(true);
 
-  const { mutate } = useRefreshToken(setUser, setIsAuthenticated);
+  const { mutate } = useRefreshToken(
+    setUser,
+    setIsAuthenticated,
+    setFirstLoading
+  );
 
   useEffect(() => {
     const token = localStorage.getItem("Peça@Peça:token");
 
-    if (token) {
+    if (token)
       mutate({
         token: JSON.parse(token),
       });
-    }
+    else setFirstLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -27,6 +33,7 @@ const AuthProvider = ({ children }) => {
         setIsAuthenticated,
         user,
         setUser,
+        firstLoading,
       }}
     >
       {children}

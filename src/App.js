@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { ThemeProvider } from "styled-components";
-import { Box, HStack, Menu } from "./components";
+import { Box, HStack, LoadingScreen, Menu } from "./components";
 import { AuthContext } from "./context/AuthContext";
 import Routes from "./Routes";
 import { theme } from "./theme";
+import logo from "./assets/pp_logo.png";
 
 function App() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, firstLoading } = useContext(AuthContext);
 
   return (
     <ThemeProvider theme={theme}>
+      <LoadingScreen show={firstLoading} logo={logo} />
       <Box
         height="100vh"
         overflow="hidden"

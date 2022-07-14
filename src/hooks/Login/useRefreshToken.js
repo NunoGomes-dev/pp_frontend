@@ -8,7 +8,11 @@ const fetch = ({ token }) => {
     .then((res) => res.data);
 };
 
-export default function useRefreshToken(setUser, setIsAuthenticated) {
+export default function useRefreshToken(
+  setUser,
+  setIsAuthenticated,
+  setFirstLoading
+) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,10 +22,12 @@ export default function useRefreshToken(setUser, setIsAuthenticated) {
     setUser(data.user);
     setIsAuthenticated(true);
     navigate(location.pathname, { replace: true });
+    setFirstLoading(false);
   };
   const onError = (error) => {
     console.log("singin error", error);
     navigate("/signin", { replace: true });
+    setFirstLoading(false);
   };
 
   return useMutation((values) => fetch(values), {

@@ -20,8 +20,9 @@ export default function useSignIn() {
     setIsAuthenticated(true);
     navigate(location.state?.from?.pathname || "/", { replace: true });
   };
-  const onError = (error) => {
+  const onError = (error, payload, callback) => {
     console.log("singin error", error);
+    if (callback) callback();
   };
 
   return useMutation((values) => fetch(values), {
