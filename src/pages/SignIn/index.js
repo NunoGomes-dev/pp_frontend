@@ -54,10 +54,16 @@ export const SignIn = () => {
                 placeholder=""
               />
             </VStack>
-            <Button variant="solid" width="full" type="submit">
-              Submit
+            <Button
+              // variant="solid"
+              width="full"
+              type="submit"
+              isLoading={isLoading}
+              loadingText="A entrar..."
+              fontSize="4xl"
+            >
+              Entrar
             </Button>
-            {isLoading ? <div>Is Loading...</div> : null}
             {isError ? <div>Is Error...</div> : null}
           </VStack>
         </form>

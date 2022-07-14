@@ -9,10 +9,10 @@ const StyledButton = styled.button`
   cursor: pointer;
   ${({ variant, theme }) => theme.components.button.variants[variant] || ``};
   ${(props) => props};
-  ${sizes};
-  ${spacings};
-  ${tipography};
-  ${colors};
+  ${(props) => sizes(props)}
+  ${(props) => spacings(props)}
+  ${(props) => tipography(props)}
+  ${(props) => colors(props)}
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;

@@ -1,4 +1,4 @@
-import { HStack } from "../../Design";
+import { Box, HStack } from "../../Design";
 
 const PageHeader = ({ name, unstyled, children }) => {
   return (
@@ -12,7 +12,9 @@ const PageHeader = ({ name, unstyled, children }) => {
       background={unstyled ? "transparent" : "#FFFFFF"}
       borderBottom={unstyled ? "none" : "1px solid #EDF2F7"}
     >
-      <span style={{ fontWeight: 500, fontSize: "22px" }}>{name}</span>
+      <Box fontWeight="500" fontSize="2xl">
+        {name}
+      </Box>
       {children ? children : null}
     </HStack>
   );

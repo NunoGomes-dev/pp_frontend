@@ -11,10 +11,10 @@ const HStack = styled.div`
   justify-content: ${(props) => props.justify || "start"};
   align-items: ${(props) => props.align || "start"};
   gap: ${(props) => props.theme.space[props.gap] || props.gap || "0.5rem"};
-  ${sizes};
-  ${spacings};
-  ${tipography};
-  ${colors};
+  ${(props) => sizes(props)}
+  ${(props) => spacings(props)}
+  ${(props) => tipography(props)}
+  ${(props) => colors(props)}
 `;
 
 export default HStack;
