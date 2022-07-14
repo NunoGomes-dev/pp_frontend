@@ -1,7 +1,9 @@
-import { Box, Stack } from "../Design";
+import { Box, IconButton, Stack } from "../Design";
 import { VscTrash } from "react-icons/vsc";
 
 const StorageCard = ({ storage, handleRemove }) => {
+  const { mutate, isLoading } = handleRemove;
+
   return (
     <Stack
       width="200px"
@@ -17,19 +19,20 @@ const StorageCard = ({ storage, handleRemove }) => {
       <Box fontWeight="600" fontSize="2xl">
         {storage.name}
       </Box>
-      <Box
+      <IconButton
+        variant="unstyled"
         color="#E0E0E0"
         fontSize="1.5rem"
         position="absolute"
         top="1rem"
         right="1rem"
-        cursor="pointer"
+        isLoading={isLoading}
+        icon={<VscTrash />}
         onClick={() => {
-          handleRemove({ id: storage.id });
+          console.log("click");
+          mutate({ id: storage.id });
         }}
-      >
-        <VscTrash />
-      </Box>
+      />
     </Stack>
   );
 };

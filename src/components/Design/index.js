@@ -6,3 +6,4 @@ export { default as Input } from "./Input";
 export { default as InputLabel } from "./InputLabel";
 export { default as Box } from "./Box";
 export { default as Image } from "./Image";
+export { default as IconButton } from "./IconButton";

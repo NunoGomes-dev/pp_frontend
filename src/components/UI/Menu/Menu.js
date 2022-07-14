@@ -9,7 +9,7 @@ import { MdOutlineSignalCellularAlt } from "react-icons/md";
 import { ImDrawer2 } from "react-icons/im";
 import { MdLogout } from "react-icons/md";
 import { useLogout } from "../../../hooks/Login/useLogout";
-import { HStack, Image, VStack } from "../../Design";
+import { Button, Image, VStack } from "../../Design";
 
 const Menu = () => {
   const { user } = useContext(AuthContext);
@@ -76,23 +76,20 @@ const Menu = () => {
           isActive={activePath("/storages")}
         />
       </VStack>
-      <HStack
+      <Button
+        variant="light"
         width="full"
         padding="0.5rem 0"
-        justify="center"
-        align="center"
         color="#4A5568"
         background="#F7FAFC"
-        boxShadow="md"
-        cursor="pointer"
         borderRadius="0.5rem"
+        icon={<MdLogout />}
         onClick={() => {
           doLogout();
         }}
       >
-        <MdLogout />
         Terminar Sessão
-      </HStack>
+      </Button>
     </VStack>
   );
 };

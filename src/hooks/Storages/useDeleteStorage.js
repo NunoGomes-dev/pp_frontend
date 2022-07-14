@@ -6,21 +6,28 @@ const fetch = ({ id }) => {
 };
 
 export default function useDeleteStorage() {
-  const queryClient = useQueryClient();
+  const q = useQueryClient();
   return useMutation((values) => fetch(values), {
-    onMutate: (data) => {
-      console.log("data", data);
+    onMutate: ({ id }) => {
+      const old = q.getQueryData(["storages"]);
+      if (old)
+        q.setQueryData(["storages"], ({ total, storages }) => {
+          return {
+            storages: [...storages.filter((s) => s.id !== id)],
+            total: total--,
+          };
+        });
+      return old;
     },
-    onSuccess: (data) => {
-      console.log("feito", data);
-      queryClient.invalidateQueries(["storages"]);
-    },
-    onError: (error, newData, rollback) => {
-      console.error(error);
-      if (rollback) rollback();
+    onSuccess: () => {
+      q.invalidateQueries(["storages"]);
     },
     onSettled: () => {
-      queryClient.invalidateQueries(["storages"]);
+      q.invalidateQueries(["storages"]);
+    },
+    onError: (error, payload, rollback) => {
+      console.error("onError", error);
+      if (rollback) rollback();
     },
   });
 }

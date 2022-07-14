@@ -8,8 +8,10 @@ const InputLabel = styled.label`
   font-size: ${({ theme }) => theme.fontSizes.md};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.terciary};
-  ${sizes} ${spacings}
-    ${tipography} ${colors}
+  ${sizes};
+  ${spacings};
+  ${tipography};
+  ${colors};
 `;
 
 export default InputLabel;

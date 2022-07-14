@@ -164,6 +164,13 @@ export const theme = {
           "border-radius": "8px",
           border: "none",
         },
+        unstyled: {
+          "background-color": "transparent",
+          color: "white",
+          padding: "0",
+          "border-radius": "none",
+          border: "none",
+        },
       },
     },
     input: {
