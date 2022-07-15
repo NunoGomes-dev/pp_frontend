@@ -34,18 +34,21 @@ const space = {
   96: "24rem",
 };
 
+const colors = {
+  primary: "#DDBA92",
+  secondary: "#727272",
+  terciary: "#210203",
+  primaryLight: "rgba(221, 186, 146, 0.2)",
+  title: "#04080F",
+  text: "#292929",
+  transparent: "transparent",
+  black: "#000",
+  white: "#fff",
+  light: "#FAFAFA",
+};
+
 export const theme = {
-  colors: {
-    primary: "#DDBA92",
-    secondary: "#727272",
-    terciary: "#210203",
-    primaryLight: "#DDBA9233",
-    title: "#04080F",
-    text: "#292929",
-    transparent: "transparent",
-    black: "#000",
-    white: "#fff",
-  },
+  colors,
   fonts: {
     heading: '"Outfit", sans-serif;',
     body: '"Outfit", sans-serif;',
@@ -149,24 +152,38 @@ export const theme = {
   },
   components: {
     button: {
+      baseStyle: {
+        "background-color": `${colors.primary}`,
+        color: `${colors.white}`,
+        padding: "1rem 2rem",
+        "border-radius": "8px",
+        border: "none",
+      },
       variants: {
         solid: {
-          "background-color": "#ddba92",
-          color: "white",
+          "background-color": `${colors.primary}`,
+          color: `${colors.white}`,
           padding: "1rem 2rem",
           "border-radius": "8px",
           border: "none",
         },
         light: {
-          "background-color": "rgba(221, 186, 146, 0.2)",
-          color: "#DDBA92",
+          "background-color": `${colors.primaryLight}`,
+          color: `${colors.primary}`,
           padding: "1rem 2rem",
           "border-radius": "8px",
           border: "none",
         },
+        outline: {
+          "background-color": `${colors.primaryLight}`,
+          color: `${colors.primary}`,
+          padding: "1rem 2rem",
+          "border-radius": "8px",
+          border: `1px solid ${colors.primary}`,
+        },
         unstyled: {
           "background-color": "transparent",
-          color: "white",
+          color: `${colors.white}`,
           padding: "0",
           "border-radius": "none",
           border: "none",
@@ -174,20 +191,21 @@ export const theme = {
       },
     },
     input: {
-      baseStyle: `background: #FAFAFA;
-      color: #210203;
+      baseStyle: `background: ${colors.light};
+      color: ${colors.terciary};
       padding: 1rem;
       border-radius: 8px;
       border: 1px solid #E0E0E0;
       &:hover {
-          background: white;
+          background: ${colors.white};
       }
       &:focus {
-          background: white;
+          background: ${colors.white};
           outline: none;
     -webkit-tap-highlight-color: transparent;
       }
       &:active {
+        background: ${colors.white};
         -webkit-tap-highlight-color: transparent;
       }
     `,

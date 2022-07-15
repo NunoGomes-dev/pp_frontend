@@ -7,10 +7,11 @@ import { IoIosAdd } from "react-icons/io";
 const Storages = () => {
   const { isLoading, data, isSuccess } = useStorages();
   const deleteMutation = useDeleteStorage();
+
   return (
     <VStack width="full" height="full" gap="0">
       <PageHeader name="Gavetas" unstyled>
-        <Link to={"/providers"}>
+        <Link to={"/storages/new"}>
           <Button
             variant="solid"
             icon={<IoIosAdd style={{ transform: "scale(1.5)" }} />}

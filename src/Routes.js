@@ -14,6 +14,7 @@ import {
   Parts,
   Inventory,
   Orders,
+  Storage,
 } from "./pages";
 
 const ProtectedRoute = ({ isPrivate, isSignIn, children }) => {
@@ -77,6 +78,14 @@ const Routes = () => {
         element={
           <ProtectedRoute isPrivate>
             <Storages />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/storages/:id"
+        element={
+          <ProtectedRoute isPrivate>
+            <Storage />
           </ProtectedRoute>
         }
       />

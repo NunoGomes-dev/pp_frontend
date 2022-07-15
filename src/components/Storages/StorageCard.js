@@ -1,4 +1,4 @@
-import { Box, IconButton, Stack } from "../Design";
+import { Box, Button, HStack, IconButton, Stack, VStack } from "../Design";
 import { VscTrash } from "react-icons/vsc";
 import { useState } from "react";
 import {
@@ -8,18 +8,51 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "../Modal";
+import { useNavigate } from "react-router-dom";
 
 const StorageCard = ({ storage, handleRemove }) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  // const { mutate, isLoading } = handleRemove;
+  const { mutate } = handleRemove;
 
   return (
     <>
       <Modal isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader title="olaaaaa" onClose={() => setIsOpen(false)} />
-          <ModalBody></ModalBody>
+          <ModalHeader
+            title="Eliminar gaveta"
+            onClose={() => setIsOpen(false)}
+          />
+          <ModalBody width="full">
+            <VStack padding="1rem" width="calc(100% - 2rem)" gap={6}>
+              <Box>
+                Tem a certeza que deseja eliminar a gaveta{" "}
+                <b>{storage.name}?</b>
+              </Box>
+              <HStack width="full" justify="end" align="center">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  variant="solid"
+                  background="#FC8181"
+                  border="1px solid red"
+                  onClick={() => {
+                    mutate({ id: storage.id });
+                    setIsOpen(false);
+                  }}
+                >
+                  Apagar
+                </Button>
+              </HStack>
+            </VStack>
+          </ModalBody>
         </ModalContent>
       </Modal>
       <Stack
@@ -32,6 +65,11 @@ const StorageCard = ({ storage, handleRemove }) => {
         align="center"
         position="relative"
         borderRadius="8px"
+        cursor="pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          navigate(`/storages/${storage.id}`);
+        }}
       >
         <Box fontWeight="600" fontSize="2xl">
           {storage.name}
@@ -43,11 +81,10 @@ const StorageCard = ({ storage, handleRemove }) => {
           position="absolute"
           top="1rem"
           right="1rem"
-          // isLoading={isLoading}
           icon={<VscTrash />}
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setIsOpen(true);
-            // mutate({ id: storage.id });
           }}
         />
       </Stack>

@@ -6,10 +6,10 @@ import tipography from "../../utils/tipography";
 
 const Input = styled.input`
   ${({ theme }) => theme.components.input.baseStyle || ``};
-  ${(props) => sizes(props)}
-  ${(props) => spacings(props)}
-  ${(props) => tipography(props)}
-  ${(props) => colors(props)}
+  ${(p) => sizes(p)}
+  ${(p) => spacings(p)}
+  ${(p) => tipography(p)}
+  ${(p) => colors(p)}
 `;
 
 export default Input;

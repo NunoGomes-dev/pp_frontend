@@ -8,7 +8,7 @@ import {
   VStack,
   Image,
 } from "../../components";
-import useSignIn from "../../hooks/Login/useSignIn";
+import useSignIn from "../../hooks/auth/useSignIn";
 
 export const SignIn = () => {
   const { handleSubmit, register } = useForm();
@@ -55,12 +55,11 @@ export const SignIn = () => {
               />
             </VStack>
             <Button
-              // variant="solid"
+              variant="solid"
               width="full"
               type="submit"
               isLoading={isLoading}
               loadingText="A entrar..."
-              fontSize="4xl"
             >
               Entrar
             </Button>

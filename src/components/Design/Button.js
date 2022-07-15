@@ -9,12 +9,13 @@ import HStack from "./HStack";
 
 const StyledButton = styled.button`
   cursor: pointer;
+  ${({ theme }) => theme.components.button.baseStyle || ``};
   ${({ variant, theme }) => theme.components.button.variants[variant] || ``};
   ${(p) => others(p)};
-  ${(props) => sizes(props)}
-  ${(props) => spacings(props)}
-  ${(props) => tipography(props)}
-  ${(props) => colors(props)}
+  ${(p) => sizes(p)}
+  ${(p) => spacings(p)}
+  ${(p) => tipography(p)}
+  ${(p) => colors(p)}
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
