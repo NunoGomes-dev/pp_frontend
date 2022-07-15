@@ -7,7 +7,11 @@ const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [firstLoading, setFirstLoading] = useState(true);
-  const handleToken = useToken(null, setUser, setIsAuthenticated);
+  const handleToken = useToken(
+    localStorage.getItem("Peça@Peça:token") || null,
+    setUser,
+    setIsAuthenticated
+  );
 
   useEffect(() => {
     const token = localStorage.getItem("Peça@Peça:token");
