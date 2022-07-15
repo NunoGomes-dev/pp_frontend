@@ -31,7 +31,7 @@ export const SignIn = () => {
         borderRadius="8px"
         border="1px solid #e0e0e0"
       >
-        <Image src={pp_logo} alt="PeçaAPeça" height="40%" width="auto" />
+        <Image src={pp_logo} alt="PeçaAPeça" maxHeight="40%" width="auto" />
         <form onSubmit={handleSubmit(mutate)}>
           <VStack align="center">
             <VStack>

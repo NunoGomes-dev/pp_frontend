@@ -4,7 +4,7 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const HStack = styled.div`
+const StyledHStack = styled.div`
   ${(props) => props};
   display: flex;
   flex-direction: row;
@@ -16,5 +16,9 @@ const HStack = styled.div`
   ${(props) => tipography(props)}
   ${(props) => colors(props)}
 `;
+
+const HStack = ({ children, ...others }) => {
+  return <StyledHStack {...others}>{children}</StyledHStack>;
+};
 
 export default HStack;

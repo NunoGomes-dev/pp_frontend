@@ -7,3 +7,5 @@ export { default as InputLabel } from "./InputLabel";
 export { default as Box } from "./Box";
 export { default as Image } from "./Image";
 export { default as IconButton } from "./IconButton";
+export { default as FormControl } from "./FormControl";
+export { default as Card } from "./Card";

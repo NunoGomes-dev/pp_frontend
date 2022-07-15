@@ -1,41 +1,70 @@
-import { Link } from "react-router-dom";
-import { Box, Button, PageHeader, StorageCard, VStack } from "../../components";
-import useDeleteStorage from "../../hooks/Storages/useDeleteStorage";
-import useStorages from "../../hooks/Storages/useStorages";
+import {
+  Button,
+  CreateStorageForm,
+  ListStorages,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  PageContainer,
+  PageHeader,
+} from "../../components";
+import useDeleteStorage from "../../hooks/mutations/useDeleteStorage";
+import useStorages from "../../hooks/data/useStorages";
 import { IoIosAdd } from "react-icons/io";
+import { useState } from "react";
+import usePostStorage from "../../hooks/mutations/usePostStorage";
+import { useForm } from "react-hook-form";
 
 const Storages = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { isLoading, data, isSuccess } = useStorages();
   const deleteMutation = useDeleteStorage();
+  const postMutation = usePostStorage();
+  const { handleSubmit, register } = useForm();
 
   return (
-    <VStack width="full" height="full" gap="0">
-      <PageHeader name="Gavetas" unstyled>
-        <Link to={"/storages/new"}>
+    <>
+      <Modal isOpen={isOpen}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader
+            title="Adicionar gaveta"
+            onClose={() => setIsOpen(false)}
+          />
+          <ModalBody width="full">
+            <CreateStorageForm
+              setIsOpen={setIsOpen}
+              handleSubmit={handleSubmit}
+              register={register}
+              postMutation={postMutation}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <PageContainer>
+        <PageHeader title="Gavetas" unstyled>
           <Button
             variant="solid"
             icon={<IoIosAdd style={{ transform: "scale(1.5)" }} />}
             iconPlacement="end"
+            onClick={() => {
+              console.log("ola");
+              setIsOpen(true);
+            }}
           >
             Nova gaveta
           </Button>
-        </Link>
-      </PageHeader>
-      <Box padding="1rem 0 1rem 1.5rem" width="calc(100% - 1.5rem)">
-        {isLoading && <div>Is Loading...</div>}
-        {isSuccess && (
-          <Box width="full" display="flex" flexWrap="wrap" gap={"1rem"}>
-            {data.storages.map((s) => (
-              <StorageCard
-                key={s.id}
-                storage={s}
-                handleRemove={deleteMutation}
-              />
-            ))}
-          </Box>
-        )}
-      </Box>
-    </VStack>
+        </PageHeader>
+        <ListStorages
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+          data={data}
+          deleteMutation={deleteMutation}
+        />
+      </PageContainer>
+    </>
   );
 };
 

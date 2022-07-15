@@ -4,7 +4,7 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import others from "../../utils/others";
 
-const Image = styled.img`
+const StyledImage = styled.img`
   object-fit: ${(props) => props.objectFit || "contain"};
   pointer-events: ${(props) => props.pointerEvents || "none"};
   user-select: ${(props) => props.userSelect || "none"};
@@ -13,5 +13,9 @@ const Image = styled.img`
   ${(props) => colors(props)}
   ${(props) => others(props)}
 `;
+
+const Image = ({ children, ...others }) => {
+  return <StyledImage {...others} />;
+};
 
 export default Image;

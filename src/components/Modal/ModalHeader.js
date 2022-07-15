@@ -11,7 +11,7 @@ const ModalHeader = ({ title, onClose, ...rest }) => {
       justify="space-between"
       {...rest}
     >
-      <Box fontSize="4xl">{title}</Box>
+      <Box fontSize="3xl">{title}</Box>
       <Box cursor="pointer" color="black" onClick={() => onClose()}>
         <IoClose />
       </Box>

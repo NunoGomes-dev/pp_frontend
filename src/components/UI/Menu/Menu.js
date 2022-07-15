@@ -27,8 +27,9 @@ const Menu = () => {
       padding="1rem"
       background="white"
       justify="space-between"
+      gap="4"
     >
-      <VStack width="full" gap="4">
+      <VStack width="full" gap="4" overflowY="auto">
         <Image
           src={banner}
           alt="banner_pp"

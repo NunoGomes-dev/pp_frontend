@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
 const next = (token, user, setUser, setIsAuthenticated, navigate, location) => {
-  localStorage.setItem("Peça@Peça:token", JSON.stringify(token));
-  api.defaults.headers.Authorization = `Bearer_pp ${token}`;
+  localStorage.setItem("Peça@Peça:token", token);
+  api.defaults.headers.Authorization = `Bearer_pp ${JSON.parse(token)}`;
   setUser({ ...user });
   setIsAuthenticated(true);
   navigate(location.pathname, { replace: true });

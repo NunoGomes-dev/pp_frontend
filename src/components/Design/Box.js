@@ -4,7 +4,7 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const Box = styled.div`
+const StyledBox = styled.div`
   ${(props) => props}
   ${(props) => sizes(props)}
   ${(props) => spacings(props)}
@@ -12,4 +12,7 @@ const Box = styled.div`
   ${(props) => colors(props)}
 `;
 
+const Box = ({ children, ...others }) => {
+  return <StyledBox {...others}>{children}</StyledBox>;
+};
 export default Box;

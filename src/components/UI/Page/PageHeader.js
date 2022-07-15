@@ -1,6 +1,6 @@
 import { Box, HStack } from "../../Design";
 
-const PageHeader = ({ name, unstyled, children }) => {
+const PageHeader = ({ title, unstyled = "unstyled", children }) => {
   return (
     <HStack
       width="calc(100% - 3rem)"
@@ -13,7 +13,7 @@ const PageHeader = ({ name, unstyled, children }) => {
       borderBottom={unstyled ? "none" : "1px solid #EDF2F7"}
     >
       <Box fontWeight="500" fontSize="2xl">
-        {name}
+        {title}
       </Box>
       {children ? children : null}
     </HStack>

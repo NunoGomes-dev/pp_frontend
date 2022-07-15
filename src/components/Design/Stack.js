@@ -4,7 +4,7 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const Stack = styled.div`
+const StyledStack = styled.div`
   ${(props) => props};
   display: flex;
   flex-direction: ${(props) => props.direction || "row"};
@@ -16,5 +16,9 @@ const Stack = styled.div`
   ${(props) => tipography(props)}
   ${(props) => colors(props)}
 `;
+
+const Stack = ({ children, ...others }) => {
+  return <StyledStack {...others}>{children}</StyledStack>;
+};
 
 export default Stack;

@@ -43,7 +43,7 @@ const colors = {
   text: "#292929",
   transparent: "transparent",
   black: "#000",
-  white: "#fff",
+  white: "#FFFFFF",
   light: "#FAFAFA",
 };
 
@@ -139,7 +139,7 @@ export const theme = {
       xl: "1280px",
     },
   },
-  radii: {
+  borderRadius: {
     none: "0",
     sm: "0.125rem",
     base: "0.25rem",
@@ -149,6 +149,9 @@ export const theme = {
     "2xl": "1rem",
     "3xl": "1.5rem",
     full: "9999px",
+  },
+  boxShadows: {
+    md: "0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12), 0 16px 16px rgba(0,0,0,0.12);",
   },
   components: {
     button: {
@@ -191,7 +194,8 @@ export const theme = {
       },
     },
     input: {
-      baseStyle: `background: ${colors.light};
+      baseStyle: `min-width: 300px;
+      background: ${colors.light};
       color: ${colors.terciary};
       padding: 1rem;
       border-radius: 8px;

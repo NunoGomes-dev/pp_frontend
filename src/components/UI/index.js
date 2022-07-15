@@ -1,3 +1,3 @@
 export * from "./Menu";
 export * from "./Loadings";
-export * from "./Headers";
+export * from "./Page";

@@ -29,6 +29,7 @@ const Button = ({
   loadingText,
   loadingPlacement = "start",
   icon,
+  iconGap,
   disabled,
   iconPlacement = "start",
   ...rest
@@ -36,13 +37,13 @@ const Button = ({
   return (
     <StyledButton {...rest} disabled={disabled || isLoading}>
       {isLoading ? (
-        <HStack justify="center" align="center" gap="4">
+        <HStack justify="center" align="center" gap={iconGap || "4"}>
           {loadingPlacement === "start" ? <Spinner color="white" /> : null}
           {loadingText ? loadingText : children}
           {loadingPlacement === "end" ? <Spinner color="white" /> : null}
         </HStack>
       ) : (
-        <HStack justify="center" align="center" gap="4">
+        <HStack justify="center" align="center" gap={iconGap || "4"}>
           {icon && iconPlacement === "start" ? icon : null}
           {children}
           {icon && iconPlacement === "end" ? icon : null}

@@ -4,7 +4,7 @@ import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const VStack = styled.div`
+const StyledVStack = styled.div`
   ${(props) => props};
   display: flex;
   flex-direction: column;
@@ -16,5 +16,9 @@ const VStack = styled.div`
   ${tipography};
   ${colors};
 `;
+
+const VStack = ({ children, ...others }) => {
+  return <StyledVStack {...others}>{children}</StyledVStack>;
+};
 
 export default VStack;
