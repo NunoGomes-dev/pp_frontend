@@ -12,7 +12,7 @@ const PageHeader = ({ title, unstyled = "unstyled", children }) => {
       background={unstyled ? "transparent" : "#FFFFFF"}
       borderBottom={unstyled ? "none" : "1px solid #EDF2F7"}
     >
-      <Box fontWeight="500" fontSize="2xl">
+      <Box fontWeight="600" fontSize="3xl">
         {title}
       </Box>
       {children ? children : null}

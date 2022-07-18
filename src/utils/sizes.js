@@ -1,11 +1,25 @@
 export default function sizes(props) {
   const borderRadius = props.borderRadius || props.rounded;
 
-  return `${props.width ? `width: ${props.theme.sizes[props.width]};` : ""}
-  ${props.height ? `height: ${props.theme.sizes[props.height]};` : ""}
-  ${props.maxWidth ? `max-width: ${props.theme.sizes[props.maxWidth]};` : ""}  
+  return `${
+    props.width
+      ? `width: ${props.theme.sizes[props.width] || props.width};`
+      : ""
+  }
+  ${
+    props.height
+      ? `height: ${props.theme.sizes[props.height] || props.height};`
+      : ""
+  }
+  ${
+    props.maxWidth
+      ? `max-width: ${props.theme.sizes[props.maxWidth] || props.maxWidth};`
+      : ""
+  }  
  ${
-   props.maxHeight ? `max-height: ${props.theme.sizes[props.maxHeight]};` : ""
+   props.maxHeight
+     ? `max-height: ${props.theme.sizes[props.maxHeight] || props.maxHeight};`
+     : ""
  }${
     borderRadius
       ? `border-radius: ${

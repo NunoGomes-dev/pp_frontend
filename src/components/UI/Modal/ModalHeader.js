@@ -1,4 +1,4 @@
-import { Box, HStack } from "../Design";
+import { Box, HStack } from "../../Design";
 import { IoClose } from "react-icons/io5";
 
 const ModalHeader = ({

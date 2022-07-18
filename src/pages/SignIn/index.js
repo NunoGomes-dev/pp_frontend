@@ -42,7 +42,9 @@ export const SignIn = () => {
                   type="text"
                   id="email"
                   name="email"
-                  {...register("email", { required: "Email obrigatório" })}
+                  {...register("email", {
+                    required: "Email obrigatório",
+                  })}
                   placeholder=""
                 />
                 <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>

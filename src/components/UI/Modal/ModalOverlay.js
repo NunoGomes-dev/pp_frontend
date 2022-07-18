@@ -1,4 +1,4 @@
-import { Box } from "../Design";
+import { Box } from "../../Design";
 
 const Overlay = (props) => (
   <Box

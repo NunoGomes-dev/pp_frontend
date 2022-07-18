@@ -7,7 +7,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-} from "../Modal";
+} from "../UI/Modal";
 import { useNavigate } from "react-router-dom";
 
 const StorageCard = ({ storage, handleRemove }) => {

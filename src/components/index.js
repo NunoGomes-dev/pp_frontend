@@ -1,4 +1,5 @@
 export * from "./UI";
-export * from "./Storages";
 export * from "./Design";
-export * from "./Modal";
+
+export * from "./Storages";
+export * from "./Parts";

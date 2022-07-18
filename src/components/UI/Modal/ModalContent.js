@@ -1,4 +1,4 @@
-import { VStack } from "../Design";
+import { VStack } from "../../Design";
 
 const ModalContent = ({ children, ...rest }) => (
   <VStack
