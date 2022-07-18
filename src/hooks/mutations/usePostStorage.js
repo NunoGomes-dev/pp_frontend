@@ -5,15 +5,23 @@ const fetch = (payload) => {
   return api.post(`/storages/`, payload).then((res) => res.data);
 };
 
-export default function usePostStorage() {
+export default function usePostStorage(setIsOpen) {
   const q = useQueryClient();
 
   return useMutation((values) => fetch(values), {
     onMutate: (newStorage) => {
-      const old = q.getQueryData(["storages"]);
-      if (old) q.setQueryData(["storages"], (old) => [...old, newStorage]);
-      return old;
+      const oldStorages = q.getQueryData(["storages"]);
+      if (oldStorages)
+        q.setQueryData(["storages"], ({ total, storages }) => {
+          return {
+            storages: [...storages, newStorage],
+            total: total--,
+          };
+        });
+      setIsOpen(false);
+      return oldStorages;
     },
+
     onSuccess: () => q.invalidateQueries(["storages"]),
     onSettled: () => q.invalidateQueries(["storages"]),
     onError: (error, payload, rollback) => {

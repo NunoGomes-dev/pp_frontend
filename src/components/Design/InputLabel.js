@@ -14,8 +14,17 @@ const StyledLabel = styled.label`
   ${(props) => colors(props)}
 `;
 
-const InputLabel = ({ children, ...others }) => {
-  return <StyledLabel {...others}>{children}</StyledLabel>;
+const InputLabel = ({ children, required, ...others }) => {
+  return (
+    <StyledLabel {...others}>
+      {children}
+      {required ? (
+        <span style={{ fontWeight: 300, color: "red" }}> *</span>
+      ) : (
+        ""
+      )}
+    </StyledLabel>
+  );
 };
 
 export default InputLabel;

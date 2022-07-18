@@ -12,6 +12,6 @@ export const useLogout = () => {
     setUser(null);
     setIsAuthenticated(false);
     delete api.defaults.headers.Authorization;
-    navigate("/signin", { replace: true });
+    navigate("/", { replace: true });
   };
 };

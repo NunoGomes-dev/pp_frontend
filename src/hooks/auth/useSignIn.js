@@ -18,7 +18,7 @@ export default function useSignIn() {
     api.defaults.headers.Authorization = `Bearer_pp ${data.accessToken}`;
     setUser(data.user);
     setIsAuthenticated(true);
-    navigate(location.state?.from?.pathname || "/", { replace: true });
+    navigate(location.state?.from?.pathname || "/dashboard", { replace: true });
   };
   const onError = (error, payload, callback) => {
     console.log("singin error", error);

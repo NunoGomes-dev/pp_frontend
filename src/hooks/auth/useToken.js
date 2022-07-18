@@ -7,7 +7,7 @@ const next = (token, user, setUser, setIsAuthenticated, navigate, location) => {
   api.defaults.headers.Authorization = `Bearer_pp ${JSON.parse(token)}`;
   setUser({ ...user });
   setIsAuthenticated(true);
-  navigate(location.pathname, { replace: true });
+  navigate(location.pathname || "/dashboard", { replace: true });
 };
 
 const logout = (setUser, setIsAuthenticated, navigate) => {
@@ -15,7 +15,7 @@ const logout = (setUser, setIsAuthenticated, navigate) => {
   setUser(null);
   setIsAuthenticated(false);
   delete api.defaults.headers.Authorization;
-  navigate("/signin", { replace: true });
+  navigate("/", { replace: true });
 };
 
 export default function useToken(token, setUser, setIsAuthenticated) {

@@ -45,6 +45,7 @@ const colors = {
   black: "#000",
   white: "#FFFFFF",
   light: "#FAFAFA",
+  error: "#E53E3E",
 };
 
 export const theme = {
@@ -183,6 +184,13 @@ export const theme = {
           padding: "1rem 2rem",
           "border-radius": "8px",
           border: `1px solid ${colors.primary}`,
+        },
+        outline2: {
+          "background-color": `${colors.primary}`,
+          color: `${colors.white}`,
+          padding: "1rem 2rem",
+          "border-radius": "8px",
+          border: `1px solid ${colors.white}`,
         },
         unstyled: {
           "background-color": "transparent",

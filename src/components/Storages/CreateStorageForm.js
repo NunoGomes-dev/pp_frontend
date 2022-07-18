@@ -1,39 +1,44 @@
 import {
   VStack,
-  HStack,
   Button,
   FormControl,
   InputLabel,
   Input,
+  FormErrorMessage,
 } from "../Design";
 import { CgAddR } from "react-icons/cg";
+import { useForm } from "react-hook-form";
 
-const CreateStorageForm = ({
-  setIsOpen,
-  handleSubmit,
-  register,
-  postMutation,
-}) => {
+const CreateStorageForm = ({ setIsOpen, postMutation }) => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   const { mutate, isLoading } = postMutation;
+
   return (
     <form onSubmit={handleSubmit(mutate)}>
-      <VStack padding="1rem" width="calc(100% - 2rem)" gap={6}>
-        <FormControl>
+      <VStack padding="2rem" paddingTop="0" width="calc(100% - 4rem)" gap={8}>
+        <FormControl width="calc(100% - 2rem)">
           <InputLabel htmlFor="name">Nome</InputLabel>
-          <Input {...register("name", { required: true })} />
+          <Input
+            {...register("name", { required: "Nome da gaveta obrigatório" })}
+            width="full"
+          />
+          <FormErrorMessage>{errors?.name?.message}</FormErrorMessage>
         </FormControl>
-        <HStack width="full" justify="end" align="center">
-          <Button
-            variant="solid"
-            type="submit"
-            isLoading={isLoading}
-            loadingText="A criar..."
-            icon={<CgAddR />}
-            iconPlacement="end"
-          >
-            Criar
-          </Button>
-        </HStack>
+        <Button
+          variant="solid"
+          type="submit"
+          alignSelf="end"
+          isLoading={isLoading}
+          loadingText="A criar..."
+          icon={<CgAddR />}
+          iconPlacement="end"
+        >
+          Criar
+        </Button>
       </VStack>
     </form>
   );

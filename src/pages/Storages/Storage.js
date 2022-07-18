@@ -3,6 +3,7 @@ import { FiSave, FiSettings } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import {
   Box,
+  BoxLoading,
   Button,
   Card,
   FormControl,
@@ -12,7 +13,6 @@ import {
   PageBody,
   PageContainer,
   PageHeader,
-  Spinner,
   VStack,
 } from "../../components";
 import useStorageId from "../../hooks/data/useStorageId";
@@ -33,7 +33,11 @@ const Storage = () => {
           </Button>
         </PageHeader>
         <PageBody width="full">
-          {isLoading && <Spinner size="64px" />}
+          {isLoading && (
+            <HStack gap={8}>
+              <BoxLoading /> <BoxLoading />
+            </HStack>
+          )}
           {!isLoading && (
             <HStack gap={8}>
               <Card width="full">
@@ -52,12 +56,14 @@ const Storage = () => {
                     <FiSettings />
                     <Box lineHeight="0">Peças</Box>
                   </HStack>
-                  {data?.parts?.length > 0 && (
+                  {data?.parts?.length > 0 ? (
                     <VStack>
                       {data.parts.map((p) => (
                         <div key={p.id}>{p.name}</div>
                       ))}
                     </VStack>
+                  ) : (
+                    <Box>Sem peças associadas!</Box>
                   )}
                 </VStack>
               </Card>

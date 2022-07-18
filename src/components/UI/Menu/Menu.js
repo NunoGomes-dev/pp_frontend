@@ -42,8 +42,8 @@ const Menu = () => {
         <UserItem user={user} />
         <LinkItem
           text={"Dashboard"}
-          isActive={location.pathname === "/"}
-          to="/"
+          isActive={activePath("/dashboard")}
+          to="/dashboard"
           LeftIcon={<MdOutlineSignalCellularAlt />}
         />
         <LinkItem

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import pp_logo from "../../assets/pp_logo.png";
 import {
   Input,
@@ -7,12 +8,20 @@ import {
   Stack,
   VStack,
   Image,
+  Card,
+  FormControl,
+  FormErrorMessage,
+  Box,
 } from "../../components";
 import useSignIn from "../../hooks/auth/useSignIn";
 
 export const SignIn = () => {
-  const { handleSubmit, register } = useForm();
-  const { mutate, isLoading, isError } = useSignIn();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const { mutate, isLoading } = useSignIn();
 
   return (
     <Stack
@@ -22,51 +31,53 @@ export const SignIn = () => {
       align="center"
       color="black"
     >
-      <VStack
-        justify="start"
-        align="center"
-        gap="8"
-        padding="1rem"
-        background="white"
-        borderRadius="8px"
-        border="1px solid #e0e0e0"
-      >
-        <Image src={pp_logo} alt="PeçaAPeça" maxHeight="40%" width="auto" />
-        <form onSubmit={handleSubmit(mutate)}>
-          <VStack align="center">
-            <VStack>
-              <InputLabel htmlFor="email">Email</InputLabel>
-              <Input
-                type="text"
-                id="email"
-                name="email"
-                {...register("email")}
-                placeholder=""
-              />
+      <Card>
+        <VStack justify="start" align="center" gap="8">
+          <Image src={pp_logo} alt="PeçaAPeça" maxHeight="40%" width="auto" />
+          <form onSubmit={handleSubmit(mutate)}>
+            <VStack align="center">
+              <FormControl>
+                <InputLabel htmlFor="email">Email</InputLabel>
+                <Input
+                  type="text"
+                  id="email"
+                  name="email"
+                  {...register("email", { required: "Email obrigatório" })}
+                  placeholder=""
+                />
+                <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="pw">Password</InputLabel>
+                <Input
+                  type="password"
+                  id="pw"
+                  name="pw"
+                  {...register("password", {
+                    required: "Password obrigatória",
+                  })}
+                  placeholder=""
+                />
+                <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
+              </FormControl>
+              <Button
+                variant="solid"
+                width="full"
+                type="submit"
+                isLoading={isLoading}
+                loadingText="A entrar..."
+              >
+                Entrar
+              </Button>
+              <Link to="/signup" style={{ textDecoration: "none" }}>
+                <Box fontWeight="300" color="gray" textDecoration="underline">
+                  Ainda não tem conta?
+                </Box>
+              </Link>
             </VStack>
-            <VStack>
-              <InputLabel htmlFor="pw">Password</InputLabel>
-              <Input
-                type="password"
-                id="pw"
-                name="pw"
-                {...register("password")}
-                placeholder=""
-              />
-            </VStack>
-            <Button
-              variant="solid"
-              width="full"
-              type="submit"
-              isLoading={isLoading}
-              loadingText="A entrar..."
-            >
-              Entrar
-            </Button>
-            {isError ? <div>Is Error...</div> : null}
-          </VStack>
-        </form>
-      </VStack>
+          </form>
+        </VStack>
+      </Card>
     </Stack>
   );
 };
