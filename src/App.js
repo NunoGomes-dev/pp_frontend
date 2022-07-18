@@ -18,7 +18,13 @@ function App() {
         position="relative"
         background="#fafafa"
       >
-        <HStack width="full" height="full" gap="0" background="#fafafa">
+        <HStack
+          width="full"
+          height="full"
+          gap="0"
+          background="#fafafa"
+          position="relative"
+        >
           {isAuthenticated && <Menu />}
           <Box
             flex="1"
@@ -26,6 +32,7 @@ function App() {
             overflowY="auto"
             width="full"
             height="full"
+            position="relative"
           >
             <Routes />
           </Box>

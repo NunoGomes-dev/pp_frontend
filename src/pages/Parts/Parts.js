@@ -1,8 +1,11 @@
 import { IoIosAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { Button, PageBody, PageContainer, PageHeader } from "../../components";
+import useToast from "../../hooks/notifications/useToast";
 
 const Parts = () => {
+  const toast = useToast();
+
   return (
     <PageContainer>
       <PageHeader title="Peças" unstyled>
@@ -16,8 +19,30 @@ const Parts = () => {
           </Button>
         </Link>
       </PageHeader>
-
-      <PageBody></PageBody>
+      <PageBody>
+        <Button
+          onClick={() =>
+            toast({
+              title: "Account created.",
+              description: "We've created your account for you.",
+              status: "success",
+            })
+          }
+        >
+          Success
+        </Button>
+        <Button
+          onClick={() =>
+            toast({
+              title: "An error occurred.",
+              description: "Unable to create user account.",
+              status: "error",
+            })
+          }
+        >
+          Error
+        </Button>
+      </PageBody>
     </PageContainer>
   );
 };
