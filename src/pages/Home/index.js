@@ -18,10 +18,10 @@ export const Home = () => {
         <Image alt="Peça a Peça" src={logo} height="40%" />
         <HStack gap="2rem">
           <Link to={"/signin"} style={{ textDecoration: "none" }}>
-            <Button variant="outline2">SignIn</Button>
+            <Button variant="outline2">Iniciar sessão</Button>
           </Link>
           <Link to={"/signup"} style={{ textDecoration: "none" }}>
-            <Button variant="outline2">SignUp</Button>
+            <Button variant="outline2">Registar</Button>
           </Link>
         </HStack>
       </VStack>

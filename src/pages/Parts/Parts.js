@@ -42,6 +42,28 @@ const Parts = () => {
         >
           Error
         </Button>
+        <Button
+          onClick={() =>
+            toast({
+              status: "warning",
+              title: "An error occurred.",
+              description: "Unable to create user account.",
+            })
+          }
+        >
+          Warning
+        </Button>
+        <Button
+          onClick={() =>
+            toast({
+              status: "info",
+              title: "An error occurred.",
+              description: "Unable to create user account.",
+            })
+          }
+        >
+          Info
+        </Button>
       </PageBody>
     </PageContainer>
   );

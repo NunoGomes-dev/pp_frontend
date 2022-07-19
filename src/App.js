@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ThemeProvider } from "styled-components";
-import { Box, HStack, LoadingScreen, Menu } from "./components";
+import { Box, HStack, LoadingScreen, Menu, ToastContainer } from "./components";
 import { AuthContext } from "./context/AuthContext";
 import Routes from "./Routes";
 import { theme } from "./theme";
@@ -35,6 +35,7 @@ function App() {
             position="relative"
           >
             <Routes />
+            <ToastContainer />
           </Box>
         </HStack>
       </Box>

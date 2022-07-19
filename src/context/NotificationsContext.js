@@ -14,12 +14,11 @@ const NotificationsProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    console.log(toastList);
-    // const interval = setInterval(() => {
-    //   if (toastList.length) deleteToast(toastList[0].id);
-    // }, 3000);
+    const interval = setInterval(() => {
+      if (toastList.length) deleteToast(toastList[0].id);
+    }, 3000);
 
-    // return () => clearInterval(interval);
+    return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toastList]);
 

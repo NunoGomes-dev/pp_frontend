@@ -1,5 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { useLocation, useNavigate } from "react-router-dom";
+import Toast from "../../components/UI/Alerts/Toast";
 import api from "../../services/api";
 
 const next = (token, user, setUser, setIsAuthenticated, navigate, location) => {
@@ -16,6 +17,11 @@ const logout = (setUser, setIsAuthenticated, navigate) => {
   setIsAuthenticated(false);
   delete api.defaults.headers.Authorization;
   navigate("/", { replace: true });
+  Toast({
+    status: "warning",
+    title: "Sessão expirada",
+    description: "A sua sessão expirou, inicie sessão novamente!",
+  });
 };
 
 export default function useToken(token, setUser, setIsAuthenticated) {
