@@ -1,9 +1,9 @@
-import { PageHeader } from "../../components";
+import { PageContainer, PageHeader } from "../../components";
 
 export const Dashboard = () => {
   return (
-    <div>
-      <PageHeader name="Dashboard" />
-    </div>
+    <PageContainer>
+      <PageHeader title="Dashboard" />
+    </PageContainer>
   );
 };

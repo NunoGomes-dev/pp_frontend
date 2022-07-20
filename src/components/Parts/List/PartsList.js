@@ -5,7 +5,7 @@ const PartsList = ({ useParts }) => {
 
   return (
     <PageBody>
-      {!isLoading && data?.parts?.map((p) => <div>{p.name}</div>)}
+      {!isLoading && data?.parts?.map((p) => <div key={p.id}>{p.name}</div>)}
     </PageBody>
   );
 };

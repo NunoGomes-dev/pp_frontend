@@ -12,7 +12,7 @@ export const Home = () => {
       width="100vw"
       height="100vh"
       zIndex={1000}
-      background="#DDBA92"
+      background="primary"
     >
       <VStack width="full" height="full" justify="center" align="center">
         <Image alt="Peça a Peça" src={logo} height="40%" />

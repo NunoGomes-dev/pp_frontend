@@ -41,7 +41,7 @@ export default function usePostPart() {
       toast({
         status: "error",
         title: "Ocorreu um erro",
-        description: "Erro ao criar peça",
+        description: "Erro ao criar peça!",
       });
     },
   });

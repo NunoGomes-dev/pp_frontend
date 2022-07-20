@@ -4,7 +4,7 @@ import { Box, Card, HStack, Image, VStack } from "../../Design";
 import { Spinner } from "../Loadings";
 import { AiFillDelete } from "react-icons/ai";
 
-const InputFile = ({ value = null, callback }) => {
+const InputFile = ({ value = null, callback, containerProps = {} }) => {
   const { mutate, isLoading } = useUploadMedia(callback);
 
   const handleFile = (event) => {
@@ -29,6 +29,7 @@ const InputFile = ({ value = null, callback }) => {
         height="full"
         width="full"
         position="relative"
+        {...containerProps}
       >
         {!value && (
           <label htmlFor="file">
@@ -64,7 +65,7 @@ const InputFile = ({ value = null, callback }) => {
           />
         )}
         {value && !isLoading && (
-          <Box>
+          <Box {...containerProps}>
             <Image
               src={value}
               alt="image_part"

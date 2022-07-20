@@ -18,6 +18,7 @@ import {
   Home,
   SignUp,
   Part,
+  Provider,
 } from "./pages";
 
 const ProtectedRoute = ({ isPrivate, isSignIn, children }) => {
@@ -81,6 +82,14 @@ const Routes = () => {
         element={
           <ProtectedRoute isPrivate>
             <Providers />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/providers/:id"
+        element={
+          <ProtectedRoute isPrivate>
+            <Provider />
           </ProtectedRoute>
         }
       />

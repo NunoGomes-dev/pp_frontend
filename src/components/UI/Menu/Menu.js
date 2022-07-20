@@ -57,12 +57,14 @@ const Menu = () => {
           LeftIcon={<FiLayers />}
           to="inventory"
           isActive={activePath("/inventory")}
+          disabled
         />
         <LinkItem
           text={"Encomendas"}
           LeftIcon={<FiPackage />}
           to="orders"
           isActive={activePath("/orders")}
+          disabled
         />
         <LinkItem
           text={"Fornecedores"}
