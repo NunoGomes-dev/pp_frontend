@@ -1,11 +1,10 @@
 import { IoIosAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { Button, PageBody, PageContainer, PageHeader } from "../../components";
-import useToast from "../../hooks/notifications/useToast";
+import { Button, PageContainer, PageHeader, PartsList } from "../../components";
+import useParts from "../../hooks/data/useParts";
 
 const Parts = () => {
-  const toast = useToast();
-
+  const getParts = useParts();
   return (
     <PageContainer>
       <PageHeader title="Peças" unstyled>
@@ -15,56 +14,11 @@ const Parts = () => {
             icon={<IoIosAdd style={{ transform: "scale(1.5)" }} />}
             iconPlacement="end"
           >
-            Nova gaveta
+            Nova peça
           </Button>
         </Link>
       </PageHeader>
-      <PageBody>
-        <Button
-          onClick={() =>
-            toast({
-              title: "Account created.",
-              description: "We've created your account for you.",
-              status: "success",
-            })
-          }
-        >
-          Success
-        </Button>
-        <Button
-          onClick={() =>
-            toast({
-              title: "An error occurred.",
-              description: "Unable to create user account.",
-              status: "error",
-            })
-          }
-        >
-          Error
-        </Button>
-        <Button
-          onClick={() =>
-            toast({
-              status: "warning",
-              title: "An error occurred.",
-              description: "Unable to create user account.",
-            })
-          }
-        >
-          Warning
-        </Button>
-        <Button
-          onClick={() =>
-            toast({
-              status: "info",
-              title: "An error occurred.",
-              description: "Unable to create user account.",
-            })
-          }
-        >
-          Info
-        </Button>
-      </PageBody>
+      <PartsList useParts={getParts} />
     </PageContainer>
   );
 };

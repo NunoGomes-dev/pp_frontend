@@ -2,21 +2,20 @@ import { useQuery } from "react-query";
 import api from "../../services/api";
 import useToast from "../notifications/useToast";
 
-const fetchStorages = () => {
-  return api.get("/storages").then((res) => res.data);
+const fetchParts = () => {
+  return api.get("/parts").then((res) => res.data);
 };
 
-export default function useStorages() {
+export default function useParts() {
   const toast = useToast();
-
-  return useQuery(["storages"], fetchStorages, {
+  return useQuery(["parts"], fetchParts, {
     onSuccess: () => {},
     onError: (error) => {
       console.log("error", error);
       toast({
         status: "error",
-        title: "Ocorreu um erro",
-        description: "Erro ao obter as gavetas!",
+        title: "Ocorreu um erro!",
+        description: "Erro ao obter peças!",
       });
     },
   });

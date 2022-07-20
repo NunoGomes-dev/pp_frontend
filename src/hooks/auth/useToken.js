@@ -1,11 +1,11 @@
 import jwtDecode from "jwt-decode";
 import { useLocation, useNavigate } from "react-router-dom";
 import Toast from "../../components/UI/Alerts/Toast";
-import api from "../../services/api";
+import { deleteAxiosAuth, setAxiosAuth } from "../../utils/axiosAuth";
 
 const next = (token, user, setUser, setIsAuthenticated, navigate, location) => {
   localStorage.setItem("Peça@Peça:token", token);
-  api.defaults.headers.Authorization = `Bearer_pp ${JSON.parse(token)}`;
+  setAxiosAuth(`Bearer_pp ${JSON.parse(token)}`);
   setUser({ ...user });
   setIsAuthenticated(true);
   navigate(location.pathname || "/dashboard", { replace: true });
@@ -15,7 +15,7 @@ const logout = (setUser, setIsAuthenticated, navigate) => {
   localStorage.removeItem("Peça@Peça:token");
   setUser(null);
   setIsAuthenticated(false);
-  delete api.defaults.headers.Authorization;
+  deleteAxiosAuth();
   navigate("/", { replace: true });
   Toast({
     status: "warning",

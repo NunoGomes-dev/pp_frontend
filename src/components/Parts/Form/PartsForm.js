@@ -13,20 +13,35 @@ import {
 } from "../../Design";
 import { PageBody } from "../../UI";
 
-const PartsForm = ({ register, errors }) => {
+const floatRequired = {
+  valueAsNumber: true,
+  min: {
+    value: 0,
+    message: "Valor inválido! Mínimo: 0",
+  },
+};
+
+const PartsForm = ({ register, errors, getStorages }) => {
+  const { data: storagesData, isSuccess: storagesReady } = getStorages;
+
   return (
     <PageBody width="full">
       <Card width="calc(100% - 4rem)" padding="2rem">
         <Grid gridTemplateColumns="2fr 1fr" gap={8} width="full">
           <VStack width="full" gap={8}>
-            <Grid gridTemplateColumns="1fr 1fr" gap={8} width="full">
+            <Grid //ref | name
+              gridTemplateColumns="1fr 1fr"
+              gap={8}
+              width="full"
+            >
               <FormControl width="full">
-                <InputLabel htmlFor="sku">Referência</InputLabel>
+                <InputLabel htmlFor="ref">Referência</InputLabel>
                 <Input
-                  id="sku"
+                  id="ref"
                   width="calc(100% - 2rem)"
-                  {...register("sku")}
+                  {...register("ref")}
                 />
+                <FormErrorMessage>{errors?.ref?.message}</FormErrorMessage>
               </FormControl>
               <FormControl width="full">
                 <InputLabel htmlFor="name" required>
@@ -40,23 +55,28 @@ const PartsForm = ({ register, errors }) => {
                 <FormErrorMessage>{errors?.name?.message}</FormErrorMessage>
               </FormControl>
             </Grid>
-            <Grid gridTemplateColumns="1fr 1fr" gap={8} width="full">
+            <Grid // provider | brand
+              gridTemplateColumns="1fr 1fr"
+              gap={8}
+              width="full"
+            >
               <FormControl width="full">
-                <InputLabel htmlFor="provider">Fornecedor</InputLabel>
+                <InputLabel htmlFor="provider_id">Fornecedor</InputLabel>
                 <Select
-                  id="provider"
+                  id="provider_id"
                   width="full"
-                  {...register("provider")}
-                  defaultValue=""
+                  {...register("provider_id")}
+                  defaultValue={""}
                 >
-                  <option value="" disabled>
-                    Selecionar fornecedor
-                  </option>
+                  <option value={""}>Selecionar fornecedor</option>
                   <option value="1">Audi</option>
                   <option value="2">BMW</option>
                   <option value="3">Citroen</option>
                   <option value="4">Ford</option>
                 </Select>
+                <FormErrorMessage>
+                  {errors?.provider_id?.message}
+                </FormErrorMessage>
               </FormControl>
               <FormControl width="full">
                 <InputLabel htmlFor="brand">Marca</InputLabel>
@@ -67,67 +87,99 @@ const PartsForm = ({ register, errors }) => {
                 />
               </FormControl>
             </Grid>
-            <Grid gridTemplateColumns="1fr 1fr" gap={8} width="full">
+            <Grid // storage
+              gridTemplateColumns="1fr 1fr"
+              gap={8}
+              width="full"
+            >
               <FormControl width="full">
-                <InputLabel htmlFor="storage">Gaveta</InputLabel>
+                <InputLabel htmlFor="storage_id">Gaveta</InputLabel>
                 <Select
-                  id="storage"
+                  id="storage_id"
                   width="full"
-                  {...register("storage")}
-                  defaultValue=""
+                  {...register("storage_id", { valueAsNumber: true })}
+                  defaultValue={""}
                 >
-                  <option value="" disabled>
-                    Selecionar gaveta
-                  </option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                  <option value="3">Citroen</option>
-                  <option value="4">Ford</option>
+                  <option value={""}>Selecionar gaveta</option>
+                  {storagesReady &&
+                    storagesData?.storages?.map(({ id, name }) => (
+                      <option key={id} value={parseInt(id)}>
+                        {name}
+                      </option>
+                    ))}
                 </Select>
+                <FormErrorMessage>
+                  {errors?.storage_id?.message}
+                </FormErrorMessage>
               </FormControl>
             </Grid>
-            <Grid gridTemplateColumns="1fr 1fr" gap={8} width="full">
+            <Grid //stock | min_stock
+              gridTemplateColumns="1fr 1fr"
+              gap={8}
+              width="full"
+            >
               <FormControl width="full">
                 <InputLabel htmlFor="stock">Stock</InputLabel>
                 <Input
                   id="stock"
                   width="calc(100% - 2rem)"
-                  {...register("stock")}
+                  type="number"
+                  {...register("stock", { ...floatRequired })}
                 />
+                <FormErrorMessage>{errors?.stock?.message}</FormErrorMessage>
               </FormControl>
               <FormControl width="full">
                 <InputLabel htmlFor="min_stock">Stock mínimo</InputLabel>
                 <Input
                   id="min_stock"
                   width="calc(100% - 2rem)"
-                  {...register("min_stock")}
+                  type="number"
+                  {...register("min_stock", { ...floatRequired })}
                 />
+                <FormErrorMessage>
+                  {errors?.min_stock?.message}
+                </FormErrorMessage>
               </FormControl>
             </Grid>
-            <Grid gridTemplateColumns="1fr 1fr 1fr" gap={8} width="full">
-              <FormControl width="full">
-                <InputLabel htmlFor="resale_price">Revenda</InputLabel>
-                <Input
-                  id="resale_price"
-                  width="calc(100% - 2rem)"
-                  {...register("resale_price")}
-                />
-              </FormControl>
+            <Grid //cost | resale_price | price
+              gridTemplateColumns="1fr 1fr 1fr"
+              gap={8}
+              width="full"
+            >
               <FormControl width="full">
                 <InputLabel htmlFor="cost">Custo</InputLabel>
                 <Input
                   id="cost"
                   width="calc(100% - 2rem)"
-                  {...register("cost")}
+                  type="number"
+                  step="0.01"
+                  {...register("cost", { ...floatRequired })}
                 />
+                <FormErrorMessage>{errors?.cost?.message}</FormErrorMessage>
+              </FormControl>
+              <FormControl width="full">
+                <InputLabel htmlFor="resale_price">Revenda</InputLabel>
+                <Input
+                  id="resale_price"
+                  width="calc(100% - 2rem)"
+                  type="number"
+                  step="0.01"
+                  {...register("resale_price", { ...floatRequired })}
+                />
+                <FormErrorMessage>
+                  {errors?.resale_price?.message}
+                </FormErrorMessage>
               </FormControl>
               <FormControl width="full">
                 <InputLabel htmlFor="price">Preço final</InputLabel>
                 <Input
                   id="price"
                   width="calc(100% - 2rem)"
-                  {...register("price")}
+                  type="number"
+                  step="0.01"
+                  {...register("price", { ...floatRequired })}
                 />
+                <FormErrorMessage>{errors?.price?.message}</FormErrorMessage>
               </FormControl>
             </Grid>
           </VStack>

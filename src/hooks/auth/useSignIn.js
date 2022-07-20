@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import api from "../../services/api";
+import { setAxiosAuth } from "../../utils/axiosAuth";
 import useToast from "../notifications/useToast";
 
 const fetch = (values) => {
@@ -18,7 +19,7 @@ export default function useSignIn() {
   return useMutation((values) => fetch(values), {
     onSuccess: (data) => {
       localStorage.setItem("Peça@Peça:token", JSON.stringify(data.accessToken));
-      api.defaults.headers.Authorization = `Bearer_pp ${data.accessToken}`;
+      setAxiosAuth(`Bearer_pp ${data.accessToken}`);
       setUser(data.user);
       setIsAuthenticated(true);
       navigate(location.state?.from?.pathname || "/dashboard", {

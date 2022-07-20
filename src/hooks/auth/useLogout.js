@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import api from "../../services/api";
+import { deleteAxiosAuth } from "../../utils/axiosAuth";
 import useToast from "../notifications/useToast";
 
 export const useLogout = () => {
@@ -13,7 +13,7 @@ export const useLogout = () => {
     localStorage.removeItem("Peça@Peça:token");
     setUser(null);
     setIsAuthenticated(false);
-    delete api.defaults.headers.Authorization;
+    deleteAxiosAuth();
     toast({
       status: "success",
       title: "Sessão terminada com sucesso",
