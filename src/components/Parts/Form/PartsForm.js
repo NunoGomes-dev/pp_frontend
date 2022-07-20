@@ -1,6 +1,4 @@
-import { FiUpload } from "react-icons/fi";
 import {
-  Box,
   Card,
   FormControl,
   FormErrorMessage,
@@ -9,9 +7,8 @@ import {
   InputLabel,
   VStack,
   Select,
-  HStack,
 } from "../../Design";
-import { PageBody } from "../../UI";
+import { InputFile, PageBody } from "../../UI";
 
 const floatRequired = {
   valueAsNumber: true,
@@ -21,7 +18,7 @@ const floatRequired = {
   },
 };
 
-const PartsForm = ({ register, errors, getStorages }) => {
+const PartsForm = ({ register, errors, setValue, watch, getStorages }) => {
   const { data: storagesData, isSuccess: storagesReady } = getStorages;
 
   return (
@@ -183,21 +180,12 @@ const PartsForm = ({ register, errors, getStorages }) => {
               </FormControl>
             </Grid>
           </VStack>
-          <VStack
-            justify="center"
-            align="center"
-            fontSize="lg"
-            border="2px dashed #E0E0E0"
-            rounded="md"
-          >
-            <HStack fontWeight="500" color="terciary">
-              <span>Adicionar imagem</span>
-              <FiUpload />
-            </HStack>
-            <Box fontWeight="300" fontSize="sm" color="secondary">
-              ou arraste a imagem para carregar
-            </Box>
-          </VStack>
+          <InputFile
+            value={watch("image")}
+            callback={(file) => {
+              setValue("image", file);
+            }}
+          />
         </Grid>
       </Card>
     </PageBody>

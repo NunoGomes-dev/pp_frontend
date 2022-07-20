@@ -22,10 +22,11 @@ const Spinner = styled.div`
     border-top-color: transparent;
     animation: ${motion} 0.5s linear infinite;
   }
+  ${(p) => p}
 `;
 
-const Default = ({ size = "20px", color = "#ccc" }) => {
-  return <Spinner size={size} color={color} />;
+const Default = ({ size = "20px", color = "#ccc", ...others }) => {
+  return <Spinner size={size} color={color} {...others} />;
 };
 
 export default Default;

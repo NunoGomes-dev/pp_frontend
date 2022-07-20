@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import useToast from "../notifications/useToast";
 
@@ -9,6 +10,7 @@ const fetch = (payload) => {
 export default function usePostPart() {
   const q = useQueryClient();
   const toast = useToast();
+  const navigate = useNavigate();
 
   return useMutation((values) => fetch(values), {
     onMutate: (newPart) => {
@@ -25,6 +27,7 @@ export default function usePostPart() {
 
     onSuccess: () => {
       q.invalidateQueries(["parts"]);
+      navigate("/parts");
       toast({
         title: "Nova Peça",
         status: "success",

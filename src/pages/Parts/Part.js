@@ -6,7 +6,7 @@ import {
   PartsForm,
 } from "../../components";
 import { FiSave } from "react-icons/fi";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import usePostPart from "../../hooks/mutations/usePostPart";
 import useStorages from "../../hooks/data/useStorages";
@@ -19,6 +19,8 @@ const Part = () => {
   const {
     handleSubmit,
     register,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -30,7 +32,9 @@ const Part = () => {
       >
         <PageHeader title="Nova peça">
           <HStack gap={4}>
-            <Button variant="light">Cancelar</Button>
+            <Link to="/parts">
+              <Button variant="light">Cancelar</Button>
+            </Link>
             <Button
               variant="solid"
               icon={
@@ -47,6 +51,8 @@ const Part = () => {
         <PartsForm
           register={register}
           errors={errors}
+          setValue={setValue}
+          watch={watch}
           getStorages={getStorages}
         />
       </form>
