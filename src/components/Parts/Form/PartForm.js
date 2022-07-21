@@ -76,7 +76,7 @@ const PartsForm = ({
                   <option value={""}>Selecionar fornecedor</option>
                   {providersReady &&
                     providersData?.providers?.map(({ id, name, email }) => (
-                      <option key={id} value={parseInt(id)}>
+                      <option key={id} value={id}>
                         {name}
                       </option>
                     ))}
@@ -110,7 +110,7 @@ const PartsForm = ({
                   <option value={""}>Selecionar gaveta</option>
                   {storagesReady &&
                     storagesData?.storages?.map(({ id, name }) => (
-                      <option key={id} value={parseInt(id)}>
+                      <option key={id} value={id}>
                         {name}
                       </option>
                     ))}
