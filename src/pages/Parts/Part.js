@@ -11,12 +11,13 @@ import { useForm } from "react-hook-form";
 import usePostPart from "../../hooks/mutations/usePostPart";
 import useStorages from "../../hooks/data/useStorages";
 import clearObj from "../../utils/clearObj";
+import useProviders from "../../hooks/data/useProviders";
 
 const Part = () => {
   const { id } = useParams();
-  console.log(id);
   const { mutate, isLoading: loadingMutate } = usePostPart();
   const getStorages = useStorages();
+  const getProviders = useProviders();
   const {
     handleSubmit,
     register,
@@ -55,6 +56,7 @@ const Part = () => {
           setValue={setValue}
           watch={watch}
           getStorages={getStorages}
+          getProviders={getProviders}
         />
       </form>
     </PageContainer>

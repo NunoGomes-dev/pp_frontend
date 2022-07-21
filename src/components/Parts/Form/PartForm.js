@@ -18,8 +18,16 @@ const floatRequired = {
   },
 };
 
-const PartsForm = ({ register, errors, setValue, watch, getStorages }) => {
+const PartsForm = ({
+  register,
+  errors,
+  setValue,
+  watch,
+  getStorages,
+  getProviders,
+}) => {
   const { data: storagesData, isSuccess: storagesReady } = getStorages;
+  const { data: providersData, isSuccess: providersReady } = getProviders;
 
   return (
     <PageBody width="full">
@@ -66,10 +74,12 @@ const PartsForm = ({ register, errors, setValue, watch, getStorages }) => {
                   defaultValue={""}
                 >
                   <option value={""}>Selecionar fornecedor</option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                  <option value="3">Citroen</option>
-                  <option value="4">Ford</option>
+                  {providersReady &&
+                    providersData?.providers?.map(({ id, name, email }) => (
+                      <option key={id} value={parseInt(id)}>
+                        {name}
+                      </option>
+                    ))}
                 </Select>
                 <FormErrorMessage>
                   {errors?.provider_id?.message}
