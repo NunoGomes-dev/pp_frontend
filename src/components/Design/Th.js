@@ -5,9 +5,21 @@ import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
 const StyledTh = styled.th`
+  background: rgba(221, 186, 146, 0.1);
   text-align: left;
   font-weight: 500;
-  padding: 0 1rem;
+  padding: 1rem;
+  border-width: 1px 0;
+  border-color: #e0e0e0;
+  border-style: solid;
+  &:first-child {
+    width: 5px;
+    white-space: nowrap;
+    border-left-width: 1px;
+  }
+  &:last-child {
+    border-right-width: 1px;
+  }
   ${(props) => sizes(props)};
   ${(props) => spacings(props)};
   ${(props) => tipography(props)};

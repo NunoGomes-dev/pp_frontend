@@ -5,11 +5,8 @@ import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
 const StyledTable = styled.table`
-  width: 80%;
-  background: transparent;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 0 0;
+  border-collapse: collapse;
+  width: 100%;
   ${(props) => props};
   ${(props) => sizes(props)};
   ${(props) => spacings(props)};
@@ -22,3 +19,5 @@ const Table = (props) => {
 };
 
 export default Table;
+
+// width: 80%;

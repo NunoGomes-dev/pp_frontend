@@ -4,9 +4,9 @@ const TableContent = ({ data, total, columns }) => {
   return (
     <Table>
       <Thead>
-        <Tr unstyled>
+        <Tr>
           {columns.map((column, index) => (
-            <Th whiteSpace="nowrap" bg="red" key={index}>
+            <Th whiteSpace="nowrap" key={index}>
               {column.Header}
             </Th>
           ))}
@@ -20,6 +20,41 @@ const TableContent = ({ data, total, columns }) => {
                 const accessor = column?.accessor;
                 const cell = row[accessor];
                 const element = column.Cell?.(cell) ?? cell;
+
+                if (accessor === "part_ref") {
+                  return (
+                    <Td key={index} fontWeight={300}>
+                      {row.ref}
+                    </Td>
+                  );
+                }
+                if (accessor === "part_name") {
+                  return (
+                    <Td key={index} fontWeight={500}>
+                      {row.name}
+                    </Td>
+                  );
+                }
+
+                if (accessor === "part_brand") {
+                  return (
+                    <Td key={index} color="secondary">
+                      {row.brand}
+                    </Td>
+                  );
+                }
+
+                if (accessor === "part_provider") {
+                  return (
+                    <Td key={index} color="secondary">
+                      {row?.provider?.name}
+                    </Td>
+                  );
+                }
+
+                if (accessor === "part_storage") {
+                  return <Td key={index}>{row?.storage?.name}</Td>;
+                }
 
                 if (accessor === "stock_status") {
                   return (
@@ -35,7 +70,7 @@ const TableContent = ({ data, total, columns }) => {
                 }
 
                 return (
-                  <Td key={index}>
+                  <Td key={index} height="50px">
                     {element}
                     {column?.type === "price" && "€"}
                   </Td>

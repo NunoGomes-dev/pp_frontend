@@ -5,9 +5,6 @@ import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
 const StyledThead = styled.thead`
-  display: table;
-  table-layout: fixed;
-  background: transparent;
   width: 100%;
   ${(props) => props};
   ${(props) => sizes(props)};

@@ -5,8 +5,7 @@ import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
 const StyledTr = styled.tr`
-  border-spacing: 1rem;
-  height: 50px;
+  background: white;
   ${(props) => props};
   ${(props) => sizes(props)};
   ${(props) => spacings(props)};
@@ -15,15 +14,7 @@ const StyledTr = styled.tr`
 `;
 
 const Tr = ({ unstyled = false, ...others }) => {
-  const defaultProps = !unstyled
-    ? {
-        border: "1px solid #e0e0e0",
-        "border-radius": "10px",
-        background: "white",
-      }
-    : {};
-
-  return <StyledTr {...others} {...defaultProps} />;
+  return <StyledTr {...others} />;
 };
 
 export default Tr;
