@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Box } from "../../Design";
 import Skeleton from "./Skeleton";
 
@@ -14,4 +15,4 @@ const LoadingGrid = ({ items = 1, gap = "1rem", ...others }) => {
   );
 };
 
-export default LoadingGrid;
+export default memo(LoadingGrid);

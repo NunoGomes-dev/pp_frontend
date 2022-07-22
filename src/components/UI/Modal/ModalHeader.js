@@ -1,5 +1,6 @@
 import { Box, HStack } from "../../Design";
 import { IoClose } from "react-icons/io5";
+import { memo } from "react";
 
 const ModalHeader = ({
   title,
@@ -27,4 +28,4 @@ const ModalHeader = ({
   );
 };
 
-export default ModalHeader;
+export default memo(ModalHeader);

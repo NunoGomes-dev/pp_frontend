@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import styled, { keyframes } from "styled-components";
 
 const motion = () => keyframes`
  to {transform: rotate(360deg);}
 `;
 
-const Spinner = styled.div`
+const StyledSpinner = styled.div`
   position: relative;
   &:before {
     content: "";
@@ -25,8 +25,8 @@ const Spinner = styled.div`
   ${(p) => p}
 `;
 
-const Default = ({ size = "20px", color = "#ccc", ...others }) => {
-  return <Spinner size={size} color={color} {...others} />;
+const Spinner = ({ size = "20px", color = "#ccc", ...others }) => {
+  return <StyledSpinner size={size} color={color} {...others} />;
 };
 
-export default Default;
+export default memo(Spinner);

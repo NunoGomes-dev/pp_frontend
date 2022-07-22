@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { VStack } from "../../Design";
 
 const PageContainer = ({ children, ...others }) => {
@@ -8,4 +9,4 @@ const PageContainer = ({ children, ...others }) => {
   );
 };
 
-export default PageContainer;
+export default memo(PageContainer);

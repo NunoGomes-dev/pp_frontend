@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { HStack, Image, VStack } from "../../Design";
 
 const UserItem = ({ user }) => {
@@ -34,4 +35,4 @@ const UserItem = ({ user }) => {
   );
 };
 
-export default UserItem;
+export default memo(UserItem);

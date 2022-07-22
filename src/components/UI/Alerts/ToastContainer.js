@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NotificationsContext } from "../../../context/NotificationsContext";
 import Toast from "./Toast";
 import styled, { keyframes } from "styled-components";
+import { memo } from "react";
 
 const motion = keyframes`
   from {
@@ -36,4 +37,4 @@ const ToastContainer = () => {
   );
 };
 
-export default ToastContainer;
+export default memo(ToastContainer);

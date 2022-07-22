@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Box } from "../../Design";
 
 const Overlay = (props) => (
@@ -14,4 +15,4 @@ const Overlay = (props) => (
   />
 );
 
-export default Overlay;
+export default memo(Overlay);

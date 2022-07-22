@@ -5,6 +5,7 @@ import { Spinner } from "../Loadings";
 import { AiFillDelete } from "react-icons/ai";
 import { useState } from "react";
 import useToast from "../../../hooks/notifications/useToast";
+import { memo } from "react";
 
 const InputFile = ({ value = null, callback, containerProps = {} }) => {
   const toast = useToast();
@@ -145,4 +146,4 @@ const InputFile = ({ value = null, callback, containerProps = {} }) => {
     </>
   );
 };
-export default InputFile;
+export default memo(InputFile);

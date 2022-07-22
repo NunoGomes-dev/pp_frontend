@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Box } from "../../Design";
 
 const PageBody = ({ children, ...others }) => {
@@ -8,4 +9,4 @@ const PageBody = ({ children, ...others }) => {
   );
 };
 
-export default PageBody;
+export default memo(PageBody);

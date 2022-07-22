@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { VStack } from "../../Design";
 
 const ModalContent = ({ children, ...rest }) => (
@@ -20,4 +21,4 @@ const ModalContent = ({ children, ...rest }) => (
   </VStack>
 );
 
-export default ModalContent;
+export default memo(ModalContent);

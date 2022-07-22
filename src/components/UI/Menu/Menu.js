@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import banner from "../../../assets/MenuBanner.png";
 import UserItem from "./UserItem";
@@ -97,4 +97,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default memo(Menu);

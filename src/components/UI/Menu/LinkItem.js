@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { HStack } from "../../Design";
 
@@ -29,4 +30,4 @@ const LinkItem = ({ isActive, LeftIcon, text, to, disabled = false }) => {
   );
 };
 
-export default LinkItem;
+export default memo(LinkItem);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Box, HStack } from "../../Design";
 
 const PageHeader = ({ title, unstyled = "unstyled", children }) => {
@@ -20,4 +21,4 @@ const PageHeader = ({ title, unstyled = "unstyled", children }) => {
   );
 };
 
-export default PageHeader;
+export default memo(PageHeader);

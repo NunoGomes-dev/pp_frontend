@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Box, Image, Stack } from "../../Design";
 
 const LoadingScreen = ({ show, logo }) => (
@@ -20,4 +21,4 @@ const LoadingScreen = ({ show, logo }) => (
     </Stack>
   </Box>
 );
-export default LoadingScreen;
+export default memo(LoadingScreen);

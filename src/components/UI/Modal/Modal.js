@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { createPortal } from "react-dom";
 
 const Modal = ({ children, isOpen }) => {
@@ -6,4 +7,4 @@ const Modal = ({ children, isOpen }) => {
   return createPortal(children, document.getElementById("portal"));
 };
 
-export default Modal;
+export default memo(Modal);

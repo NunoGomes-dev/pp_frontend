@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { IoClose } from "react-icons/io5";
 import styled, { keyframes } from "styled-components";
 import { Box, Button, HStack, VStack } from "../../Design";
@@ -56,4 +57,4 @@ const Toast = ({
   </ToastContainer>
 );
 
-export default Toast;
+export default memo(Toast);
