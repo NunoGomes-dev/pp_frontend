@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { forwardRef } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
@@ -21,4 +22,4 @@ const Input = forwardRef(({ children, ...others }, ref) => {
   );
 });
 
-export default Input;
+export default memo(Input);

@@ -3,6 +3,7 @@ import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import others from "../../utils/others";
+import { memo } from "react";
 
 const StyledImage = styled.img`
   object-fit: ${(props) => props.objectFit || "contain"};
@@ -18,4 +19,4 @@ const Image = ({ children, ...others }) => {
   return <StyledImage {...others} />;
 };
 
-export default Image;
+export default memo(Image);

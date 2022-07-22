@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Box from "./Box";
 
 const FormErrorMessage = ({ children, ...others }) => {
@@ -10,4 +11,4 @@ const FormErrorMessage = ({ children, ...others }) => {
   );
 };
 
-export default FormErrorMessage;
+export default memo(FormErrorMessage);

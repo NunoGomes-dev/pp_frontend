@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
@@ -21,4 +22,4 @@ const VStack = ({ children, ...others }) => {
   return <StyledVStack {...others}>{children}</StyledVStack>;
 };
 
-export default VStack;
+export default memo(VStack);

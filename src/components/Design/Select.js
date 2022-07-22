@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { forwardRef } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
@@ -37,4 +38,4 @@ const Select = forwardRef(({ children, ...others }, ref) => (
   </StyledSelect>
 ));
 
-export default Select;
+export default memo(Select);

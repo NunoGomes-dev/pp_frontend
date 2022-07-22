@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
@@ -27,4 +28,4 @@ const InputLabel = ({ children, required, ...others }) => {
   );
 };
 
-export default InputLabel;
+export default memo(InputLabel);

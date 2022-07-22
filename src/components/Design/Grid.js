@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
@@ -18,4 +19,4 @@ const Grid = ({ children, ...others }) => {
   return <StyledGrid {...others}>{children}</StyledGrid>;
 };
 
-export default Grid;
+export default memo(Grid);

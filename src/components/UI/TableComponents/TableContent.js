@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Table, Tbody, Td, Th, Thead, Tr } from "../../Design";
 
@@ -85,4 +86,4 @@ const TableContent = ({ data, total, columns }) => {
     </Table>
   );
 };
-export default TableContent;
+export default memo(TableContent);

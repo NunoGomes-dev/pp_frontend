@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
@@ -36,4 +37,4 @@ const Td = (props) => {
   return <StyledTd {...props} />;
 };
 
-export default Td;
+export default memo(Td);

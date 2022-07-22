@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useEffect } from "react";
 import { Box, Button, HStack } from "../../Design";
 
@@ -30,11 +31,11 @@ const TablePagination = ({
       <Box fontSize="sm" color="secondary">
         A mostrar {data?.length || perpage} de {total} {type}
       </Box>
-      <HStack width="full" justify="end" align="center">
+      <HStack max-Width="50%" justify="end" align="center">
         {pages}
       </HStack>
     </HStack>
   );
 };
 
-export default TablePagination;
+export default memo(TablePagination);

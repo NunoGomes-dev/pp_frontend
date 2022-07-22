@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
@@ -18,6 +19,4 @@ const Table = (props) => {
   return <StyledTable {...props} />;
 };
 
-export default Table;
-
-// width: 80%;
+export default memo(Table);

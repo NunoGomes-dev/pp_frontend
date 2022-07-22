@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Box from "./Box";
 
 const Card = ({ children, ...others }) => {
@@ -14,4 +15,4 @@ const Card = ({ children, ...others }) => {
   );
 };
 
-export default Card;
+export default memo(Card);

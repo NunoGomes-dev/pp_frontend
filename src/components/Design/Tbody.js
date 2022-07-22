@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
@@ -17,4 +18,4 @@ const Tbody = (props) => {
   return <StyledTbody {...props} />;
 };
 
-export default Tbody;
+export default memo(Tbody);

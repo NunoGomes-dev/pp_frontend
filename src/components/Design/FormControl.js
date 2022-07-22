@@ -1,3 +1,4 @@
+import { memo } from "react";
 import VStack from "./VStack";
 
 const FormControl = ({ children, ...rest }) => {
@@ -7,4 +8,4 @@ const FormControl = ({ children, ...rest }) => {
     </VStack>
   );
 };
-export default FormControl;
+export default memo(FormControl);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
@@ -30,4 +31,4 @@ const Th = (props) => {
   return <StyledTh fontSize="sm" color="terciary" {...props} />;
 };
 
-export default Th;
+export default memo(Th);
