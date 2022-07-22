@@ -16,9 +16,12 @@ const TablePagination = ({
     pages.push(
       <Button
         key={i}
-        variant={currentPage === i ? "light" : "outline"}
+        variant={currentPage === i ? "light" : "unstyled"}
+        color={currentPage === i ? "primary" : "secondary"}
         fontSize="sm"
-        padding="0 0"
+        padding="0"
+        width="32px"
+        height="32px"
         onClick={() => setCurrentPage(i)}
       >
         {i}

@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { VStack } from "../../Design";
-import { PageBody, Skeleton, TableContent, TablePagination } from "../../UI";
+import {
+  PageBody,
+  Skeleton,
+  TableContent,
+  TableDefault,
+  TablePagination,
+} from "../../UI";
+import { useEffect } from "react";
+import { useQueryClient } from "react-query";
+import useParts from "../../../hooks/data/useParts";
+import api from "../../../services/api";
 
 const columns = [
   { Header: "", accessor: "stock_status" },
@@ -15,9 +25,33 @@ const columns = [
   { Header: "Gaveta", accessor: "part_storage" },
 ];
 
-const PartsList = ({ useParts }) => {
-  const { data, isLoading, isSuccess } = useParts;
+const PartsList = () => {
+  const queryClient = new useQueryClient();
   const [currentPage, setCurrentPage] = useState(1);
+  const { data, isLoading, isSuccess } = useParts({ currentPage });
+
+  useEffect(() => {
+    const refetchParts = async () => {
+      await queryClient.prefetchQuery(
+        ["parts", currentPage + 1],
+        () =>
+          api
+            .get(
+              `/parts?limit=${process.env.REACT_APP_PER_PAGE}&page=${
+                currentPage + 1
+              }`
+            )
+            .then((res) => res.data),
+        {
+          staleTime: 5000,
+        }
+      );
+    };
+
+    if (data?.hasMore) refetchParts();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, currentPage]);
 
   return (
     <PageBody width="full">
@@ -30,11 +64,11 @@ const PartsList = ({ useParts }) => {
           <Skeleton width="full" height="30px" />
         </VStack>
       )}
-      {!isLoading && isSuccess && (
+      {isSuccess && (
         <VStack width="full" align="start" justify="start">
           <TableContent
-            data={data?.parts || []}
             columns={columns}
+            data={data?.parts || []}
             total={data?.total || 0}
           />
           <TablePagination
@@ -42,6 +76,7 @@ const PartsList = ({ useParts }) => {
             data={data}
             perpage={process.env.REACT_APP_PER_PAGE || 10}
             currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
             type="peças"
           />
         </VStack>

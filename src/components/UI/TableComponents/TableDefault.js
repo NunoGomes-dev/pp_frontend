@@ -9,9 +9,7 @@ const TableContent = ({ data, total, columns }) => {
       <thead position="sticky" top="0">
         <tr>
           {columns.map((column, index) => (
-            <th whiteSpace="nowrap" key={index}>
-              {column.Header}
-            </th>
+            <th key={index}>{column.Header}</th>
           ))}
         </tr>
       </thead>
@@ -25,18 +23,10 @@ const TableContent = ({ data, total, columns }) => {
                 const element = column.Cell?.(cell) ?? cell;
 
                 if (accessor === "part_ref") {
-                  return (
-                    <td key={index} fontWeight={300}>
-                      {row.ref}
-                    </td>
-                  );
+                  return <td key={index}>{row.ref}</td>;
                 }
                 if (accessor === "part_name") {
-                  return (
-                    <td key={index} fontWeight={500}>
-                      {row.name}
-                    </td>
-                  );
+                  return <td key={index}>{row.name}</td>;
                 }
 
                 if (accessor === "part_brand") {
@@ -66,7 +56,7 @@ const TableContent = ({ data, total, columns }) => {
                         style={{
                           borderRadius: "50px",
                           background: `${row.stock > 0 ? "green" : "red"}`,
-                          padding: "2px",
+                          padding: "0.5rem",
                           width: "min",
                         }}
                       />

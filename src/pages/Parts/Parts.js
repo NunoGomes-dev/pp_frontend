@@ -1,10 +1,8 @@
 import { IoIosAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { Button, PageContainer, PageHeader, PartsList } from "../../components";
-import useParts from "../../hooks/data/useParts";
 
 const Parts = () => {
-  const getParts = useParts();
   return (
     <PageContainer>
       <PageHeader title="Peças" unstyled>
@@ -18,7 +16,7 @@ const Parts = () => {
           </Button>
         </Link>
       </PageHeader>
-      <PartsList useParts={getParts} />
+      <PartsList />
     </PageContainer>
   );
 };
