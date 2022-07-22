@@ -8,10 +8,60 @@ import tipography from "../../utils/tipography";
 import { Spinner } from "../UI";
 import HStack from "./HStack";
 
+const BaseStyle = ({ theme }) => `
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.white};
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: none;
+`;
+
+const getVariant = ({ variant, theme }) => {
+  const variants = {
+    solid: {
+      "background-color": `${theme.colors.primary}`,
+      color: `${theme.colors.white}`,
+      padding: "1rem 2rem",
+      "border-radius": "8px",
+      border: "none",
+    },
+    light: {
+      "background-color": `${theme.colors.primaryLight}`,
+      color: `${theme.colors.primary}`,
+      padding: "1rem 2rem",
+      "border-radius": "8px",
+      border: "none",
+    },
+    outline: {
+      "background-color": `${theme.colors.primaryLight}`,
+      color: `${theme.colors.primary}`,
+      padding: "1rem 2rem",
+      "border-radius": "8px",
+      border: `1px solid ${theme.colors.primary}`,
+    },
+    outline2: {
+      "background-color": `${theme.colors.white}`,
+      color: `${theme.colors.primary}`,
+      padding: "1rem 2rem",
+      "border-radius": "8px",
+      border: `1px solid ${theme.colors.primary}`,
+    },
+    unstyled: {
+      "background-color": "transparent",
+      color: `${theme.colors.white}`,
+      padding: "0",
+      "border-radius": "none",
+      border: "none",
+    },
+  };
+
+  return variants[variant];
+};
+
 const StyledButton = styled.button`
   cursor: pointer;
-  ${({ theme }) => theme.components.button.baseStyle || ``};
-  ${({ variant, theme }) => theme.components.button.variants[variant] || ``};
+  ${(p) => BaseStyle(p)};
+  ${({ variant, theme }) => getVariant({ variant, theme }) || ``};
   ${(p) => others(p)};
   ${(p) => sizes(p)}
   ${(p) => spacings(p)}
