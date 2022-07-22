@@ -186,11 +186,11 @@ export const theme = {
           border: `1px solid ${colors.primary}`,
         },
         outline2: {
-          "background-color": `${colors.primary}`,
-          color: `${colors.white}`,
+          "background-color": `${colors.white}`,
+          color: `${colors.primary}`,
           padding: "1rem 2rem",
           "border-radius": "8px",
-          border: `1px solid ${colors.white}`,
+          border: `1px solid ${colors.primary}`,
         },
         unstyled: {
           "background-color": "transparent",

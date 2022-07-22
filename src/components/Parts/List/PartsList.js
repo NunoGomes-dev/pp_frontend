@@ -1,4 +1,6 @@
-import { PageBody, TableContent } from "../../UI";
+import { useState } from "react";
+import { VStack } from "../../Design";
+import { PageBody, Skeleton, TableContent, TablePagination } from "../../UI";
 
 const columns = [
   { Header: "", accessor: "stock_status" },
@@ -14,15 +16,36 @@ const columns = [
 ];
 
 const PartsList = ({ useParts }) => {
-  const { data } = useParts;
+  const { data, isLoading, isSuccess } = useParts;
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <PageBody width="full">
-      <TableContent
-        data={data?.parts || []}
-        columns={columns}
-        total={data?.total || null}
-      />
+      {isLoading && (
+        <VStack>
+          <Skeleton width="full" height="30px" />
+          <Skeleton width="full" height="30px" />
+          <Skeleton width="full" height="30px" />
+          <Skeleton width="full" height="30px" />
+          <Skeleton width="full" height="30px" />
+        </VStack>
+      )}
+      {!isLoading && isSuccess && (
+        <VStack width="full" align="start" justify="start">
+          <TableContent
+            data={data?.parts || []}
+            columns={columns}
+            total={data?.total || 0}
+          />
+          <TablePagination
+            total={data?.total || 0}
+            data={data}
+            perpage={process.env.REACT_APP_PER_PAGE || 10}
+            currentPage={currentPage}
+            type="peças"
+          />
+        </VStack>
+      )}
     </PageBody>
   );
 };

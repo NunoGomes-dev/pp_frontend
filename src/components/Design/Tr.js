@@ -6,6 +6,10 @@ import tipography from "../../utils/tipography";
 
 const StyledTr = styled.tr`
   background: white;
+  &:hover {
+    background: rgba(114, 114, 114, 0.05);
+    cursor: pointer;
+  }
   ${(props) => props};
   ${(props) => sizes(props)};
   ${(props) => spacings(props)};

@@ -3,7 +3,6 @@ import { FiSave, FiSettings } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import {
   Box,
-  BoxLoading,
   Button,
   Card,
   FormControl,
@@ -13,6 +12,7 @@ import {
   PageBody,
   PageContainer,
   PageHeader,
+  Skeleton,
   VStack,
 } from "../../components";
 import useStorageId from "../../hooks/data/useStorageId";
@@ -35,7 +35,7 @@ const Storage = () => {
         <PageBody width="full">
           {isLoading && (
             <HStack gap={8}>
-              <BoxLoading /> <BoxLoading />
+              <Skeleton /> <Skeleton />
             </HStack>
           )}
           {!isLoading && (

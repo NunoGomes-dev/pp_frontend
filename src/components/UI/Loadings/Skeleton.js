@@ -22,8 +22,8 @@ ${(props) => tipography(props)}
 ${(props) => colors(props)}
 `;
 
-const BoxLoading = (props) => {
+const Skeleton = (props) => {
   return <Loading {...props} />;
 };
 
-export default BoxLoading;
+export default Skeleton;

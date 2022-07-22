@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { Box, Table, Tbody, Td, Th, Thead, Tr } from "../../Design";
 
 const TableContent = ({ data, total, columns }) => {
+  const navigate = useNavigate();
+
   return (
     <Table>
-      <Thead>
+      <Thead position="sticky" top="0">
         <Tr>
           {columns.map((column, index) => (
             <Th whiteSpace="nowrap" key={index}>
@@ -15,7 +18,7 @@ const TableContent = ({ data, total, columns }) => {
       <Tbody>
         {data?.length > 0 &&
           data.map((row, dataIndex) => (
-            <Tr key={dataIndex}>
+            <Tr key={dataIndex} onClick={() => navigate(`/parts/${row.id}`)}>
               {columns.map((column, index) => {
                 const accessor = column?.accessor;
                 const cell = row[accessor];
