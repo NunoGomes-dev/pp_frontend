@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { useEffect } from "react";
 import { Box, Button, HStack } from "../../Design";
 
 const TablePagination = ({
@@ -10,9 +9,8 @@ const TablePagination = ({
   setCurrentPage,
   type = "",
 }) => {
-  useEffect(() => {}, []);
   const pages = [];
-  for (let i = 1; i < total % 10; i++) {
+  for (let i = 1; i <= Math.ceil(total / perpage); i++) {
     pages.push(
       <Button
         key={i}
@@ -22,7 +20,7 @@ const TablePagination = ({
         padding="0"
         width="32px"
         height="32px"
-        onClick={() => setCurrentPage(i)}
+        onClick={() => currentPage !== i && setCurrentPage(i)}
       >
         {i}
       </Button>

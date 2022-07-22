@@ -6,7 +6,7 @@ export default function useParts({ currentPage = 1 }) {
   const toast = useToast();
 
   return useQuery(
-    ["parts", currentPage],
+    ["parts", `page=${currentPage}`],
     () =>
       api
         .get(

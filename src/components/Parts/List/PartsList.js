@@ -33,7 +33,7 @@ const PartsList = () => {
   useEffect(() => {
     const refetchParts = async () => {
       await queryClient.prefetchQuery(
-        ["parts", currentPage + 1],
+        ["parts", `page=${currentPage + 1}`],
         () =>
           api
             .get(
@@ -56,7 +56,7 @@ const PartsList = () => {
   return (
     <PageBody width="full">
       {isLoading && (
-        <VStack>
+        <VStack width="full" height="full">
           <Skeleton width="full" height="30px" />
           <Skeleton width="full" height="30px" />
           <Skeleton width="full" height="30px" />
@@ -66,7 +66,7 @@ const PartsList = () => {
       )}
       {isSuccess && (
         <VStack width="full" align="start" justify="start">
-          <TableContent
+          <TableDefault
             columns={columns}
             data={data?.parts || []}
             total={data?.total || 0}
@@ -74,7 +74,7 @@ const PartsList = () => {
           <TablePagination
             total={data?.total || 0}
             data={data}
-            perpage={process.env.REACT_APP_PER_PAGE || 10}
+            perpage={parseInt(process.env.REACT_APP_PER_PAGE) || 10}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             type="peças"

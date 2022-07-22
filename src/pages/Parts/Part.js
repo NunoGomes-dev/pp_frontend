@@ -12,27 +12,35 @@ import usePostPart from "../../hooks/mutations/usePostPart";
 import useStorages from "../../hooks/data/useStorages";
 import clearObj from "../../utils/clearObj";
 import useProviders from "../../hooks/data/useProviders";
+import usePartId from "../../hooks/data/usePartId";
+import usePutPart from "../../hooks/mutations/usePutPart";
+import { RiAddBoxFill } from "react-icons/ri";
 
 const Part = () => {
   const { id } = useParams();
-  const { mutate, isLoading: loadingMutate } = usePostPart();
+  const hasPart = id !== "new" ? true : false;
+  const { handleSubmit, reset, ...form } = useForm();
+
+  const { mutate: mutateCreation, isLoading: loadingMutateCreation } =
+    usePostPart();
+  const { mutate: mutateEdition, isLoading: loadingMutateEdition } =
+    usePutPart(reset);
+
+  const getPart = usePartId(id, reset);
   const getStorages = useStorages();
   const getProviders = useProviders();
-  const {
-    handleSubmit,
-    register,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm();
 
   return (
     <PageContainer>
       <form
-        onSubmit={handleSubmit((v) => mutate(clearObj(v)))}
+        onSubmit={handleSubmit((v) =>
+          hasPart ? mutateEdition(clearObj(v)) : mutateCreation(clearObj(v))
+        )}
         style={{ width: "100%", height: "100%" }}
       >
-        <PageHeader title="Nova peça">
+        <PageHeader
+          title={hasPart ? getPart?.data?.name || "Editar Peça" : "Nova peça"}
+        >
           <HStack gap={4}>
             <Link to="/parts">
               <Button variant="light">Cancelar</Button>
@@ -40,21 +48,26 @@ const Part = () => {
             <Button
               variant="solid"
               icon={
-                <FiSave style={{ transform: "scale(1.25)", strokeWidth: 2 }} />
+                hasPart ? (
+                  <FiSave
+                    style={{ transform: "scale(1.25)", strokeWidth: 2 }}
+                  />
+                ) : (
+                  <RiAddBoxFill style={{ transform: "scale(1.25)" }} />
+                )
               }
               iconPlacement="end"
               type="submit"
-              isLoading={loadingMutate}
+              isLoading={loadingMutateCreation || loadingMutateEdition}
             >
-              Guardar
+              {hasPart ? "Guardar" : "Criar"}
             </Button>
           </HStack>
         </PageHeader>
         <PartForm
-          register={register}
-          errors={errors}
-          setValue={setValue}
-          watch={watch}
+          hasPart={hasPart}
+          form={form}
+          getPart={getPart || null}
           getStorages={getStorages}
           getProviders={getProviders}
         />
