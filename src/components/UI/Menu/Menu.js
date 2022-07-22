@@ -12,7 +12,7 @@ import { useLogout } from "../../../hooks/auth/useLogout";
 import { Button, Image, VStack } from "../../Design";
 
 const Menu = () => {
-  const { user } = useContext(AuthContext);
+  const { user, isAuthenticated } = useContext(AuthContext);
   const location = useLocation();
   const doLogout = useLogout();
 
@@ -21,79 +21,83 @@ const Menu = () => {
   };
 
   return (
-    <VStack
-      width="14rem"
-      height="calc(100% - 2rem)"
-      padding="1rem"
-      background="white"
-      justify="space-between"
-      gap="4"
-    >
-      <VStack width="full" gap="4" overflowY="auto">
-        <Image
-          src={banner}
-          alt="banner_pp"
-          width="100%"
-          height="auto"
-          objectFit="contain"
-          pointerEvents="none"
-          userSelect="none"
-        />
-        <UserItem user={user} />
-        <LinkItem
-          text={"Dashboard"}
-          isActive={activePath("/dashboard")}
-          to="/dashboard"
-          LeftIcon={<MdOutlineSignalCellularAlt />}
-        />
-        <LinkItem
-          text={"Peças"}
-          LeftIcon={<FiSettings />}
-          to="parts"
-          isActive={activePath("/parts")}
-        />
-        <LinkItem
-          text={"Inventário"}
-          LeftIcon={<FiLayers />}
-          to="inventory"
-          isActive={activePath("/inventory")}
-          disabled
-        />
-        <LinkItem
-          text={"Encomendas"}
-          LeftIcon={<FiPackage />}
-          to="orders"
-          isActive={activePath("/orders")}
-          disabled
-        />
-        <LinkItem
-          text={"Fornecedores"}
-          LeftIcon={<FiTruck />}
-          to="providers"
-          isActive={activePath("/providers")}
-        />
-        <LinkItem
-          text={"Gavetas"}
-          LeftIcon={<ImDrawer2 />}
-          to="storages"
-          isActive={activePath("/storages")}
-        />
-      </VStack>
-      <Button
-        variant="light"
-        width="full"
-        padding="0.5rem 0"
-        color="#4A5568"
-        background="#F7FAFC"
-        borderRadius="0.5rem"
-        icon={<MdLogout />}
-        onClick={() => {
-          doLogout();
-        }}
-      >
-        Terminar Sessão
-      </Button>
-    </VStack>
+    <>
+      {isAuthenticated && (
+        <VStack
+          width="14rem"
+          height="calc(100% - 2rem)"
+          padding="1rem"
+          background="white"
+          justify="space-between"
+          gap="4"
+        >
+          <VStack width="full" gap="4" overflowY="auto">
+            <Image
+              src={banner}
+              alt="banner_pp"
+              width="100%"
+              height="auto"
+              objectFit="contain"
+              pointerEvents="none"
+              userSelect="none"
+            />
+            <UserItem user={user} />
+            <LinkItem
+              text={"Dashboard"}
+              isActive={activePath("/dashboard")}
+              to="/dashboard"
+              LeftIcon={<MdOutlineSignalCellularAlt />}
+            />
+            <LinkItem
+              text={"Peças"}
+              LeftIcon={<FiSettings />}
+              to="parts"
+              isActive={activePath("/parts")}
+            />
+            <LinkItem
+              text={"Inventário"}
+              LeftIcon={<FiLayers />}
+              to="inventory"
+              isActive={activePath("/inventory")}
+              disabled
+            />
+            <LinkItem
+              text={"Encomendas"}
+              LeftIcon={<FiPackage />}
+              to="orders"
+              isActive={activePath("/orders")}
+              disabled
+            />
+            <LinkItem
+              text={"Fornecedores"}
+              LeftIcon={<FiTruck />}
+              to="providers"
+              isActive={activePath("/providers")}
+            />
+            <LinkItem
+              text={"Gavetas"}
+              LeftIcon={<ImDrawer2 />}
+              to="storages"
+              isActive={activePath("/storages")}
+            />
+          </VStack>
+          <Button
+            variant="light"
+            width="full"
+            padding="0.5rem 0"
+            color="#4A5568"
+            background="#F7FAFC"
+            borderRadius="0.5rem"
+            icon={<MdLogout />}
+            onClick={() => {
+              doLogout();
+            }}
+          >
+            Terminar Sessão
+          </Button>
+        </VStack>
+      )}
+    </>
   );
 };
 
