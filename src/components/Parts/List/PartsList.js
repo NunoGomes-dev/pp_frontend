@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import useParts from "../../../hooks/data/useParts";
 import api from "../../../services/api";
+import PartsTableHeader from "./PartsTableHeader";
 
 const columns = [
   { Header: "", accessor: "stock_status" },
@@ -56,16 +57,17 @@ const PartsList = () => {
   return (
     <PageBody width="full">
       {isLoading && (
-        <VStack width="full" height="full">
-          <Skeleton width="full" height="30px" />
-          <Skeleton width="full" height="30px" />
-          <Skeleton width="full" height="30px" />
-          <Skeleton width="full" height="30px" />
-          <Skeleton width="full" height="30px" />
+        <VStack width="full" height="full" gap="1rem">
+          <PartsTableHeader columns={columns} />
+          <Skeleton width="full" height="50px" />
+          <Skeleton width="full" height="50px" />
+          <Skeleton width="full" height="50px" />
+          <Skeleton width="full" height="50px" />
+          <Skeleton width="full" height="50px" />
         </VStack>
       )}
       {isSuccess && (
-        <VStack width="full" align="start" justify="start">
+        <VStack width="full" align="start" justify="start" gap="1rem">
           <TableDefault
             columns={columns}
             data={data?.parts || []}

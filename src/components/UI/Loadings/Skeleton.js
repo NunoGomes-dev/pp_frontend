@@ -24,14 +24,20 @@ const Loading = styled.div`
 `;
 
 const Skeleton = ({ isLoading, children, ...others }) => {
-  if (isLoading)
-    return (
-      <Loading>
-        <div style={{ opacity: 0 }}>{children}</div>
-      </Loading>
-    );
+  if (children) {
+    if (isLoading)
+      return (
+        <Loading>
+          <div opacity={0} {...others}>
+            {children}
+          </div>
+        </Loading>
+      );
 
-  return children;
+    return children;
+  } else {
+    return <Loading {...others} />;
+  }
 };
 
 export default memo(Skeleton);
