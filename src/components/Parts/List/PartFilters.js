@@ -122,7 +122,6 @@ const PartFilters = ({
                 {...registOrder("orderBy")}
                 defaultValue={"createdAt"}
               >
-                <option value={"createdAt"}>Data de criação</option>
                 {orderByOptions?.map(({ name, key }) => (
                   <option key={key} value={key}>
                     {name}

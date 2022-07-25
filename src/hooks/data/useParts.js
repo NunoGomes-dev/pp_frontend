@@ -12,7 +12,7 @@ export default function useParts({ currentPage = 1, filters = [] }) {
     () =>
       api
         .get(
-          `/parts?limit=${process.env.REACT_APP_PER_PAGE}&page=${currentPage}&${query}`
+          `/parts?limit=${process.env.REACT_APP_PER_PAGE}&page=${currentPage}${query}`
         )
         .then((res) => res.data),
     {

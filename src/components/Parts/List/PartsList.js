@@ -31,6 +31,7 @@ const columns = [
 ];
 
 const orderByOptions = [
+  { name: "Data de criação", key: "createdAt" },
   { name: "Ref", key: "ref" },
   { name: "Nome", key: "name" },
   { name: "Stock", key: "stock" },
