@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 import { useLocation, useNavigate } from "react-router-dom";
-import Toast from "../../components/UI/Alerts/Toast";
 import { deleteAxiosAuth, setAxiosAuth } from "../../utils/axiosAuth";
+import useToast from "../notifications/useToast";
 
 const next = (token, user, setUser, setIsAuthenticated, navigate, location) => {
   localStorage.setItem("Peça@Peça:token", token);
@@ -11,13 +11,13 @@ const next = (token, user, setUser, setIsAuthenticated, navigate, location) => {
   navigate(location.pathname || "/dashboard", { replace: true });
 };
 
-const logout = (setUser, setIsAuthenticated, navigate) => {
+const logout = (setUser, setIsAuthenticated, navigate, toast) => {
   localStorage.removeItem("Peça@Peça:token");
   setUser(null);
   setIsAuthenticated(false);
   deleteAxiosAuth();
   navigate("/", { replace: true });
-  Toast({
+  toast({
     status: "warning",
     title: "Sessão expirada",
     description: "A sua sessão expirou, inicie sessão novamente!",
@@ -27,18 +27,19 @@ const logout = (setUser, setIsAuthenticated, navigate) => {
 export default function useToken(token, setUser, setIsAuthenticated) {
   const location = useLocation();
   const navigate = useNavigate();
+  const toast = useToast();
 
   return () => {
     try {
       const { exp, iat, ...user } = jwtDecode(token);
       if (exp * 1000 < new Date().getTime()) {
-        logout(setUser, setIsAuthenticated, navigate);
+        logout(setUser, setIsAuthenticated, navigate, toast);
       } else {
         next(token, user, setUser, setIsAuthenticated, navigate, location);
       }
     } catch (error) {
       console.log(error);
-      logout(setUser, setIsAuthenticated, navigate);
+      logout(setUser, setIsAuthenticated, navigate, toast);
     }
   };
 }

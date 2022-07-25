@@ -8,12 +8,11 @@ import { NotificationsProvider } from "./context/NotificationsContext";
 
 function App() {
   const queryClient = new QueryClient();
-  // const { isAuthenticated, firstLoading } = useContext(AuthContext);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <NotificationsProvider>
+      <NotificationsProvider>
+        <AuthProvider>
           <ThemeProvider theme={theme}>
             <LoadingScreen />
             <Box
@@ -44,8 +43,8 @@ function App() {
               </HStack>
             </Box>
           </ThemeProvider>
-        </NotificationsProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </NotificationsProvider>
     </QueryClientProvider>
   );
 }
