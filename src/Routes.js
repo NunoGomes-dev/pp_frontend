@@ -14,6 +14,11 @@ import {
   Parts,
   Inventory,
   Orders,
+  Storage,
+  Home,
+  SignUp,
+  Part,
+  Provider,
 } from "./pages";
 
 const ProtectedRoute = ({ isPrivate, isSignIn, children }) => {
@@ -24,7 +29,7 @@ const ProtectedRoute = ({ isPrivate, isSignIn, children }) => {
     return <Navigate to="/signin" state={{ from: location }} replace />;
   }
   if (isSignIn && isAuthenticated && !isLoading) {
-    return <Navigate to="/" />;
+    return <Navigate to="/dashboard" />;
   }
   return children;
 };
@@ -33,7 +38,7 @@ const Routes = () => {
   return (
     <Router>
       <Route
-        path="/"
+        path="/dashboard"
         element={
           <ProtectedRoute isPrivate>
             <Dashboard />
@@ -45,6 +50,14 @@ const Routes = () => {
         element={
           <ProtectedRoute isPrivate>
             <Parts />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/parts/:id"
+        element={
+          <ProtectedRoute isPrivate>
+            <Part />
           </ProtectedRoute>
         }
       />
@@ -73,6 +86,14 @@ const Routes = () => {
         }
       />
       <Route
+        path="/providers/:id"
+        element={
+          <ProtectedRoute isPrivate>
+            <Provider />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/storages"
         element={
           <ProtectedRoute isPrivate>
@@ -80,12 +101,36 @@ const Routes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/storages/:id"
+        element={
+          <ProtectedRoute isPrivate>
+            <Storage />
+          </ProtectedRoute>
+        }
+      />
 
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute isSignIn>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/signin"
         element={
           <ProtectedRoute isSignIn>
             <SignIn />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <ProtectedRoute isSignIn>
+            <SignUp />
           </ProtectedRoute>
         }
       />

@@ -1,59 +1,36 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import pp_logo from "../../assets/pp_logo.png";
-import { AuthContext } from "../../context/AuthContext";
-import { Button, Container, Flex, Image, Input, Label } from "./styles";
+import { Stack, VStack, Image, Card, SignInForm } from "../../components";
+import useSignIn from "../../hooks/auth/useSignIn";
 
 export const SignIn = () => {
-  const { handleSubmit, register } = useForm();
-  const { handleLogin, isLoading } = useContext(AuthContext);
-
-  const loginHandler = ({ email, password }) => {
-    handleLogin({ email, password });
-  };
-
-  // const { mutate } = useMutation(handleLogin, {
-  //   onSuccess: (data) => {
-  //     console.log("da", data);
-  //   },
-  // });
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const { mutate, isLoading } = useSignIn();
 
   return (
-    <Flex
-      width="100%"
-      height="100%"
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
+    <Stack
+      width="full"
+      height="full"
+      justify="center"
+      align="center"
+      color="black"
     >
-      <Container>
-        <Image src={pp_logo} alt="PeçaAPeça" />
-        <form onSubmit={handleSubmit(loginHandler)}>
-          <Flex
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="start"
-          >
-            <Label htmlFor="email">Email</Label>
-            <Input type="text" id="email" name="email" {...register("email")} />
-          </Flex>
-          <Flex
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="start"
-          >
-            <Label htmlFor="pw">Password</Label>
-            <Input
-              type="password"
-              id="pw"
-              name="pw"
-              {...register("password")}
-            />
-          </Flex>
-          <Button type="submit">Submit</Button>
-          {isLoading && <div>isLoading</div>}
-        </form>
-      </Container>
-    </Flex>
+      <Card>
+        <VStack justify="start" align="center" gap="8">
+          <Image src={pp_logo} alt="PeçaAPeça" maxHeight="40%" width="auto" />
+          <SignInForm
+            handleSubmit={handleSubmit}
+            mutate={mutate}
+            register={register}
+            errors={errors}
+            isLoading={isLoading}
+          />
+        </VStack>
+      </Card>
+    </Stack>
   );
 };

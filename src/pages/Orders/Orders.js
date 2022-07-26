@@ -1,7 +1,11 @@
-import { PageHeader } from "../../components";
+import { PageContainer, PageHeader } from "../../components";
 
 const Orders = () => {
-  return <PageHeader name="Encomendas" />;
+  return (
+    <PageContainer>
+      <PageHeader title="Encomendas" />
+    </PageContainer>
+  );
 };
 
 export default Orders;
