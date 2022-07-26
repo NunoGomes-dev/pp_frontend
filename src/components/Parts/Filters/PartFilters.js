@@ -10,13 +10,16 @@ import {
   Select,
   VStack,
 } from "../../Design";
+import SearchForm from "./SearchForm";
 
 const PartFilters = ({
   filters,
   setFilters,
   orderByOptions,
+  searchOptions,
   getProviders,
   getStorages,
+  Operators,
 }) => {
   const { data: storages, isSuccess: storagesReady } = getStorages;
   const { data: providers, isSuccess: providersReady } = getProviders;
@@ -37,6 +40,7 @@ const PartFilters = ({
     register: registProvider,
     reset: resetProvider,
   } = useForm();
+  const searchForm = useForm();
 
   const submitOrder = ({ orderBy, order }) => {
     const newFilter = {
@@ -44,12 +48,12 @@ const PartFilters = ({
         orderByOptions.find((o) => o.key === orderBy).name
       }, ${order === "ASC" ? "Ascendente" : "Descendente"}`,
       query: `order=${order}&orderBy=${orderBy}`,
-      type: "order",
+      key: "order",
       clear: resetOrder,
     };
     let tempFilters = filters;
-    if (tempFilters.find((f) => f.type === "order")) {
-      setFilters([...tempFilters.filter((f) => f.type !== "order"), newFilter]);
+    if (tempFilters.find((f) => f.key === "order")) {
+      setFilters([...tempFilters.filter((f) => f.key !== "order"), newFilter]);
     } else {
       setFilters([...filters, newFilter]);
     }
@@ -63,13 +67,13 @@ const PartFilters = ({
     const newFilter = {
       name: `Fornecedores: ${names}`,
       query: `provider_id=[${values}]`,
-      type: "provider",
+      key: "provider",
       clear: resetProvider,
     };
     let tempFilters = filters;
-    if (tempFilters.find((f) => f.type === "provider")) {
+    if (tempFilters.find((f) => f.key === "provider")) {
       setFilters([
-        ...tempFilters.filter((f) => f.type !== "provider"),
+        ...tempFilters.filter((f) => f.key !== "provider"),
         newFilter,
       ]);
     } else {
@@ -85,26 +89,38 @@ const PartFilters = ({
     const newFilter = {
       name: `Gavetas: ${names}`,
       query: `storage_id=[${values}]`,
-      type: "storage",
-      clear: () => resetStorage,
+      key: "storage",
+      clear: resetStorage,
     };
     let tempFilters = filters;
-    if (tempFilters.find((f) => f.type === "storage")) {
+    if (tempFilters.find((f) => f.key === "storage")) {
       setFilters([
-        ...tempFilters.filter((f) => f.type !== "storage"),
+        ...tempFilters.filter((f) => f.key !== "storage"),
         newFilter,
       ]);
     } else {
       setFilters([...filters, newFilter]);
     }
   };
-
+  const submitSearch = ({ key, text, operator }) => {
+    const OperatorObj = Operators.find((o) => o.operator === operator);
+    const newFilter = {
+      name: `${searchOptions.find((e) => e.key === key)?.name} ${
+        OperatorObj.name
+      }${text}`,
+      query: `${key}${OperatorObj.query}=${text}`,
+      key: `${key}${OperatorObj.query}=${text}`,
+      clear: searchForm.reset,
+    };
+    setFilters([...filters, newFilter]);
+    searchForm.reset();
+  };
   return (
     <VStack width="full" gap={4}>
       <Accordion
         title="Ordenar"
         titleProps={{ padding: "0 1rem" }}
-        height="15rem"
+        height="30rem"
       >
         <form onSubmit={handleOrder(submitOrder)}>
           <VStack
@@ -163,7 +179,7 @@ const PartFilters = ({
       <Accordion
         title="Fornecedores"
         titleProps={{ padding: "0 1rem" }}
-        height="20rem"
+        height="30rem"
       >
         <form onSubmit={handleProvider(submitProvider)}>
           <VStack
@@ -202,7 +218,7 @@ const PartFilters = ({
       <Accordion
         title="Gavetas"
         titleProps={{ padding: "0 1rem" }}
-        height="20rem"
+        height="30rem"
       >
         <form onSubmit={handleStorage(submitStorage)}>
           <VStack
@@ -237,6 +253,17 @@ const PartFilters = ({
             </HStack>
           </VStack>
         </form>
+      </Accordion>
+      <Accordion
+        title="Pesquisar"
+        titleProps={{ padding: "0 1rem" }}
+        height="30rem"
+      >
+        <SearchForm
+          searchForm={searchForm}
+          submitSearch={submitSearch}
+          searchOptions={searchOptions}
+        />
       </Accordion>
     </VStack>
   );

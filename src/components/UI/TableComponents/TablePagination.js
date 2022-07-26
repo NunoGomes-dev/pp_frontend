@@ -30,7 +30,7 @@ const TablePagination = ({
   return (
     <HStack width="full" justify="space-between" align="center">
       <Box fontSize="sm" color="secondary">
-        A mostrar {data?.length || perpage} de {total} {type}
+        A mostrar {data?.length} de {total} {type}
       </Box>
       <HStack max-Width="50%" justify="end" align="center">
         {pages}

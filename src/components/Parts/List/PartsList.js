@@ -12,7 +12,7 @@ import { useQueryClient } from "react-query";
 import useParts from "../../../hooks/data/useParts";
 import api from "../../../services/api";
 import PartsTableHeader from "./PartsTableHeader";
-import PartFilters from "./PartFilters";
+import PartFilters from "../Filters/PartFilters";
 import useStorages from "../../../hooks/data/useStorages";
 import useProviders from "../../../hooks/data/useProviders";
 import { queryBuilder } from "../../../utils/queryBuilder";
@@ -38,6 +38,84 @@ const orderByOptions = [
   { name: "Custo", key: "cost" },
   { name: "Revenda", key: "resale_price" },
   { name: "Preço", key: "price" },
+];
+
+const Operators = [
+  { name: "Igual a ", operator: "=", query: "", type: "number" },
+  { name: "Maior que ", operator: ">", query: "_gt", type: "number" },
+  { name: "Menor que ", operator: "<", query: "_lt", type: "number" },
+  { name: "Maior ou igual a ", operator: ">=", query: "_gte", type: "number" },
+  { name: "Menor ou igual a ", operator: "<=", query: "_lte", type: "number" },
+  { name: "Diferente de ", operator: "!==", query: "_ne", type: "number" },
+  {
+    name: "Começa em ",
+    operator: "startsWith",
+    query: "_startsWith",
+    type: "string",
+  },
+  {
+    name: "Acaba em ",
+    operator: "endsWith",
+    query: "_endsWith",
+    type: "string",
+  },
+  {
+    name: "Igual a ",
+    operator: "equalTo",
+    query: "_like",
+    type: "string",
+  },
+  {
+    name: "Diferente de ",
+    operator: "notEqualTo",
+    query: "_notLike",
+    type: "string",
+  },
+  {
+    name: "Contém ",
+    operator: "contains",
+    query: "_substring",
+    type: "string",
+  },
+];
+
+const searchOptions = [
+  {
+    name: "Ref",
+    key: "ref",
+    type: "text",
+    options: Operators.filter((e) => e.type === "string"),
+  },
+  {
+    name: "Nome",
+    key: "name",
+    type: "text",
+    options: Operators.filter((e) => e.type === "string"),
+  },
+  {
+    name: "Stock",
+    key: "stock",
+    options: Operators.filter((e) => e.type === "number"),
+    type: "text",
+  },
+  {
+    name: "Custo",
+    key: "cost",
+    options: Operators.filter((e) => e.type === "number"),
+    type: "number",
+  },
+  {
+    name: "Revenda",
+    key: "resale_price",
+    options: Operators.filter((e) => e.type === "number"),
+    type: "number",
+  },
+  {
+    name: "Preço",
+    key: "price",
+    options: Operators.filter((e) => e.type === "number"),
+    type: "number",
+  },
 ];
 
 const PartsList = () => {
@@ -84,8 +162,10 @@ const PartsList = () => {
             filters={filters}
             setFilters={setFilters}
             orderByOptions={orderByOptions}
+            searchOptions={searchOptions}
             getProviders={getProviders || null}
             getStorages={getStorages || null}
+            Operators={Operators}
           />
         </TableFilters>
         {isLoading ? (
@@ -107,7 +187,7 @@ const PartsList = () => {
         {isSuccess && (
           <TablePagination
             total={data?.total || 0}
-            data={data}
+            data={data?.parts}
             perpage={parseInt(process.env.REACT_APP_PER_PAGE) || 10}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}

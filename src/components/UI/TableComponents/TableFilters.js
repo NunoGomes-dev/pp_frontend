@@ -35,7 +35,7 @@ const TableFilters = ({ children, filters, setFilters }) => {
                 }}
                 onClick={() => {
                   f.clear();
-                  setFilters([...filters.filter((n) => n.type !== f.type)]);
+                  setFilters([...filters.filter((n) => n.key !== f.key)]);
                 }}
               />
             </HStack>
