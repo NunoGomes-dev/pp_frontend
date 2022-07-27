@@ -101,7 +101,17 @@ const TableContent = ({ data, total, columns }) => {
                       <div
                         style={{
                           borderRadius: "50px",
-                          background: `${row.stock > 0 ? "green" : "red"}`,
+                          background: `${
+                            row.minStock > 0
+                              ? row.stock > row.minStock
+                                ? "green"
+                                : row.stock === row.minStock
+                                ? "gray"
+                                : "red"
+                              : row.stock > 0
+                              ? "green"
+                              : "red"
+                          }`,
                           width: "15px",
                           height: "15px",
                           margin: "auto",
