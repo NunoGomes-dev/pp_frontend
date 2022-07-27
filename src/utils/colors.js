@@ -1,14 +1,15 @@
-export default function colors(props) {
-  const bg = props.background || props.backgroundColor || props.bg || null;
-  return `${bg ? `background: ${props.theme.colors[bg] || bg};` : ""}${
-    props.color
-      ? `color: ${props.theme.colors[props.color] || props.color};`
-      : ""
-  }${
-    props.boxShadow
-      ? `box-shadow: ${
-          props.theme.boxShadows[props.boxShadow] || props.boxShadow
-        };`
-      : ""
-  }`;
+import { allBoxShadows } from "../theme/boxShadows";
+import { allColors } from "../theme/colors";
+
+export default function colors({
+  background,
+  backgroundColor,
+  bg,
+  color,
+  boxShadow,
+}) {
+  const bgColor = background || backgroundColor || bg || null;
+  return `${bgColor ? `background: ${allColors[bgColor] || bgColor};` : ""}${
+    color ? `color: ${allColors[color] || color};` : ""
+  }${boxShadow ? `box-shadow: ${allBoxShadows[boxShadow] || boxShadow};` : ""}`;
 }

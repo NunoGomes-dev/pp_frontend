@@ -1,65 +1,44 @@
-export default function spacings(props) {
-  return `${
-    props.margin
-      ? `margin: ${props.theme.space[props.margin] || props.margin};`
+import { allSpacings } from "../theme/spacing";
+
+export default function spacings({
+  margin,
+  marginTop,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  padding,
+  paddingBottom,
+  paddingTop,
+  paddingLeft,
+  paddingRight,
+}) {
+  return `${margin ? `margin: ${allSpacings[margin] || margin};` : ""}
+  ${marginTop ? `margin-top: ${allSpacings[marginTop] || marginTop};` : ""}
+  ${
+    marginBottom
+      ? `margin-bottom: ${allSpacings[marginBottom] || marginBottom};`
       : ""
   }
   ${
-    props.marginTop
-      ? `margin-top: ${props.theme.space[props.marginTop] || props.marginTop};`
+    marginRight
+      ? `margin-right: ${allSpacings[marginRight] || marginRight};`
+      : ""
+  }
+  ${marginLeft ? `margin-left: ${allSpacings[marginLeft] || marginLeft};` : ""}
+  ${padding ? `padding: ${allSpacings[padding] || padding};` : ""}
+  ${paddingTop ? `padding-top: ${allSpacings[paddingTop] || paddingTop};` : ""}
+  ${
+    paddingBottom
+      ? `padding-bottom: ${allSpacings[paddingBottom] || paddingBottom};`
       : ""
   }
   ${
-    props.marginBottom
-      ? `margin-bottom: ${
-          props.theme.space[props.marginBottom] || props.marginBottom
-        };`
-      : ""
-  }
-  ${
-    props.marginRight
-      ? `margin-right: ${
-          props.theme.space[props.marginRight] || props.marginRight
-        };`
-      : ""
-  }
-  ${
-    props.marginLeft
-      ? `margin-left: ${
-          props.theme.space[props.marginLeft] || props.marginLeft
-        };`
-      : ""
-  }
-  ${
-    props.padding
-      ? `padding: ${props.theme.space[props.padding] || props.padding};`
-      : ""
-  }
-  ${
-    props.paddingTop
-      ? `padding-top: ${
-          props.theme.space[props.paddingTop] || props.paddingTop
-        };`
-      : ""
-  }
-  ${
-    props.paddingBottom
-      ? `padding-bottom: ${
-          props.theme.space[props.paddingBottom] || props.paddingBottom
-        };`
-      : ""
-  }
-  ${
-    props.paddingRight
-      ? `padding-right: ${
-          props.theme.space[props.paddingRight] || props.paddingRight
-        };`
+    paddingRight
+      ? `padding-right: ${allSpacings[paddingRight] || paddingRight};`
       : ""
   } ${
-    props.paddingLeft
-      ? `padding-left: ${
-          props.theme.space[props.paddingLeft] || props.paddingLeft
-        };`
+    paddingLeft
+      ? `padding-left: ${allSpacings[paddingLeft] || paddingLeft};`
       : ""
   }
   `;

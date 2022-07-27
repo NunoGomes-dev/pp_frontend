@@ -1,15 +1,16 @@
 import { memo } from "react";
 import { forwardRef } from "react";
 import styled from "styled-components";
+import { allColors } from "../../theme/colors";
 import colors from "../../utils/colors";
 import sizes from "../../utils/sizes";
 import spacings from "../../utils/spacings";
 import tipography from "../../utils/tipography";
 
-const baseStyle = ({ theme }) => `
+const baseStyle = () => `
   min-width: 300px;
-  background: ${theme.colors.white};
-  color: ${theme.colors.terciary};
+  background: ${allColors.white};
+  color: ${allColors.terciary};
   padding: 1rem; 
   border-radius: 8px;
   border: 1px solid #E0E0E0;

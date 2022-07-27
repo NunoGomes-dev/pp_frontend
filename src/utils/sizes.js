@@ -1,29 +1,23 @@
-export default function sizes(props) {
-  const borderRadius = props.borderRadius || props.rounded;
+import { allBorderRadius } from "../theme/borderRadius";
+import { allSizes } from "../theme/sizes";
 
-  return `${
-    props.width
-      ? `width: ${props.theme.sizes[props.width] || props.width};`
-      : ""
-  }
-  ${
-    props.height
-      ? `height: ${props.theme.sizes[props.height] || props.height};`
-      : ""
-  }
-  ${
-    props.maxWidth
-      ? `max-width: ${props.theme.sizes[props.maxWidth] || props.maxWidth};`
-      : ""
-  }  
- ${
-   props.maxHeight
-     ? `max-height: ${props.theme.sizes[props.maxHeight] || props.maxHeight};`
-     : ""
- }${
-    borderRadius
+export default function sizes({
+  borderRadius,
+  rounded,
+  width,
+  height,
+  maxWidth,
+  maxHeight,
+}) {
+  const borderRadiusProp = borderRadius || rounded;
+
+  return `${width ? `width: ${allSizes[width] || width};` : ""}
+  ${height ? `height: ${allSizes[height] || height};` : ""}
+  ${maxWidth ? `max-width: ${allSizes[maxWidth] || maxWidth};` : ""}  
+ ${maxHeight ? `max-height: ${allSizes[maxHeight] || maxHeight};` : ""}${
+    borderRadiusProp
       ? `border-radius: ${
-          props.theme.borderRadius[borderRadius] || borderRadius
+          allBorderRadius[borderRadiusProp] || borderRadiusProp
         };`
       : ""
   }`;
