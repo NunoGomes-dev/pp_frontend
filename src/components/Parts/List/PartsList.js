@@ -25,7 +25,7 @@ const columns = [
   { Header: "Fornecedor", accessor: "part_provider" },
   { Header: "Stock", accessor: "stock" },
   { Header: "Custo", accessor: "cost", type: "price" },
-  { Header: "Revenda", accessor: "resale_price", type: "price" },
+  { Header: "Revenda", accessor: "resalePrice", type: "price" },
   { Header: "Final", accessor: "price", type: "price" },
   { Header: "Gaveta", accessor: "part_storage" },
 ];
@@ -36,7 +36,7 @@ const orderByOptions = [
   { name: "Nome", key: "name" },
   { name: "Stock", key: "stock" },
   { name: "Custo", key: "cost" },
-  { name: "Revenda", key: "resale_price" },
+  { name: "Revenda", key: "resalePrice" },
   { name: "Preço", key: "price" },
 ];
 
@@ -106,7 +106,7 @@ const searchOptions = [
   },
   {
     name: "Revenda",
-    key: "resale_price",
+    key: "resalePrice",
     options: Operators.filter((e) => e.type === "number"),
     type: "number",
   },

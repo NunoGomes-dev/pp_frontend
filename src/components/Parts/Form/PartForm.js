@@ -67,11 +67,11 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                 width="full"
               >
                 <FormControl width="full">
-                  <InputLabel htmlFor="provider_id">Fornecedor</InputLabel>
+                  <InputLabel htmlFor="providerId">Fornecedor</InputLabel>
                   <Select
-                    id="provider_id"
+                    id="providerId"
                     width="full"
-                    {...register("provider_id")}
+                    {...register("providerId")}
                     defaultValue={""}
                   >
                     <option value={""}>Selecionar fornecedor</option>
@@ -83,7 +83,7 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                       ))}
                   </Select>
                   <FormErrorMessage>
-                    {errors?.provider_id?.message}
+                    {errors?.providerId?.message}
                   </FormErrorMessage>
                 </FormControl>
                 <FormControl width="full">
@@ -101,11 +101,11 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                 width="full"
               >
                 <FormControl width="full">
-                  <InputLabel htmlFor="storage_id">Gaveta</InputLabel>
+                  <InputLabel htmlFor="storageId">Gaveta</InputLabel>
                   <Select
-                    id="storage_id"
+                    id="storageId"
                     width="full"
-                    {...register("storage_id", { valueAsNumber: true })}
+                    {...register("storageId", { valueAsNumber: true })}
                     defaultValue={""}
                   >
                     <option value={""}>Selecionar gaveta</option>
@@ -117,7 +117,7 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                       ))}
                   </Select>
                   <FormErrorMessage>
-                    {errors?.storage_id?.message}
+                    {errors?.storageId?.message}
                   </FormErrorMessage>
                 </FormControl>
               </Grid>
@@ -137,15 +137,15 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                   <FormErrorMessage>{errors?.stock?.message}</FormErrorMessage>
                 </FormControl>
                 <FormControl width="full">
-                  <InputLabel htmlFor="min_stock">Stock mínimo</InputLabel>
+                  <InputLabel htmlFor="minStock">Stock mínimo</InputLabel>
                   <Input
-                    id="min_stock"
+                    id="minStock"
                     width="calc(100% - 2rem)"
                     type="number"
-                    {...register("min_stock", { ...floatRequired })}
+                    {...register("minStock", { ...floatRequired })}
                   />
                   <FormErrorMessage>
-                    {errors?.min_stock?.message}
+                    {errors?.minStock?.message}
                   </FormErrorMessage>
                 </FormControl>
               </Grid>
@@ -166,16 +166,16 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                   <FormErrorMessage>{errors?.cost?.message}</FormErrorMessage>
                 </FormControl>
                 <FormControl width="full">
-                  <InputLabel htmlFor="resale_price">Revenda</InputLabel>
+                  <InputLabel htmlFor="resalePrice">Revenda</InputLabel>
                   <Input
-                    id="resale_price"
+                    id="resalePrice"
                     width="calc(100% - 2rem)"
                     type="number"
                     step="0.01"
-                    {...register("resale_price", { ...floatRequired })}
+                    {...register("resalePrice", { ...floatRequired })}
                   />
                   <FormErrorMessage>
-                    {errors?.resale_price?.message}
+                    {errors?.resalePrice?.message}
                   </FormErrorMessage>
                 </FormControl>
                 <FormControl width="full">

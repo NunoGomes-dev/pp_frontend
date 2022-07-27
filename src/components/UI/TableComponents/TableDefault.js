@@ -113,7 +113,7 @@ const TableContent = ({ data, total, columns }) => {
                 return (
                   <div key={index}>
                     {element}
-                    {column?.type === "price" && "€"}
+                    {element && column?.type === "price" && "€"}
                   </div>
                 );
               })}

@@ -66,7 +66,7 @@ const PartFilters = ({
     );
     const newFilter = {
       name: `Fornecedores: ${names}`,
-      query: `provider_id=[${values}]`,
+      query: `providerId=[${values}]`,
       key: "provider",
       clear: resetProvider,
     };
@@ -88,7 +88,7 @@ const PartFilters = ({
     );
     const newFilter = {
       name: `Gavetas: ${names}`,
-      query: `storage_id=[${values}]`,
+      query: `storageId=[${values}]`,
       key: "storage",
       clear: resetStorage,
     };
