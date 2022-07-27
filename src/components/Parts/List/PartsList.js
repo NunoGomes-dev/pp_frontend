@@ -3,7 +3,7 @@ import { VStack } from "../../Design";
 import {
   PageBody,
   Skeleton,
-  TableDefault,
+  TableContent,
   TableFilters,
   TablePagination,
 } from "../../UI";
@@ -172,7 +172,7 @@ const PartsList = () => {
             {LoadingGrid}
           </VStack>
         ) : (
-          <TableDefault
+          <TableContent
             columns={columns}
             data={data?.parts || []}
             total={data?.total || 0}
