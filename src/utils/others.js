@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 export default function others(props) {
   const {
-    theme,
     width,
     height,
     maxHeight,

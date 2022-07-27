@@ -1,5 +1,6 @@
 import { memo } from "react";
 import styled, { keyframes } from "styled-components";
+import { allBorderRadius } from "../../../theme/borderRadius";
 import colors from "../../../utils/colors";
 import sizes from "../../../utils/sizes";
 import spacings from "../../../utils/spacings";
@@ -14,13 +15,13 @@ const Loading = styled.div`
   width: auto;
   height: auto;
   background: #718096;
-  border-radius: ${(p) => p.theme.borderRadius.md};
+  border-radius: ${allBorderRadius.md};
   animation: ${motion} 0.5s linear alternate infinite;
-  ${(props) => props};
-  ${(props) => sizes(props)};
-  ${(props) => spacings(props)};
-  ${(props) => tipography(props)};
-  ${(props) => colors(props)};
+  ${(p) => p};
+  ${(p) => sizes(p)};
+  ${(p) => spacings(p)};
+  ${(p) => tipography(p)};
+  ${(p) => colors(p)};
 `;
 
 const Skeleton = ({ isLoading, children, ...others }) => {
