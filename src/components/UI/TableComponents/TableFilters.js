@@ -54,22 +54,36 @@ const TableFilters = ({ children, filters, setFilters }) => {
         </Button>
       </HStack>
       <Drawer isOpen={isOpen} closeDrawer={() => setIsOpen(false)}>
-        <VStack width="full" gap={6}>
-          <HStack
-            width="calc(100% - 2rem)"
-            padding="0 1rem"
-            justify="space-between"
-            align="center"
-            h="min"
-          >
-            <Box fontSize="xl" textTransform="uppercase">
-              Filtros
+        <VStack justify="space-between" height="calc(100% - 2rem)">
+          <VStack width="full" gap={6}>
+            <HStack
+              width="calc(100% - 2rem)"
+              padding="0 1rem"
+              justify="space-between"
+              align="center"
+              h="min"
+            >
+              <Box fontSize="xl" textTransform="uppercase">
+                Filtros
+              </Box>
+              <Box onClick={() => setIsOpen(false)} cursor="pointer">
+                <IoCloseOutline fontSize={"24px"} />
+              </Box>
+            </HStack>
+            {children}
+          </VStack>
+          {filters.length > 0 && (
+            <Box width="calc(100% - 2rem)" padding="0 1rem">
+              <Button
+                width="full"
+                fontSize="sm"
+                padding="0.5rem"
+                onClick={() => setFilters([])}
+              >
+                Limpar Filtros
+              </Button>
             </Box>
-            <Box onClick={() => setIsOpen(false)} cursor="pointer">
-              <IoCloseOutline fontSize={"24px"} />
-            </Box>
-          </HStack>
-          {children}
+          )}
         </VStack>
       </Drawer>
     </>

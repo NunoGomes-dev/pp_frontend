@@ -52,6 +52,7 @@ const TableContent = ({ data, total, columns }) => {
                 border: "1px solid #E0E0E0",
                 fontSize: "16px",
                 fontWeight: 400,
+                cursor: "pointer",
               }}
             >
               {columns.map((column, index) => {

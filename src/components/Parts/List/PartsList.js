@@ -3,7 +3,7 @@ import { VStack } from "../../Design";
 import {
   PageBody,
   Skeleton,
-  TableDefault,
+  TableContent,
   TableFilters,
   TablePagination,
 } from "../../UI";
@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import useParts from "../../../hooks/data/useParts";
 import api from "../../../services/api";
-import PartsTableHeader from "./PartsTableHeader";
 import PartFilters from "../Filters/PartFilters";
 import useStorages from "../../../hooks/data/useStorages";
 import useProviders from "../../../hooks/data/useProviders";
@@ -157,16 +156,19 @@ const PartsList = () => {
           />
         </TableFilters>
         {isLoading ? (
-          <VStack width="full" height="full" gap="1rem">
-            <PartsTableHeader columns={columns} />
+          <VStack width="full" height="full" gap="0rem">
+            {/* For table default */}
+            {/* <PartsTableHeader columns={columns} />
             <Skeleton width="full" height="50px" />
             <Skeleton width="full" height="50px" />
             <Skeleton width="full" height="50px" />
             <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
+            <Skeleton width="full" height="50px" /> */}
+            {/* For Styled Components Table */}
+            <Skeleton width="full" height="300px" />
           </VStack>
         ) : (
-          <TableDefault
+          <TableContent
             columns={columns}
             data={data?.parts || []}
             total={data?.total || 0}
