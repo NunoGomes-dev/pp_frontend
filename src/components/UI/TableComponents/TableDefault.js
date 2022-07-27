@@ -52,6 +52,7 @@ const TableContent = ({ data, total, columns }) => {
                 border: "1px solid #E0E0E0",
                 fontSize: "16px",
                 fontWeight: 400,
+                cursor: "pointer",
               }}
             >
               {columns.map((column, index) => {
@@ -100,7 +101,17 @@ const TableContent = ({ data, total, columns }) => {
                       <div
                         style={{
                           borderRadius: "50px",
-                          background: `${row.stock > 0 ? "green" : "red"}`,
+                          background: `${
+                            row.minStock > 0
+                              ? row.stock > row.minStock
+                                ? "green"
+                                : row.stock === row.minStock
+                                ? "gray"
+                                : "red"
+                              : row.stock > 0
+                              ? "green"
+                              : "red"
+                          }`,
                           width: "15px",
                           height: "15px",
                           margin: "auto",
@@ -113,7 +124,7 @@ const TableContent = ({ data, total, columns }) => {
                 return (
                   <div key={index}>
                     {element}
-                    {column?.type === "price" && "€"}
+                    {element && column?.type === "price" && "€"}
                   </div>
                 );
               })}

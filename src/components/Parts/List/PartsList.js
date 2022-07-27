@@ -3,7 +3,7 @@ import { VStack } from "../../Design";
 import {
   PageBody,
   Skeleton,
-  TableDefault,
+  TableContent,
   TableFilters,
   TablePagination,
 } from "../../UI";
@@ -11,11 +11,11 @@ import { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import useParts from "../../../hooks/data/useParts";
 import api from "../../../services/api";
-import PartsTableHeader from "./PartsTableHeader";
 import PartFilters from "../Filters/PartFilters";
 import useStorages from "../../../hooks/data/useStorages";
 import useProviders from "../../../hooks/data/useProviders";
 import { queryBuilder } from "../../../utils/queryBuilder";
+import PartsTableHeader from "./PartsTableHeader";
 
 const columns = [
   { Header: "", accessor: "stock_status" },
@@ -25,21 +25,10 @@ const columns = [
   { Header: "Fornecedor", accessor: "part_provider" },
   { Header: "Stock", accessor: "stock" },
   { Header: "Custo", accessor: "cost", type: "price" },
-  { Header: "Revenda", accessor: "resale_price", type: "price" },
+  { Header: "Revenda", accessor: "resalePrice", type: "price" },
   { Header: "Final", accessor: "price", type: "price" },
   { Header: "Gaveta", accessor: "part_storage" },
 ];
-
-const orderByOptions = [
-  { name: "Data de criação", key: "createdAt" },
-  { name: "Ref", key: "ref" },
-  { name: "Nome", key: "name" },
-  { name: "Stock", key: "stock" },
-  { name: "Custo", key: "cost" },
-  { name: "Revenda", key: "resale_price" },
-  { name: "Preço", key: "price" },
-];
-
 const Operators = [
   { name: "Igual a ", operator: "=", query: "", type: "number" },
   { name: "Maior que ", operator: ">", query: "_gt", type: "number" },
@@ -78,8 +67,8 @@ const Operators = [
     type: "string",
   },
 ];
-
-const searchOptions = [
+const options = [
+  { name: "Data de criação", key: "createdAt", onlySortable: true },
   {
     name: "Ref",
     key: "ref",
@@ -89,6 +78,12 @@ const searchOptions = [
   {
     name: "Nome",
     key: "name",
+    type: "text",
+    options: Operators.filter((e) => e.type === "string"),
+  },
+  {
+    name: "Marca",
+    key: "brand",
     type: "text",
     options: Operators.filter((e) => e.type === "string"),
   },
@@ -106,7 +101,7 @@ const searchOptions = [
   },
   {
     name: "Revenda",
-    key: "resale_price",
+    key: "resalePrice",
     options: Operators.filter((e) => e.type === "number"),
     type: "number",
   },
@@ -154,6 +149,11 @@ const PartsList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, currentPage]);
 
+  const LoadingGrid = [<PartsTableHeader key={"header"} columns={columns} />];
+  for (let i = 0; i < process.env.REACT_APP_PER_PAGE; i++) {
+    LoadingGrid.push(<Skeleton key={i} width="full" height="50px" />);
+  }
+
   return (
     <PageBody width="full">
       <VStack width="full" align="start" justify="start" gap="1rem">
@@ -161,8 +161,7 @@ const PartsList = () => {
           <PartFilters
             filters={filters}
             setFilters={setFilters}
-            orderByOptions={orderByOptions}
-            searchOptions={searchOptions}
+            options={options}
             getProviders={getProviders || null}
             getStorages={getStorages || null}
             Operators={Operators}
@@ -170,15 +169,10 @@ const PartsList = () => {
         </TableFilters>
         {isLoading ? (
           <VStack width="full" height="full" gap="1rem">
-            <PartsTableHeader columns={columns} />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
+            {LoadingGrid}
           </VStack>
         ) : (
-          <TableDefault
+          <TableContent
             columns={columns}
             data={data?.parts || []}
             total={data?.total || 0}
