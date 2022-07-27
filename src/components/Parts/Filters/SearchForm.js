@@ -10,7 +10,7 @@ import {
   VStack,
 } from "../../Design";
 
-const SearchForm = ({ searchForm, submitSearch, searchOptions }) => {
+const SearchForm = ({ searchForm, submitSearch, options }) => {
   const {
     handleSubmit: handleSearch,
     register: registSearch,
@@ -47,7 +47,7 @@ const SearchForm = ({ searchForm, submitSearch, searchOptions }) => {
             {...registSearch("key", { required: true })}
           >
             <option value="">Pesquisar por...</option>
-            {searchOptions.map(({ key, name }) => (
+            {options.map(({ key, name }) => (
               <option key={key} value={key}>
                 {name}
               </option>
@@ -65,7 +65,7 @@ const SearchForm = ({ searchForm, submitSearch, searchOptions }) => {
           </InputLabel>
           <Stack flexWrap="wrap" width="full">
             {watchKey &&
-              searchOptions
+              options
                 ?.find((s) => s?.key === watchKey)
                 ?.options?.map((e, index) => (
                   <Button

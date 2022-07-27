@@ -1,22 +1,13 @@
 import { useForm } from "react-hook-form";
-import {
-  Accordion,
-  Button,
-  Checkbox,
-  FormControl,
-  FormErrorMessage,
-  HStack,
-  InputLabel,
-  Select,
-  VStack,
-} from "../../Design";
+import { Accordion, VStack } from "../../Design";
+import MultiSelectForm from "./MultiSelectForm";
+import OrderForm from "./OrderForm";
 import SearchForm from "./SearchForm";
 
 const PartFilters = ({
   filters,
   setFilters,
-  orderByOptions,
-  searchOptions,
+  options,
   getProviders,
   getStorages,
   Operators,
@@ -44,9 +35,9 @@ const PartFilters = ({
 
   const submitOrder = ({ orderBy, order }) => {
     const newFilter = {
-      name: `Ordenação: ${
-        orderByOptions.find((o) => o.key === orderBy).name
-      }, ${order === "ASC" ? "Ascendente" : "Descendente"}`,
+      name: `Ordenação: ${options.find((o) => o.key === orderBy).name}, ${
+        order === "ASC" ? "Ascendente" : "Descendente"
+      }`,
       query: `order=${order}&orderBy=${orderBy}`,
       key: "order",
       clear: resetOrder,
@@ -105,7 +96,7 @@ const PartFilters = ({
   const submitSearch = ({ key, text, operator }) => {
     const OperatorObj = Operators.find((o) => o.operator === operator);
     const newFilter = {
-      name: `${searchOptions.find((e) => e.key === key)?.name} ${
+      name: `${options.find((e) => e.key === key)?.name} ${
         OperatorObj.name
       }${text}`,
       query: `${key}${OperatorObj.query}=${text}`,
@@ -122,137 +113,44 @@ const PartFilters = ({
         titleProps={{ padding: "0 1rem" }}
         height="30rem"
       >
-        <form onSubmit={handleOrder(submitOrder)}>
-          <VStack
-            width="calc(100% - 2rem)"
-            height="calc(100% - 2rem)"
-            padding="1rem"
-          >
-            <FormControl width="full">
-              <InputLabel htmlFor="orderBy" color="secondary" fontSize="sm">
-                Condição:
-              </InputLabel>
-              <Select
-                id="orderBy"
-                width="full"
-                {...registOrder("orderBy")}
-                defaultValue={"createdAt"}
-              >
-                {orderByOptions?.map(({ name, key }) => (
-                  <option key={key} value={key}>
-                    {name}
-                  </option>
-                ))}
-              </Select>
-              <FormErrorMessage>
-                {errorsOrder?.orderBy?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl width="full">
-              <Select
-                id="order"
-                width="full"
-                {...registOrder("order")}
-                defaultValue={"ASC"}
-              >
-                <option value={"ASC"}>Ascendente</option>
-                <option value={"DESC"}>Descentente</option>
-              </Select>
-              <FormErrorMessage>{errorsOrder?.order?.message}</FormErrorMessage>
-            </FormControl>
-            <HStack width="full" justify="space-between">
-              <Button
-                variant="light"
-                padding="0.5rem"
-                onClick={() => resetOrder()}
-                width="full"
-              >
-                Cancelar
-              </Button>
-              <Button type="submit" padding="0.5rem" width="full">
-                Aplicar
-              </Button>
-            </HStack>
-          </VStack>
-        </form>
+        <OrderForm
+          handleSubmit={handleOrder}
+          register={registOrder}
+          errors={errorsOrder}
+          reset={resetOrder}
+          submitForm={submitOrder}
+          options={options}
+        />
       </Accordion>
       <Accordion
         title="Fornecedores"
         titleProps={{ padding: "0 1rem" }}
         height="30rem"
       >
-        <form onSubmit={handleProvider(submitProvider)}>
-          <VStack
-            width="calc(100% - 2rem)"
-            height="calc(100% - 2rem)"
-            padding="1rem"
-          >
-            <FormControl width="full" overflowY="auto" maxHeight="15rem">
-              {providersReady &&
-                providers?.providers?.map(({ id, name }) => (
-                  <Checkbox
-                    key={id}
-                    value={id}
-                    {...registProvider("providers", { valueAsNumber: true })}
-                  >
-                    {name}
-                  </Checkbox>
-                ))}
-            </FormControl>
-            <HStack width="full" justify="space-between">
-              <Button
-                variant="light"
-                padding="0.5rem"
-                onClick={() => resetProvider()}
-                width="full"
-              >
-                Cancelar
-              </Button>
-              <Button type="submit" padding="0.5rem" width="full">
-                Aplicar
-              </Button>
-            </HStack>
-          </VStack>
-        </form>
+        <MultiSelectForm
+          registKey="providers"
+          handleSubmit={handleProvider}
+          register={registProvider}
+          reset={resetProvider}
+          submitForm={submitProvider}
+          data={providers?.providers || []}
+          dataReady={providersReady}
+        />
       </Accordion>
       <Accordion
         title="Gavetas"
         titleProps={{ padding: "0 1rem" }}
         height="30rem"
       >
-        <form onSubmit={handleStorage(submitStorage)}>
-          <VStack
-            width="calc(100% - 2rem)"
-            height="calc(100% - 2rem)"
-            padding="1rem"
-          >
-            <FormControl width="full" overflowY="auto" maxHeight="15rem">
-              {storagesReady &&
-                storages?.storages?.map(({ id, name }) => (
-                  <Checkbox
-                    key={id}
-                    value={id}
-                    {...registStorage("storages", { valueAsNumber: true })}
-                  >
-                    {name}
-                  </Checkbox>
-                ))}
-            </FormControl>
-            <HStack width="full" justify="space-between">
-              <Button
-                variant="light"
-                padding="0.5rem"
-                onClick={() => resetStorage()}
-                width="full"
-              >
-                Cancelar
-              </Button>
-              <Button type="submit" padding="0.5rem" width="full">
-                Aplicar
-              </Button>
-            </HStack>
-          </VStack>
-        </form>
+        <MultiSelectForm
+          registKey="storages"
+          handleSubmit={handleStorage}
+          register={registStorage}
+          reset={resetStorage}
+          submitForm={submitStorage}
+          data={storages?.storages || []}
+          dataReady={storagesReady}
+        />
       </Accordion>
       <Accordion
         title="Pesquisar"
@@ -262,7 +160,7 @@ const PartFilters = ({
         <SearchForm
           searchForm={searchForm}
           submitSearch={submitSearch}
-          searchOptions={searchOptions}
+          options={options.filter((e) => !e.onlySortable)}
         />
       </Accordion>
     </VStack>

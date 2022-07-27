@@ -29,17 +29,6 @@ const columns = [
   { Header: "Final", accessor: "price", type: "price" },
   { Header: "Gaveta", accessor: "part_storage" },
 ];
-
-const orderByOptions = [
-  { name: "Data de criação", key: "createdAt" },
-  { name: "Ref", key: "ref" },
-  { name: "Nome", key: "name" },
-  { name: "Stock", key: "stock" },
-  { name: "Custo", key: "cost" },
-  { name: "Revenda", key: "resalePrice" },
-  { name: "Preço", key: "price" },
-];
-
 const Operators = [
   { name: "Igual a ", operator: "=", query: "", type: "number" },
   { name: "Maior que ", operator: ">", query: "_gt", type: "number" },
@@ -78,8 +67,8 @@ const Operators = [
     type: "string",
   },
 ];
-
-const searchOptions = [
+const options = [
+  { name: "Data de criação", key: "createdAt", onlySortable: true },
   {
     name: "Ref",
     key: "ref",
@@ -161,8 +150,7 @@ const PartsList = () => {
           <PartFilters
             filters={filters}
             setFilters={setFilters}
-            orderByOptions={orderByOptions}
-            searchOptions={searchOptions}
+            options={options}
             getProviders={getProviders || null}
             getStorages={getStorages || null}
             Operators={Operators}
