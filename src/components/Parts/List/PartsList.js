@@ -3,7 +3,7 @@ import { VStack } from "../../Design";
 import {
   PageBody,
   Skeleton,
-  TableContent,
+  TableDefault,
   TableFilters,
   TablePagination,
 } from "../../UI";
@@ -15,6 +15,7 @@ import PartFilters from "../Filters/PartFilters";
 import useStorages from "../../../hooks/data/useStorages";
 import useProviders from "../../../hooks/data/useProviders";
 import { queryBuilder } from "../../../utils/queryBuilder";
+import PartsTableHeader from "./PartsTableHeader";
 
 const columns = [
   { Header: "", accessor: "stock_status" },
@@ -81,6 +82,12 @@ const options = [
     options: Operators.filter((e) => e.type === "string"),
   },
   {
+    name: "Marca",
+    key: "brand",
+    type: "text",
+    options: Operators.filter((e) => e.type === "string"),
+  },
+  {
     name: "Stock",
     key: "stock",
     options: Operators.filter((e) => e.type === "number"),
@@ -142,6 +149,11 @@ const PartsList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, currentPage]);
 
+  const LoadingGrid = [<PartsTableHeader key={"header"} columns={columns} />];
+  for (let i = 0; i < process.env.REACT_APP_PER_PAGE; i++) {
+    LoadingGrid.push(<Skeleton key={i} width="full" height="50px" />);
+  }
+
   return (
     <PageBody width="full">
       <VStack width="full" align="start" justify="start" gap="1rem">
@@ -156,19 +168,11 @@ const PartsList = () => {
           />
         </TableFilters>
         {isLoading ? (
-          <VStack width="full" height="full" gap="0rem">
-            {/* For table default */}
-            {/* <PartsTableHeader columns={columns} />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" />
-            <Skeleton width="full" height="50px" /> */}
-            {/* For Styled Components Table */}
-            <Skeleton width="full" height="300px" />
+          <VStack width="full" height="full" gap="1rem">
+            {LoadingGrid}
           </VStack>
         ) : (
-          <TableContent
+          <TableDefault
             columns={columns}
             data={data?.parts || []}
             total={data?.total || 0}
