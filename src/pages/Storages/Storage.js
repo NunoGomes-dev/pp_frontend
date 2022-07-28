@@ -32,15 +32,15 @@ const Storage = () => {
             {"Gravar"}
           </Button>
         </PageHeader>
-        <PageBody width="full">
+        <PageBody className="w-full">
           {isLoading && (
-            <HStack gap={8}>
+            <HStack className="gap-8">
               <Skeleton /> <Skeleton />
             </HStack>
           )}
           {!isLoading && (
-            <HStack gap={8}>
-              <Card width="full">
+            <HStack className="gap-8">
+              <Card className="w-full">
                 <FormControl>
                   <InputLabel htmlFor="name">Nome</InputLabel>
                   <Input
@@ -50,11 +50,11 @@ const Storage = () => {
                   />
                 </FormControl>
               </Card>
-              <Card width="full">
-                <VStack gap={4}>
-                  <HStack align="center" gap={2} fontWeight="400" fontSize="xl">
+              <Card className="w-full">
+                <VStack className="gap-4">
+                  <HStack className="items-center gap-2 font-normal text-xl">
                     <FiSettings />
-                    <Box lineHeight="0">Peças</Box>
+                    <Box className={"leading-none"}>Peças</Box>
                   </HStack>
                   {data?.parts?.length > 0 ? (
                     <VStack>

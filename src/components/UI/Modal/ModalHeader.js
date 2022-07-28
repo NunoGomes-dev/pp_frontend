@@ -5,23 +5,23 @@ import { memo } from "react";
 const ModalHeader = ({
   title,
   onClose,
+  className,
   titleSize = "3xl",
   titleWeight = "600",
   ...rest
 }) => {
   return (
     <HStack
-      width="calc(100% - 4rem)"
-      padding="2rem 2rem"
-      align="center"
-      background="transparent"
-      justify="space-between"
+      className={`w-full p-8 items-center bg-transparent justify-between ${className}`}
       {...rest}
     >
-      <Box fontSize={titleSize} fontWeight={titleWeight}>
+      <Box
+        className={`${titleSize ? `text-${titleSize}` : ""}`}
+        style={{ fontWeight: titleWeight }}
+      >
         {title}
       </Box>
-      <Box cursor="pointer" color="black" onClick={() => onClose()}>
+      <Box className={"cursor-pointer text-black"} onClick={() => onClose()}>
         <IoClose />
       </Box>
     </HStack>

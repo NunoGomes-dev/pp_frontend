@@ -12,16 +12,10 @@ export const SignUp = () => {
   const { mutate, isLoading } = useSignUp();
 
   return (
-    <Stack
-      width="full"
-      height="full"
-      justify="center"
-      align="center"
-      color="black"
-    >
+    <Stack className="w-full h-full justify-center items-center text-black">
       <Card>
-        <VStack justify="start" align="center" gap="8">
-          <Image src={pp_logo} alt="PeçaAPeça" height="150px" width="auto" />
+        <VStack className="items-center gap-8">
+          <Image src={pp_logo} alt="PeçaAPeça" className={"h-[150px w-auto]"} />
           <SignUpForm
             handleSubmit={handleSubmit}
             mutate={mutate}

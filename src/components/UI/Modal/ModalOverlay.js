@@ -1,17 +1,11 @@
 import { memo } from "react";
 import { Box } from "../../Design";
 
-const Overlay = (props) => (
+const Overlay = ({ className, ...others }) => (
   <Box
-    position="fixed"
-    top="0"
-    right="0"
-    left="0"
-    bottom="0"
-    zIndex={1000}
-    background="black"
-    opacity="0.4"
-    {...props}
+    className={`fixed top-0 right-0 bottom-0 left-0 bg-black opacity-40 ${className}`}
+    style={{ zIndex: 1000 }}
+    {...others}
   />
 );
 

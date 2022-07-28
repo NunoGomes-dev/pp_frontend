@@ -1,13 +1,21 @@
-import { Box } from "../Design";
-import { LoadingGrid, PageBody } from "../UI";
+import { Stack } from "../Design";
+import { PageBody, Skeleton } from "../UI";
 import StorageCard from "./StorageCard";
 
 const ListStorages = ({ isLoading, isSuccess, data, deleteMutation }) => {
   return (
     <PageBody>
-      {isLoading && <LoadingGrid display="flex" flexWrap="wrap" items={5} />}
+      {isLoading && (
+        <Stack className="w-full flex-wrap gap-4">
+          <Skeleton className={"w-[200px] h-[200px]"} />
+          <Skeleton className={"w-[200px] h-[200px]"} />
+          <Skeleton className={"w-[200px] h-[200px]"} />
+          <Skeleton className={"w-[200px] h-[200px]"} />
+          <Skeleton className={"w-[200px] h-[200px]"} />
+        </Stack>
+      )}
       {isSuccess && (
-        <Box width="full" display="flex" flexWrap="wrap" gap={"1rem"}>
+        <Stack className={`w-full flex-wrap gap-4`}>
           {data.storages.map((s, index) => (
             <StorageCard
               key={index}
@@ -15,7 +23,7 @@ const ListStorages = ({ isLoading, isSuccess, data, deleteMutation }) => {
               handleRemove={deleteMutation}
             />
           ))}
-        </Box>
+        </Stack>
       )}
     </PageBody>
   );

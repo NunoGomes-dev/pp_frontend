@@ -5,18 +5,12 @@ import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <Box
-      top="0"
-      right="0"
-      left="0"
-      bottom="0"
-      width="100vw"
-      height="100vh"
-      zIndex={1000}
-      background="primary"
+      className={"top-0 right-0 left-0 bottom-0 w-screen h-screen bg-primary"}
+      style={{ zIndex: 1000 }}
     >
-      <VStack width="full" height="full" justify="center" align="center">
-        <Image alt="Peça a Peça" src={logo} height="40%" />
-        <HStack gap="2rem">
+      <VStack className="w-full h-full justify-center items-center">
+        <Image alt="Peça a Peça" src={logo} className="h-[40%]" />
+        <HStack className={"gap-8"}>
           <Link to={"/signin"} style={{ textDecoration: "none" }}>
             <Button variant="outline2">Iniciar sessão</Button>
           </Link>

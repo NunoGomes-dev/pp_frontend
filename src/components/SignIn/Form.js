@@ -12,7 +12,7 @@ import {
 const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
   return (
     <form onSubmit={handleSubmit(mutate)}>
-      <VStack align="center">
+      <VStack className="items-center gap-4">
         <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
           <Input
@@ -41,7 +41,7 @@ const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
         </FormControl>
         <Button
           variant="solid"
-          width="full"
+          className="w-full"
           type="submit"
           isLoading={isLoading}
           loadingText="A entrar..."
@@ -49,7 +49,7 @@ const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
           Entrar
         </Button>
         <Link to="/signup" style={{ textDecoration: "none" }}>
-          <Box fontWeight="300" color="gray" textDecoration="underline">
+          <Box className="font-light text-gray-500 underline">
             Ainda não tem conta?
           </Box>
         </Link>

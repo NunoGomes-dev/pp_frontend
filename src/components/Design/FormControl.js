@@ -1,9 +1,9 @@
 import { memo } from "react";
 import VStack from "./VStack";
 
-const FormControl = ({ children, ...rest }) => {
+const FormControl = ({ children, className, ...rest }) => {
   return (
-    <VStack justify="start" align="start" {...rest}>
+    <VStack className={`gap-2 ${className}`} {...rest}>
       {children}
     </VStack>
   );

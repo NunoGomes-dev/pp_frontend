@@ -1,11 +1,11 @@
 import { memo } from "react";
 import Box from "./Box";
 
-const FormErrorMessage = ({ children, ...others }) => {
+const FormErrorMessage = ({ children, className, ...rest }) => {
   if (!children) return null;
 
   return (
-    <Box fontSize="sm" color="error" {...others}>
+    <Box className={`text-sm text-error ${className}`} {...rest}>
       {children}
     </Box>
   );

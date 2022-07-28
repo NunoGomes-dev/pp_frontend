@@ -36,12 +36,12 @@ const Part = () => {
         onSubmit={handleSubmit((v) =>
           hasPart ? mutateEdition(clearObj(v)) : mutateCreation(clearObj(v))
         )}
-        style={{ width: "100%", height: "100%" }}
+        className="w-full h-full"
       >
         <PageHeader
           title={hasPart ? getPart?.data?.name || "Editar Peça" : "Nova peça"}
         >
-          <HStack gap={4}>
+          <HStack className="gap-4">
             <Link to="/parts">
               <Button variant="light">Cancelar</Button>
             </Link>

@@ -17,24 +17,10 @@ const Accordion = ({
   useOutsideClick(wrapperRef, isOpen, () => setIsOpen(false));
 
   return (
-    <div
-      ref={wrapperRef}
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "start",
-        gap: "1rem",
-      }}
-    >
+    <div ref={wrapperRef} className="w-full flex flex-col justify-start gap-4">
       <HStack
-        width="full"
-        justify="start"
-        align="end"
+        className={`w-full items-center cursor-pointer text-secondary px-2 gap-2 ${titleProps}`}
         onClick={() => setIsOpen(!isOpen)}
-        cursor="pointer"
-        color="secondary"
-        {...titleProps}
       >
         <MdOutlineKeyboardArrowRight
           style={{
@@ -43,17 +29,12 @@ const Accordion = ({
             fontSize: "20px",
           }}
         />
-        <Box fontSize="xl" color="black">
-          {title}
-        </Box>
+        <Box className="text-black text-xl">{title}</Box>
       </HStack>
       <div
+        className={`bg-light overflow-hidden transition-all duration-300 ease-in-out ${containerProps}`}
         style={{
-          background: "#FAFAFA",
           maxHeight: `${isOpen ? height : "0px"}`,
-          overflow: "hidden",
-          transition: "max-height 0.3s ease-in-out",
-          ...containerProps,
         }}
       >
         {children}

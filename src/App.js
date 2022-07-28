@@ -1,8 +1,6 @@
-import { ThemeProvider } from "styled-components";
 import { Box, HStack, LoadingScreen, Menu, ToastContainer } from "./components";
 import { AuthProvider } from "./context/AuthContext";
 import Routes from "./Routes";
-import { theme } from "./theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { NotificationsProvider } from "./context/NotificationsContext";
 
@@ -13,36 +11,20 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <NotificationsProvider>
         <AuthProvider>
-          <ThemeProvider theme={theme}>
-            <LoadingScreen />
-            <Box
-              height="100vh"
-              overflow="hidden"
-              position="relative"
-              background="#fafafa"
-            >
-              <HStack
-                width="full"
-                height="full"
-                gap="0"
-                background="#fafafa"
-                position="relative"
+          <LoadingScreen />
+          <Box className={"overflow-hidden h-screen relative bg-light"}>
+            <HStack className={"w-full h-full bg-light gap-0 relative"}>
+              <Menu />
+              <Box
+                className={
+                  "flex-1 bg-light overflow-y-auto w-full h-full relative"
+                }
               >
-                <Menu />
-                <Box
-                  flex="1"
-                  background="#fafafa"
-                  overflowY="auto"
-                  width="full"
-                  height="full"
-                  position="relative"
-                >
-                  <Routes />
-                  <ToastContainer />
-                </Box>
-              </HStack>
-            </Box>
-          </ThemeProvider>
+                <Routes />
+                <ToastContainer />
+              </Box>
+            </HStack>
+          </Box>
         </AuthProvider>
       </NotificationsProvider>
     </QueryClientProvider>

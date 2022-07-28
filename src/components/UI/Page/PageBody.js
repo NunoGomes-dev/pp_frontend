@@ -1,9 +1,12 @@
 import { memo } from "react";
 import { Box } from "../../Design";
 
-const PageBody = ({ children, ...others }) => {
+const PageBody = ({ children, className, ...others }) => {
   return (
-    <Box padding="1rem 1.5rem" maxWidth="calc(100% - 3rem)" {...others}>
+    <Box
+      className={`px-4 py-6 max-w-[calc(100% - 3rem)] ${className}`}
+      {...others}
+    >
       {children}
     </Box>
   );

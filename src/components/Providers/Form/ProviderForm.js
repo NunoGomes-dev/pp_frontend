@@ -11,28 +11,28 @@ import { InputFile, PageBody } from "../../UI";
 
 const ProviderForm = ({ register, errors, setValue, watch }) => {
   return (
-    <PageBody width="full">
-      <Card width="calc(100% - 4rem)" padding="2rem">
-        <Grid gridTemplateColumns="2fr 1fr" gap={8} width="full">
-          <VStack width="full" gap={8}>
-            <FormControl width="full">
+    <PageBody className="w-full">
+      <Card className="w-full p-8">
+        <Grid className="w-full grid-cols-[2fr_1fr] gap-8">
+          <VStack className="w-full gap-8">
+            <FormControl className="w-full">
               <InputLabel htmlFor="name" required>
                 Nome
               </InputLabel>
               <Input
                 id="name"
-                width="calc(100% - 2rem)"
+                className="w-full"
                 {...register("name", { required: "Nome obrigatório" })}
               />
               <FormErrorMessage>{errors?.name?.message}</FormErrorMessage>
             </FormControl>
-            <FormControl width="full">
+            <FormControl className="w-full">
               <InputLabel htmlFor="email" required>
                 Email
               </InputLabel>
               <Input
                 id="email"
-                width="calc(100% - 2rem)"
+                className="w-full"
                 {...register("email", { required: "Email obrigatório" })}
               />
               <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
@@ -43,7 +43,7 @@ const ProviderForm = ({ register, errors, setValue, watch }) => {
             callback={(file) => {
               setValue("image", file);
             }}
-            containerProps={{ height: "400px" }}
+            containerProps={"h-[400px]"}
           />
         </Grid>
       </Card>

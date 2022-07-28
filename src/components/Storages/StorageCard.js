@@ -24,13 +24,13 @@ const StorageCard = ({ storage, handleRemove }) => {
             title="Eliminar gaveta"
             onClose={() => setIsOpen(false)}
           />
-          <ModalBody width="full">
-            <VStack padding="1rem" width="calc(100% - 2rem)" gap={6}>
+          <ModalBody className="w-full">
+            <VStack className="p-4 w-full gap-6">
               <Box>
                 Tem a certeza que deseja eliminar a gaveta{" "}
                 <b>{storage.name}?</b>
               </Box>
-              <HStack width="full" justify="end" align="center">
+              <HStack className="w-full items-center justify-end">
                 <Button
                   variant="outline"
                   onClick={() => {
@@ -41,8 +41,7 @@ const StorageCard = ({ storage, handleRemove }) => {
                 </Button>
                 <Button
                   variant="solid"
-                  background="#FC8181"
-                  border="1px solid red"
+                  className="bg-[#FC8181] border border-solid border-red-600"
                   onClick={() => {
                     mutate({ id: storage.id });
                     setIsOpen(false);
@@ -56,31 +55,18 @@ const StorageCard = ({ storage, handleRemove }) => {
         </ModalContent>
       </Modal>
       <Stack
-        width="200px"
-        height="200px"
-        border="1px solid #E0E0E0"
-        background="#FFFFFF"
-        color="#04080F"
-        justify="center"
-        align="center"
-        position="relative"
-        borderRadius="8px"
-        cursor="pointer"
+        className={
+          "w-[200px] h-[200px] border border-solid border-[#e0e0e0] bg-white text-title justify-center items-center relative rounded-lg cursor-pointer"
+        }
         onClick={(e) => {
           e.stopPropagation();
           navigate(`/storages/${storage.id}`);
         }}
       >
-        <Box fontWeight="600" fontSize="2xl">
-          {storage.name}
-        </Box>
+        <Box className={"font-semibold text-2xl"}>{storage.name}</Box>
         <IconButton
+          className="top-4 text-xl right-4 absolute text-[#e0e0e0] px-0 py-0"
           variant="unstyled"
-          color="#E0E0E0"
-          fontSize="1.5rem"
-          position="absolute"
-          top="1rem"
-          right="1rem"
           icon={<VscTrash />}
           onClick={(e) => {
             e.stopPropagation();
