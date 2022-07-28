@@ -1,20 +1,10 @@
 import { memo } from "react";
 import { VStack } from "../../Design";
 
-const ModalContent = ({ children, ...rest }) => (
+const ModalContent = ({ children, className, ...rest }) => (
   <VStack
-    position="fixed"
-    minWidth="30%"
-    maxWidth="85%"
-    maxHeight="85%"
-    top="50%"
-    left="50%"
-    transform="translate(-50%, -50%)"
-    background="white"
-    borderRadius="8px"
-    zIndex={1000}
-    gap="0"
-    style={{ boxShadow: "0 10px 20px rgba(black, 0.2)" }}
+    className={`fixed min-w-[30%] max-w-[85%] top-1/2 left-1/2 bg-white rounded-lg gap-0 shadow-md ${className}`}
+    style={{ transform: "translate(-50%, -50%)", zIndex: 1000 }}
     {...rest}
   >
     {children}

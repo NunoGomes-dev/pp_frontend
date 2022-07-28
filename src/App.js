@@ -12,27 +12,13 @@ function App() {
       <NotificationsProvider>
         <AuthProvider>
           <LoadingScreen />
-          <Box
-            height="100vh"
-            overflow="hidden"
-            position="relative"
-            background="#fafafa"
-          >
-            <HStack
-              width="full"
-              height="full"
-              gap="0"
-              background="#fafafa"
-              position="relative"
-            >
+          <Box className={"overflow-hidden h-screen relative bg-light"}>
+            <HStack className={"w-full h-full bg-light gap-0 relative"}>
               <Menu />
               <Box
-                flex="1"
-                background="#fafafa"
-                overflowY="auto"
-                width="full"
-                height="full"
-                position="relative"
+                className={
+                  "flex-1 bg-light overflow-y-auto w-full h-full relative"
+                }
               >
                 <Routes />
                 <ToastContainer />

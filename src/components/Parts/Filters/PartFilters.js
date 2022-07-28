@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Accordion, VStack } from "../../Design";
-import MultiSelectForm from "./MultiSelectForm";
-import OrderForm from "./OrderForm";
-import SearchForm from "./SearchForm";
+import { MultiSelectForm, OrderForm, SearchForm } from "./Forms";
 
 const PartFilters = ({
   filters,
@@ -107,7 +105,7 @@ const PartFilters = ({
     searchForm.reset();
   };
   return (
-    <VStack width="full" gap={4}>
+    <VStack className={"w-full gap-4"}>
       <Accordion
         title="Ordenar"
         titleProps={{ padding: "0 1rem" }}

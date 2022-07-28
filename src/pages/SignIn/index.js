@@ -12,16 +12,14 @@ export const SignIn = () => {
   const { mutate, isLoading } = useSignIn();
 
   return (
-    <Stack
-      width="full"
-      height="full"
-      justify="center"
-      align="center"
-      color="black"
-    >
+    <Stack className="w-full h-full justify-center items-center text-black">
       <Card>
-        <VStack justify="start" align="center" gap="8">
-          <Image src={pp_logo} alt="PeçaAPeça" maxHeight="40%" width="auto" />
+        <VStack className="items-center gap-8">
+          <Image
+            src={pp_logo}
+            alt="PeçaAPeça"
+            className={"max-h-[40%] w-auto"}
+          />
           <SignInForm
             handleSubmit={handleSubmit}
             mutate={mutate}

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { HStack } from "../../Design";
 
 const LinkItem = ({ isActive, LeftIcon, text, to, disabled = false }) => {
-  const background = isActive ? "#DDBA92" : "white";
-  const color = isActive ? "white" : "#4A5568";
+  const background = isActive ? "primary" : "white";
+  const color = isActive ? "white" : "[#4A5568]";
   return (
     <Link
       to={disabled ? "#" : to}
@@ -16,12 +16,7 @@ const LinkItem = ({ isActive, LeftIcon, text, to, disabled = false }) => {
       }}
     >
       <HStack
-        align="center"
-        padding="0.5rem"
-        gap="0.5rem"
-        borderRadius="4px"
-        background={background}
-        color={color}
+        className={`text-${color} bg-${background} rounded-md p-2 gap-2 items-center`}
       >
         {LeftIcon ? LeftIcon : null}
         <div>{text}</div>

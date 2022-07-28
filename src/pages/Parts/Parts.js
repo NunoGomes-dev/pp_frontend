@@ -1,6 +1,6 @@
 import { IoIosAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { Button, PageContainer, PageHeader, PartsList } from "../../components";
+import { Button, ListParts, PageContainer, PageHeader } from "../../components";
 
 const Parts = () => {
   return (
@@ -16,7 +16,7 @@ const Parts = () => {
           </Button>
         </Link>
       </PageHeader>
-      <PartsList />
+      <ListParts />
     </PageContainer>
   );
 };

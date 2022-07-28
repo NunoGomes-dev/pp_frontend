@@ -51,14 +51,8 @@ const InputFile = ({ value = null, callback, containerProps = {} }) => {
         style={{ display: "none" }}
       />
       <Card
-        borderStyle={onDragHover ? "dashed" : "solid"}
-        borderWidth="2px"
-        padding="0"
-        height="full"
-        width="full"
-        position="relative"
-        transition="all 0.3s ease"
-        {...containerProps}
+        style={{ borderStyle: onDragHover ? "dashed" : "solid" }}
+        className={`border-2 p-0 h-full overflow-hidden w-full relative transition-all duration-300 ease ${containerProps}`}
       >
         {!value && (
           <label
@@ -69,44 +63,42 @@ const InputFile = ({ value = null, callback, containerProps = {} }) => {
             onDrop={handleDrop}
           >
             <Box
-              height="full"
-              fontSize="lg"
-              cursor="pointer"
+              className="h-full text-lg cursor-pointer relative transition-all duration-300"
               htmlFor="file"
-              opacity={isLoading ? 0.3 : 1}
-              bg={onDragHover ? "light" : "transparent"}
-              zIndex="5"
-              position="relative"
-              transition="all 0.3s ease"
+              style={{
+                zIndex: 5,
+                opacity: isLoading ? 0.3 : 1,
+                bg: onDragHover ? "#FAFAFA" : "transparent",
+              }}
             >
               <VStack
+                className="h-full justify-center items-center transition-all ease duration-300"
                 height="full"
                 justify="center"
                 align="center"
                 transition="all 0.3s ease"
-                opacity={onDragHover ? 0 : 1}
+                style={{
+                  opacity: onDragHover ? 0 : 1,
+                }}
               >
-                <HStack fontWeight="500" color="terciary">
+                <HStack className="font-medium text-terciary">
                   <span>Adicionar imagem</span>
                   <FiUpload />
                 </HStack>
-                <Box fontWeight="300" fontSize="sm" color="secondary">
+                <Box className="font-light text-sm text-secondary">
                   ou arraste a imagem para carregar
                 </Box>
               </VStack>
             </Box>
 
             <Box
-              position="absolute"
-              top="50%"
-              left="50%"
-              fontWeight="500"
-              fontSize="2xl"
-              color="text"
-              zIndex="10"
-              transform="translateX(-50%) translateY(-50%)"
-              opacity={onDragHover ? 1 : 0}
-              transition="all 0.5s ease"
+              className={
+                "absolute top-1/2 left-1/2 font-medium text-2xl text-text z-10 transition-all duration-500 ease"
+              }
+              style={{
+                transform: "translateX(-50%) translateY(-50%)",
+                opacity: onDragHover ? 1 : 0,
+              }}
             >
               Drop it like it{"`"}s hot
             </Box>
@@ -115,28 +107,16 @@ const InputFile = ({ value = null, callback, containerProps = {} }) => {
         {!value && isLoading && (
           <Spinner
             size="48px"
-            position="absolute"
-            top="50%"
-            left="50%"
-            zIndex="10"
-            transform="translateY(-24px) translateX(-24px)"
+            className="absolute top-1/2 left-1/2 z-10"
+            style={{ transform: "translateY(-24px) translateX(-24px)" }}
           />
         )}
         {value && !isLoading && (
-          <Box {...containerProps}>
-            <Image
-              src={value}
-              alt="image_part"
-              width="full"
-              height="full"
-              objectFit="contain"
-            />
+          <Box className={`${containerProps}`}>
+            <Image src={value} alt="image_part" className="w-full h-full" />
             <Box
-              position="absolute"
-              top="1rem"
-              right="1rem"
+              className="absolute top-4 right-4 cursor-pointer"
               onClick={() => callback(null)}
-              cursor="pointer"
             >
               <AiFillDelete fontSize="32px" />
             </Box>

@@ -32,7 +32,7 @@ const Storages = () => {
             title="Adicionar gaveta"
             onClose={() => setIsOpen(false)}
           />
-          <ModalBody width="full">
+          <ModalBody className="w-full">
             <CreateStorageForm
               setIsOpen={setIsOpen}
               postMutation={postMutation}

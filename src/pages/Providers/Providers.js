@@ -6,11 +6,8 @@ import {
 } from "../../components";
 import { IoIosAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
-import useProviders from "../../hooks/data/useProviders";
 
 const Providers = () => {
-  const getProviders = useProviders();
-
   return (
     <PageContainer>
       <PageHeader title="Fornecedores" unstyled>
@@ -24,7 +21,7 @@ const Providers = () => {
           </Button>
         </Link>
       </PageHeader>
-      <ListProviders useProviders={getProviders} />
+      <ListProviders />
     </PageContainer>
   );
 };

@@ -8,7 +8,7 @@ import {
   Select,
   Stack,
   VStack,
-} from "../../Design";
+} from "../../../Design";
 
 const SearchForm = ({ searchForm, submitSearch, options }) => {
   const {
@@ -29,21 +29,17 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
     setSearch("text", "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchKey]);
+
   return (
     <form onSubmit={handleSearch(submitSearch)}>
-      <VStack
-        width="calc(100% - 2rem)"
-        height="calc(100% - 2rem)"
-        padding="1rem"
-        gap="0rem"
-      >
-        <FormControl width="full">
-          <InputLabel htmlFor="key" color="secondary" fontSize="sm">
+      <VStack className="w-full h-full p-4">
+        <FormControl className="w-full">
+          <InputLabel htmlFor="key" className={"text-secondary text-sm"}>
             Pesquisar por:
           </InputLabel>
           <Select
             id="key"
-            width="full"
+            className="w-full"
             {...registSearch("key", { required: true })}
           >
             <option value="">Pesquisar por...</option>
@@ -55,21 +51,22 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
           </Select>
         </FormControl>
         <FormControl
-          padding={watchKey ? "1rem 0 0 0" : 0}
-          transition="max-height 0.3s"
-          overflow="hidden"
-          maxHeight={watchKey ? "10rem" : "0px"}
+          className={`overflow-hidden transition-all duration-300`}
+          style={{
+            paddingTop: watchKey ? "1rem" : "0px",
+            maxHeight: watchKey ? "10rem" : "0px",
+          }}
         >
-          <InputLabel color="secondary" fontSize="sm">
+          <InputLabel className={"text-secondary text-sm"}>
             Operador:
           </InputLabel>
-          <Stack flexWrap="wrap" width="full">
+          <Stack className="w-full flex-wrap">
             {watchKey &&
               options
                 ?.find((s) => s?.key === watchKey)
                 ?.options?.map((e, index) => (
                   <Button
-                    padding="0.5rem 1rem"
+                    className={"py-2 px-4"}
                     variant={watchOperator === e.operator ? "default" : "light"}
                     key={index}
                     onClick={() => {
@@ -85,36 +82,37 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
           </Stack>
         </FormControl>
         <FormControl
-          width="full"
-          padding={watchKey && watchOperator ? "1rem 0 0 0" : 0}
-          transition="max-height 0.3s"
-          overflow="hidden"
-          maxHeight={watchKey && watchOperator ? "5rem" : "0px"}
+          className={`w-full overflow-hidden transition-all duration-300 mt-4 ${
+            watchOperator ? "mb-2" : "mb-0"
+          }`}
+          style={{
+            padding: watchKey && watchOperator ? "1rem 0 0 0" : 0,
+            maxHeight: watchKey && watchOperator ? "5rem" : "0px",
+          }}
         >
-          <InputLabel htmlFor="text" color="secondary" fontSize="sm">
+          <InputLabel htmlFor="text" className={"text-secondary text-sm"}>
             Pesquisar...
           </InputLabel>
           <Input
             id="text"
-            width="full"
+            className="w-full bg-white"
             {...registSearch("text", { required: true })}
           />
         </FormControl>
-        <HStack width="full" justify="space-between" padding={"1rem 0 0 0"}>
+        <HStack
+          className={`w-full justify-between gap-2 ${
+            watchOperator ? "mt-2" : "mt-0"
+          }`}
+          justify="space-between"
+        >
           <Button
             variant="light"
-            padding="0.5rem"
             onClick={() => resetSearch()}
-            width="full"
+            className="w-full"
           >
             Cancelar
           </Button>
-          <Button
-            type="submit"
-            padding="0.5rem"
-            width="full"
-            disabled={!watchText}
-          >
+          <Button type="submit" className="w-full" disabled={!watchText}>
             Adicionar
           </Button>
         </HStack>

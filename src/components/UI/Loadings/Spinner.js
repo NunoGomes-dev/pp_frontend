@@ -1,32 +1,12 @@
 import React, { memo } from "react";
-import styled, { keyframes } from "styled-components";
 
-const motion = () => keyframes`
- to {transform: rotate(360deg);}
-`;
-
-const StyledSpinner = styled.div`
-  position: relative;
-  &:before {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: ${(p) => p.size};
-    height: ${(p) => p.size};
-    margin-top: -10px;
-    margin-left: -10px;
-    border-radius: 50%;
-    border: 2px solid ${(p) => p.color};
-    border-top-color: transparent;
-    animation: ${motion} 0.5s linear infinite;
-  }
-  ${(p) => p}
-`;
-
-const Spinner = ({ size = "20px", color = "#ccc", ...others }) => {
-  return <StyledSpinner size={size} color={color} {...others} />;
+const Spinner = ({ size = "20px", color = "#ccc", className, ...others }) => {
+  return (
+    <div
+      className={`relative before:content-["_"] before:absolute before:top-1/2 before:left-1/2 before:w-[20px] before:h-[20px] before:rounded-full before:border-2 before:border-solid before:border-white before:box-border before:mt-[-10px] before:ml-[-10px] before:border-t-transparent animate-spinner`}
+      {...others}
+    />
+  );
 };
 
 export default memo(Spinner);

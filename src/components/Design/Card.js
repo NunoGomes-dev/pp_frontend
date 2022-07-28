@@ -1,14 +1,11 @@
 import { memo } from "react";
 import Box from "./Box";
 
-const Card = ({ children, ...others }) => {
+const Card = ({ children, className, ...p }) => {
   return (
     <Box
-      border="1px solid #E0E0E0"
-      bg="white"
-      rounded="md"
-      padding={4}
-      {...others}
+      className={`border border-[#E0E0E0] rounded-lg bg-white p-4 ${className}`}
+      {...p}
     >
       {children}
     </Box>

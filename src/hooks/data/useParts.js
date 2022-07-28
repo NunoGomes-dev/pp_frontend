@@ -3,20 +3,24 @@ import api from "../../services/api";
 import { queryBuilder } from "../../utils/queryBuilder";
 import useToast from "../notifications/useToast";
 
-export default function useParts({ currentPage = 1, filters = [] }) {
+export default function useParts(values) {
+  const { currentPage, filters } = values;
   const toast = useToast();
   const query = queryBuilder(filters);
 
   return useQuery(
-    ["parts", `page=${currentPage}`, query],
+    ["parts", currentPage ? `page=${currentPage}` : null, query],
     () =>
       api
         .get(
-          `/parts?limit=${process.env.REACT_APP_PER_PAGE}&page=${currentPage}${query}`
+          `/parts?${
+            currentPage
+              ? `limit=${process.env.REACT_APP_PER_PAGE}&page=${currentPage}`
+              : ""
+          }${query || ""}`
         )
         .then((res) => res.data),
     {
-      onSuccess: () => {},
       onError: (error) => {
         console.log("error", error);
         toast({
@@ -28,5 +32,3 @@ export default function useParts({ currentPage = 1, filters = [] }) {
     }
   );
 }
-
-export const usePrefechParts = ({ currentPage }) => {};

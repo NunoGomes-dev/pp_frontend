@@ -25,10 +25,10 @@ const Provider = () => {
     <PageContainer>
       <form
         onSubmit={handleSubmit((v) => mutate(clearObj(v)))}
-        style={{ width: "100%", height: "100%" }}
+        className="w-full h-full"
       >
         <PageHeader title="Novo fornecedor">
-          <HStack gap={4}>
+          <HStack className={"gap-4"}>
             <Link to="/providers">
               <Button variant="light">Cancelar</Button>
             </Link>

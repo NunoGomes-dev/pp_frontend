@@ -1,42 +1,13 @@
-import { memo } from "react";
-import { forwardRef } from "react";
-import styled from "styled-components";
-import { allColors } from "../../theme/colors";
-import colors from "../../utils/colors";
-import sizes from "../../utils/sizes";
-import spacings from "../../utils/spacings";
-import tipography from "../../utils/tipography";
+import { forwardRef, memo } from "react";
 
-const baseStyle = () => `
-  min-width: 300px;
-  background: ${allColors.white};
-  color: ${allColors.terciary};
-  padding: 1rem; 
-  border-radius: 8px;
-  border: 1px solid #E0E0E0;
-  option {
-    color: red;
-    background: red;
-    display: flex;
-    white-space: pre;
-    min-height: 20px;
-    padding: 0px 2px 1px;
-  };
-  select {display: none;}
-`;
-
-const StyledSelect = styled.select`
-  ${(p) => baseStyle(p)}
-  ${(p) => sizes(p)};
-  ${(p) => spacings(p)};
-  ${(p) => tipography(p)};
-  ${(p) => colors(p)};
-`;
-
-const Select = forwardRef(({ children, ...others }, ref) => (
-  <StyledSelect ref={ref} {...others}>
+const Select = forwardRef(({ children, className, ...rest }, ref) => (
+  <select
+    ref={ref}
+    className={`min-w-[300px] bg-white text-terciary p-4 rounded-lg border border-solid border-[#E0E0E0] ${className}`}
+    {...rest}
+  >
     {children}
-  </StyledSelect>
+  </select>
 ));
 
 export default memo(Select);

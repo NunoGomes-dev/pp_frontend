@@ -1,14 +1,11 @@
-import { forwardRef } from "react";
-import styled from "styled-components";
+import { forwardRef, memo } from "react";
 
-const StyledCheckbox = styled.input((props) => ``);
-
-const Checkbox = forwardRef(({ children, ...others }, ref) => {
+const Checkbox = forwardRef(({ children, className, ...others }, ref) => {
   return (
-    <label style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}>
-      <StyledCheckbox ref={ref} {...others} type="checkbox" />
+    <label className="flex flex-row gap-2">
+      <input ref={ref} className={`${className}`} type="checkbox" {...others} />
       {children}
     </label>
   );
 });
-export default Checkbox;
+export default memo(Checkbox);

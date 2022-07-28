@@ -1,35 +1,20 @@
 import { memo } from "react";
-import styled, { keyframes } from "styled-components";
-import { allBorderRadius } from "../../../theme/borderRadius";
-import colors from "../../../utils/colors";
-import sizes from "../../../utils/sizes";
-import spacings from "../../../utils/spacings";
-import tipography from "../../../utils/tipography";
 
-const motion = () => keyframes`
-from { opacity: 0.3; }
-to { opacity: 0.5; }
-`;
+const Loading = ({ children, className, ...others }) => (
+  <div
+    className={`bg-[#718096] rounded-lg animate-skeleton ${className}`}
+    {...others}
+  >
+    {children}
+  </div>
+);
 
-const Loading = styled.div`
-  width: auto;
-  height: auto;
-  background: #718096;
-  border-radius: ${allBorderRadius.md};
-  animation: ${motion} 0.5s linear alternate infinite;
-  ${(p) => p};
-  ${(p) => sizes(p)};
-  ${(p) => spacings(p)};
-  ${(p) => tipography(p)};
-  ${(p) => colors(p)};
-`;
-
-const Skeleton = ({ isLoading, children, ...others }) => {
+const Skeleton = ({ isLoading, children, className, ...others }) => {
   if (children) {
     if (isLoading)
       return (
-        <Loading>
-          <div opacity={0} {...others}>
+        <Loading className={className} {...others}>
+          <div className="opacity-0" {...others}>
             {children}
           </div>
         </Loading>
@@ -37,7 +22,7 @@ const Skeleton = ({ isLoading, children, ...others }) => {
 
     return children;
   } else {
-    return <Loading {...others} />;
+    return <Loading className={className} {...others} />;
   }
 };
 

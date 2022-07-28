@@ -13,8 +13,8 @@ import {
 const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
   return (
     <form onSubmit={handleSubmit(mutate)}>
-      <VStack align="center" gap={4}>
-        <HStack gap={4}>
+      <VStack className={"items-center gap-4"}>
+        <HStack className="gap-4">
           <FormControl>
             <InputLabel htmlFor="firstname" required>
               Primeiro nome
@@ -46,7 +46,7 @@ const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
             <FormErrorMessage>{errors?.lastname?.message}</FormErrorMessage>
           </FormControl>
         </HStack>
-        <HStack gap={4}>
+        <HStack className="gap-4">
           <FormControl>
             <InputLabel htmlFor="vat" required>
               NIF
@@ -74,7 +74,7 @@ const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
             <FormErrorMessage>{errors?.phone?.message}</FormErrorMessage>
           </FormControl>
         </HStack>
-        <HStack gap={4}>
+        <HStack className="gap-4">
           <FormControl>
             <InputLabel htmlFor="email" required>
               Email
@@ -106,6 +106,7 @@ const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
         </HStack>
         <Button
           variant="solid"
+          className={"px-12"}
           type="submit"
           isLoading={isLoading}
           loadingText="A entrar..."
@@ -113,9 +114,8 @@ const Form = ({ handleSubmit, mutate, register, errors, isLoading }) => {
           Registar
         </Button>
         <Link to="/signin" style={{ textDecoration: "none" }}>
-          <Box fontWeight="300" color="gray">
-            Já tem conta?{" "}
-            <span style={{ textDecoration: "underline" }}>Entrar</span>
+          <Box className={"text-gray-500 font-light"}>
+            Já tem conta? <span className="underline">Entrar</span>
           </Box>
         </Link>
       </VStack>
