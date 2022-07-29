@@ -81,7 +81,7 @@ const InputFile = ({ value = null, callback, containerProps = {} }) => {
                   opacity: onDragHover ? 0 : 1,
                 }}
               >
-                <HStack className="font-medium text-terciary">
+                <HStack className="font-medium text-terciary gap-2 items-center">
                   <span>Adicionar imagem</span>
                   <FiUpload />
                 </HStack>

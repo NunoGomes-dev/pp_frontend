@@ -17,7 +17,7 @@ export default function usePartId(id, reset) {
         toast({
           status: "error",
           title: "Ocorreu um erro!",
-          description: "Erro ao obter gaveta",
+          description: "Erro ao obter peça",
         });
       },
     }

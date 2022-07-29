@@ -3,21 +3,22 @@ import api from "../../services/api";
 import { queryBuilder } from "../../utils/queryBuilder";
 import useToast from "../notifications/useToast";
 
-export default function useParts({ currentPage, filters }) {
+export default function useParts({
+  currentPage,
+  filters,
+  include: includeState,
+}) {
   const toast = useToast();
-  const query = queryBuilder(filters);
+  const query = queryBuilder(filters) || "";
+  const include = includeState ? `&include=${includeState}` : "";
+  const page = currentPage ? `&page=${currentPage}` : "";
+  const perpage = currentPage ? `limit=${process.env.REACT_APP_PER_PAGE}` : "";
 
   return useQuery(
-    ["parts", currentPage ? `page=${currentPage}` : null, query],
+    ["parts", page, `${query}${include}`],
     () =>
       api
-        .get(
-          `/parts?${
-            currentPage
-              ? `limit=${process.env.REACT_APP_PER_PAGE}&page=${currentPage}`
-              : ""
-          }${query || ""}`
-        )
+        .get(`/parts?${perpage}${page}${query}${include}`)
         .then((res) => res.data),
     {
       onError: (error) => {

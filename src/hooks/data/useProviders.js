@@ -3,27 +3,22 @@ import api from "../../services/api";
 import { queryBuilder } from "../../utils/queryBuilder";
 import useToast from "../notifications/useToast";
 
-export default function useProviders({ currentPage, filters, include }) {
+export default function useProviders({
+  currentPage,
+  filters,
+  include: includeState,
+}) {
   const toast = useToast();
   const query = queryBuilder(filters);
+  const include = includeState ? `&include=${includeState}` : "";
+  const page = currentPage ? `&page=${currentPage}` : "";
+  const perpage = currentPage ? `limit=${process.env.REACT_APP_PER_PAGE}` : "";
 
   return useQuery(
-    [
-      "providers",
-      currentPage ? `page=${currentPage}` : null,
-      `${query || ""}${include ? `&include=${include}` : ""}`,
-    ],
+    ["providers", page, `${query}${include}`],
     () =>
       api
-        .get(
-          `/providers?${
-            currentPage
-              ? `limit=${process.env.REACT_APP_PER_PAGE}&page=${currentPage}${
-                  include ? `&include=${include}` : ""
-                }`
-              : ""
-          }${query || ""}`
-        )
+        .get(`/providers?${perpage}${page}${query}${include}`)
         .then((res) => res.data),
     {
       onError: (error) => {

@@ -5,7 +5,6 @@ import { Skeleton } from "../Loadings";
 
 const TableContent = ({ data, columns, isLoading, pathTo }) => {
   const navigate = useNavigate();
-  const loadingSize = 50 * process.env.REACT_APP_PER_PAGE;
 
   return (
     <Table>
@@ -23,7 +22,7 @@ const TableContent = ({ data, columns, isLoading, pathTo }) => {
           <Tr>
             <Td
               colSpan={columns.length || 0}
-              className={`h-[${loadingSize}px] px-0 border-gray-400`}
+              className={`h-[500px] px-0 border-gray-400`}
             >
               <Skeleton className="w-full h-full rounded-none" />
             </Td>

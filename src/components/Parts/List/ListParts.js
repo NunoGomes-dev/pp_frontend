@@ -81,8 +81,13 @@ const PartsList = () => {
   const { data, isLoading, isSuccess } = useParts({
     currentPage,
     filters,
+    include: "all",
   });
-  const getStorages = useStorages();
+  const getStorages = useStorages({
+    currentPage: null,
+    filters: null,
+    include: "none",
+  });
   const getProviders = useProviders({
     currentPage: null,
     filters: null,

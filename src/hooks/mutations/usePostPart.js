@@ -4,7 +4,6 @@ import api from "../../services/api";
 import useToast from "../notifications/useToast";
 
 const fetch = (payload) => {
-  console.log(payload);
   return api.post(`/parts`, payload).then((res) => res.data);
 };
 

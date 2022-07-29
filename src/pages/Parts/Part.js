@@ -27,7 +27,11 @@ const Part = () => {
     usePutPart(reset);
 
   const getPart = usePartId(id, reset);
-  const getStorages = useStorages();
+  const getStorages = useStorages({
+    currentPage: null,
+    filters: null,
+    include: "none",
+  });
   const getProviders = useProviders({
     currentPage: null,
     filters: null,
