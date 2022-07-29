@@ -32,7 +32,6 @@ export default function usePostStorage(setIsOpen) {
         description: "Gaveta criada com sucesso!",
       });
     },
-    onSettled: () => q.invalidateQueries(["storages"]),
     onError: (error, payload, rollback) => {
       console.error("onError", error);
       if (rollback) rollback();

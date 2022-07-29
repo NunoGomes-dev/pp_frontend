@@ -2,7 +2,6 @@ import { useState } from "react";
 import { VStack } from "../../Design";
 import {
   PageBody,
-  Skeleton,
   TableContent,
   TableFilters,
   TablePagination,
@@ -15,7 +14,7 @@ import PartFilters from "../Filters/PartFilters";
 import useStorages from "../../../hooks/data/useStorages";
 import useProviders from "../../../hooks/data/useProviders";
 import { queryBuilder } from "../../../utils/queryBuilder";
-import PartsTableHeader from "./PartsTableHeader";
+import { Operators } from "../../../utils/Operators";
 
 const columns = [
   { Header: "", accessor: "stock_status" },
@@ -28,44 +27,6 @@ const columns = [
   { Header: "Revenda", accessor: "resalePrice", type: "price" },
   { Header: "Final", accessor: "price", type: "price" },
   { Header: "Gaveta", accessor: "part_storage" },
-];
-const Operators = [
-  { name: "Igual a ", operator: "=", query: "", type: "number" },
-  { name: "Maior que ", operator: ">", query: "_gt", type: "number" },
-  { name: "Menor que ", operator: "<", query: "_lt", type: "number" },
-  { name: "Maior ou igual a ", operator: ">=", query: "_gte", type: "number" },
-  { name: "Menor ou igual a ", operator: "<=", query: "_lte", type: "number" },
-  { name: "Diferente de ", operator: "!==", query: "_ne", type: "number" },
-  {
-    name: "Começa em ",
-    operator: "startsWith",
-    query: "_startsWith",
-    type: "string",
-  },
-  {
-    name: "Acaba em ",
-    operator: "endsWith",
-    query: "_endsWith",
-    type: "string",
-  },
-  {
-    name: "Igual a ",
-    operator: "equalTo",
-    query: "_like",
-    type: "string",
-  },
-  {
-    name: "Diferente de ",
-    operator: "notEqualTo",
-    query: "_notLike",
-    type: "string",
-  },
-  {
-    name: "Contém ",
-    operator: "contains",
-    query: "_substring",
-    type: "string",
-  },
 ];
 const options = [
   { name: "Data de criação", key: "createdAt", onlySortable: true },
@@ -120,9 +81,18 @@ const PartsList = () => {
   const { data, isLoading, isSuccess } = useParts({
     currentPage,
     filters,
+    include: "all",
   });
-  const getStorages = useStorages();
-  const getProviders = useProviders();
+  const getStorages = useStorages({
+    currentPage: null,
+    filters: null,
+    include: "none",
+  });
+  const getProviders = useProviders({
+    currentPage: null,
+    filters: null,
+    include: "none",
+  });
 
   useEffect(() => {
     const refetchParts = async () => {
@@ -149,14 +119,13 @@ const PartsList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, currentPage]);
 
-  const LoadingGrid = [<PartsTableHeader key={"header"} columns={columns} />];
-  for (let i = 0; i < process.env.REACT_APP_PER_PAGE; i++) {
-    LoadingGrid.push(<Skeleton key={i} width="full" height="50px" />);
-  }
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters]);
 
   return (
-    <PageBody width="full">
-      <VStack width="full" align="start" justify="start" gap="1rem">
+    <PageBody className="w-full">
+      <VStack className="w-full gap-4">
         <TableFilters filters={filters} setFilters={setFilters}>
           <PartFilters
             filters={filters}
@@ -167,17 +136,12 @@ const PartsList = () => {
             Operators={Operators}
           />
         </TableFilters>
-        {isLoading ? (
-          <VStack width="full" height="full" gap="1rem">
-            {LoadingGrid}
-          </VStack>
-        ) : (
-          <TableContent
-            columns={columns}
-            data={data?.parts || []}
-            total={data?.total || 0}
-          />
-        )}
+        <TableContent
+          columns={columns}
+          data={data?.parts || []}
+          isLoading={isLoading}
+          pathTo="parts"
+        />
         {isSuccess && (
           <TablePagination
             total={data?.total || 0}
@@ -186,6 +150,7 @@ const PartsList = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             type="peças"
+            isLoading={isLoading}
           />
         )}
       </VStack>

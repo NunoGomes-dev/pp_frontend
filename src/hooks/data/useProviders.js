@@ -1,23 +1,34 @@
 import { useQuery } from "react-query";
 import api from "../../services/api";
+import { queryBuilder } from "../../utils/queryBuilder";
 import useToast from "../notifications/useToast";
 
-const fetch = () => {
-  return api.get("/providers").then((res) => res.data);
-};
-
-export default function useProviders() {
+export default function useProviders({
+  currentPage,
+  filters,
+  include: includeState,
+}) {
   const toast = useToast();
+  const query = queryBuilder(filters);
+  const include = includeState ? `&include=${includeState}` : "";
+  const page = currentPage ? `&page=${currentPage}` : "";
+  const perpage = currentPage ? `limit=${process.env.REACT_APP_PER_PAGE}` : "";
 
-  return useQuery(["providers"], fetch, {
-    onSuccess: () => {},
-    onError: (error) => {
-      console.log("error", error);
-      toast({
-        status: "error",
-        title: "Ocorreu um erro",
-        description: "Erro ao obter as fornecedores!",
-      });
-    },
-  });
+  return useQuery(
+    ["providers", page, `${query}${include}`],
+    () =>
+      api
+        .get(`/providers?${perpage}${page}${query}${include}`)
+        .then((res) => res.data),
+    {
+      onError: (error) => {
+        console.log("error", error);
+        toast({
+          status: "error",
+          title: "Ocorreu um erro",
+          description: "Erro ao obter as fornecedores!",
+        });
+      },
+    }
+  );
 }

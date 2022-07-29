@@ -1,29 +1,25 @@
-import { useRef } from "react";
-import useOutsideClick from "../../../hooks/others/useOutsideClick";
-
 const Drawer = ({ isOpen = false, children, closeDrawer }) => {
-  const wrapperRef = useRef(null);
-  useOutsideClick(wrapperRef, isOpen, closeDrawer);
+  // useOutsideClick(wrapperRef, isOpen, closeDrawer);
 
   return (
-    <div
-      style={{
-        height: "100%",
-        width: "22rem",
-        position: "fixed",
-        padding: "1rem 0",
-        background: "white",
-        top: 0,
-        right: 0,
-        transform: `translateX(${isOpen ? "0px" : "22rem"})`,
-        transition: "all 0.5s",
-        borderLeft: "1px solid #E0E0E0",
-        zIndex: 1000,
-      }}
-      ref={wrapperRef}
-    >
-      {children}
-    </div>
+    <>
+      <div
+        className={`fixed top-0 right-0 bottom-0 left-0 bg-black ${
+          isOpen ? "opacity-40" : "opacity-0"
+        } transition-all duration-200`}
+        style={{ zIndex: isOpen ? 1000 : -1 }}
+        onClick={() => closeDrawer()}
+      />
+      <div
+        className="h-full w-[22rem] fixed py-4 px-0 bg-white top-0 right-0 transition-all duration-500 border-l border-solid border-[#e0e0e0]"
+        style={{
+          transform: `translateX(${isOpen ? "0px" : "22rem"})`,
+          zIndex: 1000,
+        }}
+      >
+        {children}
+      </div>
+    </>
   );
 };
 

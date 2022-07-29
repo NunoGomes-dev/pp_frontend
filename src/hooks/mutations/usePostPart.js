@@ -4,7 +4,6 @@ import api from "../../services/api";
 import useToast from "../notifications/useToast";
 
 const fetch = (payload) => {
-  console.log(payload);
   return api.post(`/parts`, payload).then((res) => res.data);
 };
 
@@ -35,7 +34,6 @@ export default function usePostPart() {
         description: "Peça criada com sucesso!",
       });
     },
-    onSettled: () => q.invalidateQueries(["parts"]),
     onError: (error, p, rollback) => {
       console.log("onError", error);
       if (rollback) rollback();

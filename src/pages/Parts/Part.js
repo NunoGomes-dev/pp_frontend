@@ -18,7 +18,7 @@ import { RiAddBoxFill } from "react-icons/ri";
 
 const Part = () => {
   const { id } = useParams();
-  const hasPart = id !== "new" ? true : false;
+  const hasPart = id && id !== "new" ? true : false;
   const { handleSubmit, reset, ...form } = useForm();
 
   const { mutate: mutateCreation, isLoading: loadingMutateCreation } =
@@ -27,8 +27,16 @@ const Part = () => {
     usePutPart(reset);
 
   const getPart = usePartId(id, reset);
-  const getStorages = useStorages();
-  const getProviders = useProviders();
+  const getStorages = useStorages({
+    currentPage: null,
+    filters: null,
+    include: "none",
+  });
+  const getProviders = useProviders({
+    currentPage: null,
+    filters: null,
+    include: "none",
+  });
 
   return (
     <PageContainer>
@@ -36,12 +44,12 @@ const Part = () => {
         onSubmit={handleSubmit((v) =>
           hasPart ? mutateEdition(clearObj(v)) : mutateCreation(clearObj(v))
         )}
-        style={{ width: "100%", height: "100%" }}
+        className="w-full h-full"
       >
         <PageHeader
           title={hasPart ? getPart?.data?.name || "Editar Peça" : "Nova peça"}
         >
-          <HStack gap={4}>
+          <HStack className="gap-4">
             <Link to="/parts">
               <Button variant="light">Cancelar</Button>
             </Link>

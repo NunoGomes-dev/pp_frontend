@@ -14,19 +14,12 @@ const TableFilters = ({ children, filters, setFilters }) => {
 
   return (
     <>
-      <HStack width="full" justify="space-between" align="start">
-        <Stack flexWrap="wrap">
+      <HStack className="w-full justify-between">
+        <Stack className="flex-wrap">
           {filters?.map((f, index) => (
             <HStack
               key={index}
-              align="center"
-              rounded="md"
-              background="primary"
-              color="white"
-              fontSize="md"
-              fontWeight="300"
-              padding={"0.5rem 1rem"}
-              whiteSpace="nowrap"
+              className="items-center rounded-md bg-primary text-white text-md font-light px-4 py-2 whitespace-nowrap"
             >
               <span>{f.name}</span>
               <IoCloseOutline
@@ -45,39 +38,28 @@ const TableFilters = ({ children, filters, setFilters }) => {
         <Button
           icon={<FiFilter />}
           iconPlacement="end"
-          padding={"0.5rem 1rem"}
+          className="px-4 py-2 whitespace-nowrap"
           variant="outline2"
-          whiteSpace="nowrap"
           onClick={() => setIsOpen(true)}
         >
           Filtros e Ordenação
         </Button>
       </HStack>
       <Drawer isOpen={isOpen} closeDrawer={() => setIsOpen(false)}>
-        <VStack justify="space-between" height="calc(100% - 2rem)">
-          <VStack width="full" gap={6}>
-            <HStack
-              width="calc(100% - 2rem)"
-              padding="0 1rem"
-              justify="space-between"
-              align="center"
-              h="min"
-            >
-              <Box fontSize="xl" textTransform="uppercase">
-                Filtros
-              </Box>
-              <Box onClick={() => setIsOpen(false)} cursor="pointer">
+        <VStack className="justify-between h-full">
+          <VStack className="w-full gap-6">
+            <HStack className="px-4 py-0 justify-between items-center h-min w-full">
+              <Box className="text-xl uppercase">Filtros</Box>
+              <Box onClick={() => setIsOpen(false)} className="cursor-pointer">
                 <IoCloseOutline fontSize={"24px"} />
               </Box>
             </HStack>
             {children}
           </VStack>
           {filters.length > 0 && (
-            <Box width="calc(100% - 2rem)" padding="0 1rem">
+            <Box className="w-full px-4 py-0">
               <Button
-                width="full"
-                fontSize="sm"
-                padding="0.5rem"
+                className="w-full text-sm p-2"
                 onClick={() => setFilters([])}
               >
                 Limpar Filtros

@@ -20,3 +20,4 @@ export { default as Tbody } from "./Tbody";
 export { default as Td } from "./Td";
 export { default as Accordion } from "./Accordion";
 export { default as Checkbox } from "./Checkbox";
+export { default as Avatar } from "./Avatar";

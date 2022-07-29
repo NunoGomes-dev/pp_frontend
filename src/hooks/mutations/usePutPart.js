@@ -26,9 +26,6 @@ export default function usePutPart(reset) {
         description: "Peça editada com sucesso!",
       });
     },
-    onSettled: ({ id }) => {
-      q.invalidateQueries(["parts", id]);
-    },
     onError: (error, payload, rollback) => {
       console.error("onError", error);
       if (rollback) rollback();

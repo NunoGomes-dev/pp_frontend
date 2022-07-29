@@ -8,21 +8,12 @@ const LoadingScreen = () => {
 
   return (
     <Box
-      position="fixed"
-      top="0"
-      right="0"
-      left="0"
-      bottom="0"
-      width="100vw"
-      height="100vh"
-      zIndex={1000}
-      background="#DDBA92"
-      opacity={firstLoading ? 1 : 0}
-      pointerEvents="none"
-      style={{ transition: "all 0.5s" }}
+      className={`fixed top-0 right-0 left-0 bottom-0 w-screen h-screen z-50 bg-primary ${
+        firstLoading ? "opacity-100" : "opacity-0"
+      } pointer-events-none transition-all duration-500`}
     >
-      <Stack width="full" height="full" justify="center" align="center">
-        <Image alt="Peça a Peça" src={logo} height="50%" />
+      <Stack className={"h-full w-full justify-center items-center"}>
+        <Image alt="Peça a Peça" src={logo} className={"h-1/2"} />
       </Stack>
     </Box>
   );

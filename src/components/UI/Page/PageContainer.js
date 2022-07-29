@@ -1,9 +1,9 @@
 import { memo } from "react";
 import { VStack } from "../../Design";
 
-const PageContainer = ({ children, ...others }) => {
+const PageContainer = ({ children, className, ...others }) => {
   return (
-    <VStack width="full" height="full" gap="0" {...others}>
+    <VStack className={`w-full h-full gap-0 ${className}`} {...others}>
       {children}
     </VStack>
   );

@@ -30,47 +30,42 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
   const { data: providersData, isSuccess: providersReady } = getProviders;
 
   return (
-    <PageBody width="full" height="full">
-      <Skeleton width="full" height="full" isLoading={hasPart && isLoadingPart}>
-        <Card width="calc(100% - 4rem)" padding="2rem">
-          <Grid gridTemplateColumns="2fr 1fr" gap={8} width="full">
-            <VStack width="full" gap={8}>
+    <PageBody className={"w-full h-full"}>
+      <Card className={"w-full p-8"}>
+        <Grid className={"w-full gap-8 grid-cols-[2fr_1fr]"}>
+          <Skeleton
+            className={"w-full h-full"}
+            isLoading={hasPart && isLoadingPart}
+          >
+            <VStack className={"w-full gap-8"}>
               <Grid //ref | name
-                gridTemplateColumns="1fr 1fr"
-                gap={8}
-                width="full"
+                className={"w-full gap-8 grid-cols-2"}
               >
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="ref">Referência</InputLabel>
-                  <Input
-                    id="ref"
-                    width="calc(100% - 2rem)"
-                    {...register("ref")}
-                  />
+                  <Input id="ref" className="w-full" {...register("ref")} />
                   <FormErrorMessage>{errors?.ref?.message}</FormErrorMessage>
                 </FormControl>
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="name" required>
                     Nome
                   </InputLabel>
                   <Input
                     id="name"
-                    width="calc(100% - 2rem)"
+                    className="w-full"
                     {...register("name", { required: "Nome obrigatório" })}
                   />
                   <FormErrorMessage>{errors?.name?.message}</FormErrorMessage>
                 </FormControl>
               </Grid>
               <Grid // provider | brand
-                gridTemplateColumns="1fr 1fr"
-                gap={8}
-                width="full"
+                className={"w-full gap-8 grid-cols-2"}
               >
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="providerId">Fornecedor</InputLabel>
                   <Select
                     id="providerId"
-                    width="full"
+                    className="w-full"
                     {...register("providerId")}
                     defaultValue={""}
                   >
@@ -86,25 +81,19 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                     {errors?.providerId?.message}
                   </FormErrorMessage>
                 </FormControl>
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="brand">Marca</InputLabel>
-                  <Input
-                    id="brand"
-                    width="calc(100% - 2rem)"
-                    {...register("brand")}
-                  />
+                  <Input id="brand" className="w-full" {...register("brand")} />
                 </FormControl>
               </Grid>
               <Grid // storage
-                gridTemplateColumns="1fr 1fr"
-                gap={8}
-                width="full"
+                className={"w-full gap-8 grid-cols-2"}
               >
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="storageId">Gaveta</InputLabel>
                   <Select
                     id="storageId"
-                    width="full"
+                    className="w-full"
                     {...register("storageId", { valueAsNumber: true })}
                     defaultValue={""}
                   >
@@ -122,25 +111,23 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                 </FormControl>
               </Grid>
               <Grid //stock | min_stock
-                gridTemplateColumns="1fr 1fr"
-                gap={8}
-                width="full"
+                className={"w-full gap-8 grid-cols-2"}
               >
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="stock">Stock</InputLabel>
                   <Input
                     id="stock"
-                    width="calc(100% - 2rem)"
+                    className="w-full"
                     type="number"
                     {...register("stock", { ...floatRequired })}
                   />
                   <FormErrorMessage>{errors?.stock?.message}</FormErrorMessage>
                 </FormControl>
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="minStock">Stock mínimo</InputLabel>
                   <Input
                     id="minStock"
-                    width="calc(100% - 2rem)"
+                    className="w-full"
                     type="number"
                     {...register("minStock", { ...floatRequired })}
                   />
@@ -150,26 +137,24 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                 </FormControl>
               </Grid>
               <Grid //cost | resale_price | price
-                gridTemplateColumns="1fr 1fr 1fr"
-                gap={8}
-                width="full"
+                className={"w-full gap-8 grid-cols-2"}
               >
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="cost">Custo</InputLabel>
                   <Input
                     id="cost"
-                    width="calc(100% - 2rem)"
+                    className="w-full"
                     type="number"
                     step="0.01"
                     {...register("cost", { ...floatRequired })}
                   />
                   <FormErrorMessage>{errors?.cost?.message}</FormErrorMessage>
                 </FormControl>
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="resalePrice">Revenda</InputLabel>
                   <Input
                     id="resalePrice"
-                    width="calc(100% - 2rem)"
+                    className="w-full"
                     type="number"
                     step="0.01"
                     {...register("resalePrice", { ...floatRequired })}
@@ -178,11 +163,11 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                     {errors?.resalePrice?.message}
                   </FormErrorMessage>
                 </FormControl>
-                <FormControl width="full">
+                <FormControl className="w-full">
                   <InputLabel htmlFor="price">Preço final</InputLabel>
                   <Input
                     id="price"
-                    width="calc(100% - 2rem)"
+                    className="w-full"
                     type="number"
                     step="0.01"
                     {...register("price", { ...floatRequired })}
@@ -191,15 +176,20 @@ const PartsForm = ({ hasPart, form, getPart, getStorages, getProviders }) => {
                 </FormControl>
               </Grid>
             </VStack>
+          </Skeleton>
+          <Skeleton
+            className={"w-full h-full"}
+            isLoading={hasPart && isLoadingPart}
+          >
             <InputFile
               value={watch("image")}
               callback={(file) => {
                 setValue("image", file);
               }}
             />
-          </Grid>
-        </Card>
-      </Skeleton>
+          </Skeleton>
+        </Grid>
+      </Card>
     </PageBody>
   );
 };

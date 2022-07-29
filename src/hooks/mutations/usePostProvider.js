@@ -33,7 +33,6 @@ export default function usePostProvider() {
         description: "Fornecedor criado com sucesso!",
       });
     },
-    onSettled: () => q.invalidateQueries(["providers"]),
     onError: (error, payload, rollback) => {
       console.error("onError", error);
       if (rollback) rollback();

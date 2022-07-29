@@ -6,7 +6,7 @@ import {
   InputLabel,
   Select,
   VStack,
-} from "../../Design";
+} from "../../../Design";
 
 const OrderForm = ({
   handleSubmit,
@@ -18,18 +18,14 @@ const OrderForm = ({
 }) => {
   return (
     <form onSubmit={handleSubmit(submitForm)}>
-      <VStack
-        width="calc(100% - 2rem)"
-        height="calc(100% - 2rem)"
-        padding="1rem"
-      >
-        <FormControl width="full">
-          <InputLabel htmlFor="orderBy" color="secondary" fontSize="sm">
+      <VStack className={"w-full h-full p-4 gap-2"}>
+        <FormControl className={"w-full"}>
+          <InputLabel htmlFor="orderBy" className="text-secondary text-sm">
             Condição:
           </InputLabel>
           <Select
+            className="w-full"
             id="orderBy"
-            width="full"
             {...register("orderBy")}
             defaultValue={"createdAt"}
           >
@@ -41,10 +37,10 @@ const OrderForm = ({
           </Select>
           <FormErrorMessage>{errors?.orderBy?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl width="full">
+        <FormControl className="w-full">
           <Select
             id="order"
-            width="full"
+            className="w-full"
             {...register("order")}
             defaultValue={"ASC"}
           >
@@ -53,16 +49,15 @@ const OrderForm = ({
           </Select>
           <FormErrorMessage>{errors?.order?.message}</FormErrorMessage>
         </FormControl>
-        <HStack width="full" justify="space-between">
+        <HStack className="w-full justify-between gap-2">
           <Button
             variant="light"
-            padding="0.5rem"
             onClick={() => reset()}
-            width="full"
+            className="w-full p-2"
           >
             Cancelar
           </Button>
-          <Button type="submit" padding="0.5rem" width="full">
+          <Button type="submit" className="w-full p-2">
             Aplicar
           </Button>
         </HStack>

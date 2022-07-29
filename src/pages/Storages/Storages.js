@@ -18,7 +18,11 @@ import usePostStorage from "../../hooks/mutations/usePostStorage";
 
 const Storages = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoading, data, isSuccess } = useStorages();
+  const { isLoading, data, isSuccess } = useStorages({
+    currentPage: null,
+    filters: null,
+    include: "none",
+  });
   const deleteMutation = useDeleteStorage();
   const postMutation = usePostStorage(setIsOpen);
 
@@ -32,7 +36,7 @@ const Storages = () => {
             title="Adicionar gaveta"
             onClose={() => setIsOpen(false)}
           />
-          <ModalBody width="full">
+          <ModalBody className="w-full">
             <CreateStorageForm
               setIsOpen={setIsOpen}
               postMutation={postMutation}

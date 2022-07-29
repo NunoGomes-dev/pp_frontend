@@ -23,24 +23,9 @@ const Menu = () => {
   return (
     <>
       {isAuthenticated && (
-        <VStack
-          width="14rem"
-          height="calc(100% - 2rem)"
-          padding="1rem"
-          background="white"
-          justify="space-between"
-          gap="4"
-        >
-          <VStack width="full" gap="4" overflowY="auto">
-            <Image
-              src={banner}
-              alt="banner_pp"
-              width="100%"
-              height="auto"
-              objectFit="contain"
-              pointerEvents="none"
-              userSelect="none"
-            />
+        <VStack className="p-4 bg-white justify-between gap-4 h-full w-[14rem]">
+          <VStack className="gap-4 overflow-y-auto w-full">
+            <Image src={banner} alt="banner_pp" className={"w-full h-auto"} />
             <UserItem user={user} />
             <LinkItem
               text={"Dashboard"}
@@ -83,11 +68,9 @@ const Menu = () => {
           </VStack>
           <Button
             variant="light"
-            width="full"
-            padding="0.5rem 0"
-            color="#4A5568"
-            background="#F7FAFC"
-            borderRadius="0.5rem"
+            className={
+              "w-full py-2 px-0 text-[#4A5568] bg-[#F7FAFC] rounded-md"
+            }
             icon={<MdLogout />}
             onClick={() => {
               doLogout();
