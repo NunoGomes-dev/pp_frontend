@@ -89,12 +89,14 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
           <FormErrorMessage>{errors?.operator?.message}</FormErrorMessage>
         </FormControl>
         <FormControl
-          className={`w-full overflow-hidden transition-all duration-300 mt-4 ${
+          className={`w-full overflow-hidden transition-all duration-300 ${
             watchOperator ? "mb-2" : "mb-0"
           }`}
           style={{
-            padding: watchKey && watchOperator ? "1rem 0 0 0" : 0,
-            maxHeight: watchKey && watchOperator ? "5rem" : "0px",
+            padding: watchKey && watchOperator ? "1rem 0 0 0" : "0px",
+            maxHeight: watchKey && watchOperator ? "10rem" : "0px",
+            marginTop: !watchOperator ? "1rem" : "0px",
+            marginBottom: watchOperator ? "0.5rem" : "0px",
           }}
         >
           <InputLabel htmlFor="text" className={"text-secondary text-sm"}>

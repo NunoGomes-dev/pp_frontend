@@ -8,9 +8,8 @@ const getVariant = (variant) => {
   const variants = {
     solid: "bg-primary text-white",
     light: "bg-primaryLight text-primary",
-    outline:
-      "bg-primaryLight text-primary border-1 border-solid border-primary",
-    outline2: "bg-white text-primary border-1 border-solid border-primary",
+    outline: "bg-primaryLight text-primary border border-solid border-primary",
+    outline2: "bg-white text-primary border border-solid border-primary",
     unstyled: "bg-transparent text-primary",
   };
 
