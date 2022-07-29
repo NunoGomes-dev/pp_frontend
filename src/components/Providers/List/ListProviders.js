@@ -57,6 +57,7 @@ const ListProviders = () => {
   const { isLoading, data, isSuccess } = useProviders({
     currentPage,
     filters,
+    include: "all",
   });
 
   useEffect(() => {
