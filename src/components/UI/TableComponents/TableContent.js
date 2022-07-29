@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, Box, Table, Tbody, Td, Th, Thead, Tr } from "../../Design";
 import { Skeleton } from "../Loadings";
 
-const TableContent = ({ data, total, columns, isLoading, pathTo }) => {
+const TableContent = ({ data, columns, isLoading, pathTo }) => {
   const navigate = useNavigate();
+  const loadingSize = 50 * process.env.REACT_APP_PER_PAGE;
 
   return (
     <Table>
@@ -17,105 +18,100 @@ const TableContent = ({ data, total, columns, isLoading, pathTo }) => {
           ))}
         </Tr>
       </Thead>
-      {!isLoading && (
-        <Tbody>
-          {data?.length > 0 &&
-            data.map((row, dataIndex) => (
-              <Tr
-                key={dataIndex}
-                onClick={() => navigate(`/${pathTo}/${row.id}`)}
-                className="hover:bg-gray-50 hover:cursor-pointer"
-              >
-                {columns.map((column, index) => {
-                  const accessor = column?.accessor;
-                  const cell = row[accessor];
-                  const element = column.Cell?.(cell) ?? cell;
-                  if (accessor === "avatar") {
-                    return (
-                      <Td key={index}>
-                        <Avatar name={row.name} image={row.image} />
-                      </Td>
-                    );
-                  }
-
-                  if (accessor === "part_ref") {
-                    return (
-                      <Td key={index} className="font-light">
-                        {row.ref}
-                      </Td>
-                    );
-                  }
-                  if (accessor === "part_name") {
-                    return (
-                      <Td key={index} className="font-medium">
-                        {row.name}
-                      </Td>
-                    );
-                  }
-
-                  if (accessor === "part_brand") {
-                    return (
-                      <Td key={index} className="text-secondary">
-                        {row.brand}
-                      </Td>
-                    );
-                  }
-
-                  if (accessor === "part_provider") {
-                    return (
-                      <Td key={index} className="text-secondary">
-                        {row?.provider?.name}
-                      </Td>
-                    );
-                  }
-
-                  if (accessor === "part_storage") {
-                    return <Td key={index}>{row?.storage?.name}</Td>;
-                  }
-
-                  if (accessor === "stock_status") {
-                    const color =
-                      row.minStock > 0
-                        ? row.stock > row.minStock
-                          ? "bg-green-500"
-                          : row.stock === row.minStock
-                          ? "bg-orange-300"
-                          : "bg-red-500"
-                        : row.stock > 0
-                        ? "bg-green-500"
-                        : "bg-red-500";
-                    return (
-                      <Td key={index}>
-                        <Box className={`rounded-full ${color} p-2 w-min`} />
-                      </Td>
-                    );
-                  }
-
+      <Tbody>
+        {!isLoading &&
+          data?.length > 0 &&
+          data.map((row, dataIndex) => (
+            <Tr
+              key={dataIndex}
+              onClick={() => navigate(`/${pathTo}/${row.id}`)}
+              className="hover:bg-gray-50 hover:cursor-pointer"
+            >
+              {columns.map((column, index) => {
+                const accessor = column?.accessor;
+                const cell = row[accessor];
+                const element = column.Cell?.(cell) ?? cell;
+                if (accessor === "avatar") {
                   return (
-                    <Td key={index} className="h-[50px]">
-                      {element}
-                      {column?.type === "price" && "€"}
+                    <Td key={index}>
+                      <Avatar name={row.name} image={row.image} />
                     </Td>
                   );
-                })}
-              </Tr>
-            ))}
-        </Tbody>
-      )}
-      {isLoading && (
-        <Tbody>
+                }
+
+                if (accessor === "part_ref") {
+                  return (
+                    <Td key={index} className="font-light">
+                      {row.ref}
+                    </Td>
+                  );
+                }
+                if (accessor === "part_name") {
+                  return (
+                    <Td key={index} className="font-medium">
+                      {row.name}
+                    </Td>
+                  );
+                }
+
+                if (accessor === "part_brand") {
+                  return (
+                    <Td key={index} className="text-secondary">
+                      {row.brand}
+                    </Td>
+                  );
+                }
+
+                if (accessor === "part_provider") {
+                  return (
+                    <Td key={index} className="text-secondary">
+                      {row?.provider?.name}
+                    </Td>
+                  );
+                }
+
+                if (accessor === "part_storage") {
+                  return <Td key={index}>{row?.storage?.name}</Td>;
+                }
+
+                if (accessor === "stock_status") {
+                  const color =
+                    row.minStock > 0
+                      ? row.stock > row.minStock
+                        ? "bg-green-500"
+                        : row.stock === row.minStock
+                        ? "bg-orange-300"
+                        : "bg-red-500"
+                      : row.stock > 0
+                      ? "bg-green-500"
+                      : "bg-red-500";
+                  return (
+                    <Td key={index}>
+                      <Box className={`rounded-full ${color} p-2 w-min`} />
+                    </Td>
+                  );
+                }
+
+                return (
+                  <Td key={index} className="h-[50px]">
+                    {element}
+                    {column?.type === "price" && "€"}
+                  </Td>
+                );
+              })}
+            </Tr>
+          ))}
+        {isLoading && (
           <Tr>
             <Td
               colSpan={columns.length || 0}
-              className={`h-[${
-                50 * process.env.REACT_APP_PER_PAGE
-              }px] px-0 border-0 border-transparent`}
+              className={`h-[${loadingSize}px] px-0 border-gray-400`}
             >
-              <Skeleton className="w-full h-full rounded-none border border-solid border-[#718096]" />
+              <Skeleton className="w-full h-full rounded-none" />
             </Td>
           </Tr>
-        </Tbody>
-      )}
+        )}
+      </Tbody>
     </Table>
   );
 };

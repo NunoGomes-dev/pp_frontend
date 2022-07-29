@@ -130,7 +130,6 @@ const PartsList = () => {
         <TableContent
           columns={columns}
           data={data?.parts || []}
-          total={data?.total || 0}
           isLoading={isLoading}
           pathTo="parts"
         />

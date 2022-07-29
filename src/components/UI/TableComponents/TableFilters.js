@@ -22,17 +22,16 @@ const TableFilters = ({ children, filters, setFilters }) => {
               className="items-center rounded-md bg-primary text-white text-md font-light px-4 py-2 whitespace-nowrap"
             >
               <span>{f.name}</span>
-              <div className="cursor-pointer">
-                <IoCloseOutline
-                  style={{
-                    fontSize: "18px",
-                  }}
-                  onClick={() => {
-                    f.clear();
-                    setFilters([...filters.filter((n) => n.key !== f.key)]);
-                  }}
-                />
-              </div>
+              <IoCloseOutline
+                style={{
+                  fontSize: "18px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  f.clear();
+                  setFilters([...filters.filter((n) => n.key !== f.key)]);
+                }}
+              />
             </HStack>
           ))}
         </Stack>
@@ -51,7 +50,7 @@ const TableFilters = ({ children, filters, setFilters }) => {
           <VStack className="w-full gap-6">
             <HStack className="px-4 py-0 justify-between items-center h-min w-full">
               <Box className="text-xl uppercase">Filtros</Box>
-              <Box onClick={() => setIsOpen(false)} cursor="pointer">
+              <Box onClick={() => setIsOpen(false)} className="cursor-pointer">
                 <IoCloseOutline fontSize={"24px"} />
               </Box>
             </HStack>

@@ -28,7 +28,7 @@ const Part = () => {
 
   const getPart = usePartId(id, reset);
   const getStorages = useStorages();
-  const getProviders = useProviders();
+  const getProviders = useProviders({ currentPage: null, filters: null });
 
   return (
     <PageContainer>

@@ -3,8 +3,7 @@ import api from "../../services/api";
 import { queryBuilder } from "../../utils/queryBuilder";
 import useToast from "../notifications/useToast";
 
-export default function useParts(values) {
-  const { currentPage, filters } = values;
+export default function useParts({ currentPage, filters }) {
   const toast = useToast();
   const query = queryBuilder(filters);
 

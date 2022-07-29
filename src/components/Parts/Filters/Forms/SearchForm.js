@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {
   Button,
   FormControl,
+  FormErrorMessage,
   HStack,
   Input,
   InputLabel,
@@ -16,13 +17,13 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
     register: registSearch,
     watch: watchSearch,
     setValue: setSearch,
-    getValues: getSearch,
+    formState: { errors },
     reset: resetSearch,
   } = searchForm;
 
   const watchKey = watchSearch("key");
   const watchOperator = watchSearch("operator");
-  const watchText = watchSearch("text");
+
   useEffect(() => {
     if (!watchKey) return;
     setSearch("operator", null);
@@ -40,7 +41,7 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
           <Select
             id="key"
             className="w-full"
-            {...registSearch("key", { required: true })}
+            {...registSearch("key", { required: "Campo obrigatório" })}
           >
             <option value="">Pesquisar por...</option>
             {options.map(({ key, name }) => (
@@ -49,6 +50,7 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
               </option>
             ))}
           </Select>
+          <FormErrorMessage>{errors?.key?.message}</FormErrorMessage>
         </FormControl>
         <FormControl
           className={`overflow-hidden transition-all duration-300`}
@@ -65,21 +67,26 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
               options
                 ?.find((s) => s?.key === watchKey)
                 ?.options?.map((e, index) => (
-                  <Button
-                    className={"py-2 px-4"}
-                    variant={watchOperator === e.operator ? "default" : "light"}
-                    key={index}
-                    onClick={() => {
-                      if (getSearch("operator") === e.operator) {
-                        return setSearch("operator", null);
-                      }
-                      setSearch("operator", e.operator);
-                    }}
-                  >
-                    {e.name}
-                  </Button>
+                  <HStack key={index}>
+                    <input
+                      type="radio"
+                      id={e.operator}
+                      value={e.operator}
+                      className="hidden peer"
+                      {...registSearch("operator", {
+                        required: "Operador necessário",
+                      })}
+                    />
+                    <label
+                      htmlFor={e.operator}
+                      className="py-2 px-4 bg-primaryLight text-primary rounded-lg cursor-pointer peer-checked:bg-primary peer-checked:text-white"
+                    >
+                      {e.name}
+                    </label>
+                  </HStack>
                 ))}
           </Stack>
+          <FormErrorMessage>{errors?.operator?.message}</FormErrorMessage>
         </FormControl>
         <FormControl
           className={`w-full overflow-hidden transition-all duration-300 mt-4 ${
@@ -96,8 +103,9 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
           <Input
             id="text"
             className="w-full bg-white"
-            {...registSearch("text", { required: true })}
+            {...registSearch("text", { required: "Campo obrigatório" })}
           />
+          <FormErrorMessage>{errors?.text?.message}</FormErrorMessage>
         </FormControl>
         <HStack
           className={`w-full justify-between gap-2 ${
@@ -112,7 +120,7 @@ const SearchForm = ({ searchForm, submitSearch, options }) => {
           >
             Cancelar
           </Button>
-          <Button type="submit" className="w-full" disabled={!watchText}>
+          <Button type="submit" className="w-full">
             Adicionar
           </Button>
         </HStack>
