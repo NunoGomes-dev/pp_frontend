@@ -13,7 +13,6 @@ export default function useUploadMedia(callback) {
     onSuccess: (file) => {
       if (callback) callback(file);
     },
-    // onSettled: () => {},
     onError: (error, payload, rollback) => {
       console.log("onError", error);
       if (rollback) rollback();

@@ -35,7 +35,6 @@ export default function usePostPart() {
         description: "Peça criada com sucesso!",
       });
     },
-    onSettled: () => q.invalidateQueries(["parts"]),
     onError: (error, p, rollback) => {
       console.log("onError", error);
       if (rollback) rollback();

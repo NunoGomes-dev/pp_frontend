@@ -26,6 +26,7 @@ const Button = ({
   disabled,
   iconPlacement = "start",
   variant,
+  type,
   className,
   ...rest
 }) => {
@@ -35,6 +36,7 @@ const Button = ({
         variant
       )} ${className} `}
       disabled={disabled || isLoading}
+      type={type || "button"}
       {...rest}
     >
       {isLoading ? (

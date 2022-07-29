@@ -17,6 +17,9 @@ const columns = [
   { Header: "", accessor: "avatar" },
   { Header: "Nome", accessor: "name" },
   { Header: "Marca", accessor: "email" },
+  { Header: "Contacto", accessor: "contact" },
+  { Header: "NIF", accessor: "vat" },
+  { Header: "Peças", accessor: "count_parts" },
 ];
 
 const options = [
@@ -30,6 +33,18 @@ const options = [
   {
     name: "Email",
     key: "email",
+    type: "text",
+    options: Operators.filter((e) => e.type === "string"),
+  },
+  {
+    name: "Contacto",
+    key: "contact",
+    type: "text",
+    options: Operators.filter((e) => e.type === "string"),
+  },
+  {
+    name: "NIF",
+    key: "vat",
     type: "text",
     options: Operators.filter((e) => e.type === "string"),
   },

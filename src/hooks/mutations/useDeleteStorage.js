@@ -30,9 +30,6 @@ export default function useDeleteStorage() {
         description: "Gaveta eliminada com sucesso!",
       });
     },
-    onSettled: () => {
-      q.invalidateQueries(["storages"]);
-    },
     onError: (error, payload, rollback) => {
       console.error("onError", error);
       if (rollback) rollback();

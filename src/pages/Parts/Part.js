@@ -18,7 +18,7 @@ import { RiAddBoxFill } from "react-icons/ri";
 
 const Part = () => {
   const { id } = useParams();
-  const hasPart = id !== "new" ? true : false;
+  const hasPart = id && id !== "new" ? true : false;
   const { handleSubmit, reset, ...form } = useForm();
 
   const { mutate: mutateCreation, isLoading: loadingMutateCreation } =

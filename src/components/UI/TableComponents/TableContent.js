@@ -19,6 +19,16 @@ const TableContent = ({ data, columns, isLoading, pathTo }) => {
         </Tr>
       </Thead>
       <Tbody>
+        {isLoading && (
+          <Tr>
+            <Td
+              colSpan={columns.length || 0}
+              className={`h-[${loadingSize}px] px-0 border-gray-400`}
+            >
+              <Skeleton className="w-full h-full rounded-none" />
+            </Td>
+          </Tr>
+        )}
         {!isLoading &&
           data?.length > 0 &&
           data.map((row, dataIndex) => (
@@ -92,6 +102,13 @@ const TableContent = ({ data, columns, isLoading, pathTo }) => {
                   );
                 }
 
+                if (accessor.includes("count")) {
+                  const key = accessor.split("_")[1];
+                  return (
+                    <Td key={index}>{key && row[key] ? row[key].length : 0}</Td>
+                  );
+                }
+
                 return (
                   <Td key={index} className="h-[50px]">
                     {element}
@@ -101,16 +118,6 @@ const TableContent = ({ data, columns, isLoading, pathTo }) => {
               })}
             </Tr>
           ))}
-        {isLoading && (
-          <Tr>
-            <Td
-              colSpan={columns.length || 0}
-              className={`h-[${loadingSize}px] px-0 border-gray-400`}
-            >
-              <Skeleton className="w-full h-full rounded-none" />
-            </Td>
-          </Tr>
-        )}
       </Tbody>
     </Table>
   );
