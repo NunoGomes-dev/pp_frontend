@@ -13,13 +13,14 @@ const TablePagination = ({
 }) => {
   const pages = [];
   for (let i = 1; i <= Math.ceil(total / perpage); i++) {
-    const btnColor = currentPage === i ? "text-red" : "text-secondary";
+    const btnColor = currentPage === i ? "text-primary" : "text-secondary";
     const variant = currentPage === i ? "light" : "unstyled";
     pages.push(
       <Button
         key={i}
         variant={variant}
         className={`text-sm py-0 px-0 w-[32px] h-[32px] ${btnColor}`}
+        textAlign="center"
         onClick={() => currentPage !== i && setCurrentPage(i)}
       >
         {i}

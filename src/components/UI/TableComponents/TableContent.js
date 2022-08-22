@@ -78,7 +78,6 @@ const TableContent = ({ data, columns, isLoading, pathTo }) => {
                     </Td>
                   );
                 }
-
                 if (accessor === "part_storage") {
                   return <Td key={index}>{row?.storage?.name}</Td>;
                 }
@@ -101,10 +100,37 @@ const TableContent = ({ data, columns, isLoading, pathTo }) => {
                   );
                 }
 
+                if (accessor === "order_ref") {
+                  return (
+                    <Td key={index} className="font-light">
+                      {row.id}
+                    </Td>
+                  );
+                }
+                if (accessor === "order_observations") {
+                  return (
+                    <Td key={index} className="font-light">
+                      ...
+                    </Td>
+                  );
+                }
+
                 if (accessor.includes("count")) {
                   const key = accessor.split("_")[1];
+
                   return (
                     <Td key={index}>{key && row[key] ? row[key].length : 0}</Td>
+                  );
+                }
+
+                if (accessor.includes(".")) {
+                  const firstKey = accessor.split(".")[0];
+                  const secondKey = accessor.split(".")[1];
+
+                  return (
+                    <Td key={index} className="font-light">
+                      {firstKey && secondKey ? row[firstKey][secondKey] : ""}
+                    </Td>
                   );
                 }
 

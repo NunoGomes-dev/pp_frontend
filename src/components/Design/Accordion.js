@@ -4,6 +4,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import useOutsideClick from "../../hooks/others/useOutsideClick";
 import Box from "./Box";
 import HStack from "./HStack";
+import { twMerge } from "tailwind-merge";
 
 const Accordion = ({
   children,
@@ -19,7 +20,9 @@ const Accordion = ({
   return (
     <div ref={wrapperRef} className="w-full flex flex-col justify-start gap-4">
       <HStack
-        className={`w-full items-center cursor-pointer text-secondary px-2 gap-2 ${titleProps}`}
+        className={twMerge(
+          `w-full items-center cursor-pointer text-secondary px-2 gap-2 ${titleProps}`
+        )}
         onClick={() => setIsOpen(!isOpen)}
       >
         <MdOutlineKeyboardArrowRight

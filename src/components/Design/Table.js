@@ -1,8 +1,9 @@
 import { memo } from "react";
+import { twMerge } from "tailwind-merge";
 
 const Table = ({ className, children, ...rest }) => {
   return (
-    <table className={`w-full border-collapse ${className}`} {...rest}>
+    <table className={twMerge(`w-full border-collapse ${className}`)} {...rest}>
       {children}
     </table>
   );

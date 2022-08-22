@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { Spinner } from "../UI";
 import HStack from "./HStack";
+import { twMerge } from "tailwind-merge";
 
 const BaseStyle = `bg-primary text-white py-4 px-8 rounded-md border-0`;
 
@@ -10,6 +11,7 @@ const getVariant = (variant) => {
     light: "bg-primaryLight text-primary",
     outline: "bg-primaryLight text-primary border border-solid border-primary",
     outline2: "bg-white text-primary border border-solid border-primary",
+    search: "bg-white text-gray-300 border border-solid border-gray-300",
     unstyled: "bg-transparent text-primary",
   };
 
@@ -28,20 +30,23 @@ const Button = ({
   variant,
   type,
   className,
+  textAlign,
   ...rest
 }) => {
   return (
     <button
-      className={`disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-auto ${BaseStyle} ${getVariant(
-        variant
-      )} ${className} `}
+      className={twMerge(
+        `disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-auto ${BaseStyle} ${getVariant(
+          variant
+        )} ${className}`
+      )}
       disabled={disabled || isLoading}
       type={type || "button"}
       {...rest}
     >
       {isLoading ? (
         <HStack
-          className={`justify-center items-center ${
+          className={`justify-${textAlign} items-center ${
             iconGap ? `gap-[${iconGap}]` : "gap-4"
           }`}
         >
@@ -51,7 +56,7 @@ const Button = ({
         </HStack>
       ) : (
         <HStack
-          className={`justify-center items-center ${
+          className={`justify-${textAlign} items-center ${
             iconGap ? `gap-[${iconGap}]` : "gap-4"
           }`}
         >

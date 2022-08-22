@@ -83,6 +83,7 @@ const PartsList = () => {
     filters,
     include: "all",
   });
+
   const getStorages = useStorages({
     currentPage: null,
     filters: null,
