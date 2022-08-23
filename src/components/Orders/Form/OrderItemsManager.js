@@ -48,34 +48,40 @@ const OrderItemsManager = ({
             <Box className={"w-full text-xl font-medium"}>
               Encomenda {hasOrder ? `#${order?.id}` : ""}
             </Box>
-            <FormControl className={"w-full"}>
-              <Select
-                id="type"
-                className="w-full"
-                {...register("type", {
-                  required: "Tipo de encomenda obrigatório",
-                })}
-                defaultValue={""}
-              >
-                <option value={""}>Tipo de encomenda</option>
-                <option value={"final"}>Final</option>
-                <option value={"revenda"}>Revenda</option>
-              </Select>
-              <FormErrorMessage>{errors?.type?.message}</FormErrorMessage>
-            </FormControl>
+            {hasOrder ? (
+              <Card className="bg-gray-50 text-md">{order?.type || ""}</Card>
+            ) : (
+              <FormControl className={"w-full"}>
+                <Select
+                  id="type"
+                  className="w-full"
+                  {...register("type", {
+                    required: "Tipo de encomenda obrigatório",
+                  })}
+                  defaultValue={""}
+                >
+                  <option value={""}>Tipo de encomenda</option>
+                  <option value={"final"}>Final</option>
+                  <option value={"revenda"}>Revenda</option>
+                </Select>
+                <FormErrorMessage>{errors?.type?.message}</FormErrorMessage>
+              </FormControl>
+            )}
           </Grid>
-          <FormControl>
-            <Button
-              variant={"search"}
-              icon={<AiOutlineSearch fontSize={"20px"} />}
-              className="w-full px-4 py-2 text-lg font-light"
-              textAlign="start"
-              onClick={() => openPartsModal()}
-            >
-              Pesquisar Peças
-            </Button>
-            <FormErrorMessage>{errors?.searchPart?.message}</FormErrorMessage>
-          </FormControl>
+          {!hasOrder && (
+            <FormControl>
+              <Button
+                variant={"search"}
+                icon={<AiOutlineSearch fontSize={"20px"} />}
+                className="w-full px-4 py-2 text-lg font-light"
+                textAlign="start"
+                onClick={() => openPartsModal()}
+              >
+                Pesquisar Peças
+              </Button>
+              <FormErrorMessage>{errors?.searchPart?.message}</FormErrorMessage>
+            </FormControl>
+          )}
           <VStack className={"w-full"}>
             {items?.map((i) => (
               <OrderItemCard
@@ -83,8 +89,13 @@ const OrderItemsManager = ({
                 item={i}
                 handleQuantityChange={handleQuantityChange}
                 handleRemove={handleRemove}
+                editable={!hasOrder}
               />
             ))}
+            <Box className="self-end text-xl">
+              <span className="text-base text-gray-500">Total: </span>
+              {items.reduce((p, c) => p + c.unitPrice * c.quantity, 0)}€
+            </Box>
           </VStack>
         </Grid>
       </Skeleton>

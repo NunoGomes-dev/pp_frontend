@@ -30,7 +30,7 @@ const OrderClientsManager = ({
           <Box className={"w-full text-xl font-medium"}>
             Informações do cliente
           </Box>
-          {!client && (
+          {!client && !hasOrder && (
             <FormControl>
               <Button
                 variant={"search"}
@@ -64,15 +64,17 @@ const OrderClientsManager = ({
                 <HiOutlineDocumentText />{" "}
                 <Box className="text-terciary">{client.vat}</Box>
               </HStack>
-              <Button
-                iconPlacement="end"
-                variant="outline"
-                icon={<FiUser strokeWidth={3} />}
-                className="font-medium self-end border-0"
-                onClick={() => openClientsModal()}
-              >
-                Trocar cliente
-              </Button>
+              {!hasOrder && (
+                <Button
+                  iconPlacement="end"
+                  variant="outline"
+                  icon={<FiUser strokeWidth={3} />}
+                  className="font-medium self-end border-0"
+                  onClick={() => openClientsModal()}
+                >
+                  Trocar cliente
+                </Button>
+              )}
             </VStack>
           )}
         </Grid>

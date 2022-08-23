@@ -5,7 +5,7 @@ const Select = forwardRef(({ children, className, ...rest }, ref) => (
   <select
     ref={ref}
     className={twMerge(
-      `min-w-[300px] bg-white text-terciary p-4 rounded-lg border border-solid border-[#E0E0E0] ${className}`
+      `min-w-[300px] bg-white text-terciary p-4 rounded-lg border border-solid border-[#E0E0E0] text-md ${className}`
     )}
     {...rest}
   >
