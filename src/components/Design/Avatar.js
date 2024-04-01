@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "./Image";
+import { twMerge } from "tailwind-merge";
 
 const Avatar = ({ name, image }) => {
   const [displayName, setDisplayName] = useState("");
@@ -33,7 +34,9 @@ const Avatar = ({ name, image }) => {
         />
       ) : (
         <div
-          className={`flex p-2 justify-center items-center rounded-full text-center ${generateBg()}`}
+          className={twMerge(
+            `flex p-2 justify-center items-center rounded-full text-center ${generateBg()}`
+          )}
         >
           {displayName}
         </div>

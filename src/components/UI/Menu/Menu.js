@@ -51,7 +51,6 @@ const Menu = () => {
               LeftIcon={<FiPackage />}
               to="orders"
               isActive={activePath("/orders")}
-              disabled
             />
             <LinkItem
               text={"Fornecedores"}

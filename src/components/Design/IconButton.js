@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { Spinner } from "../UI";
+import { twMerge } from "tailwind-merge";
 
 const BaseStyle = `bg-primary text-white py-4 px-8 rounded-md border-0`;
 
@@ -25,9 +26,11 @@ const IconButton = ({
 }) => {
   return (
     <button
-      className={`cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${BaseStyle} ${getVariant(
-        variant
-      )} ${className}`}
+      className={twMerge(
+        `cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${BaseStyle} ${getVariant(
+          variant
+        )} ${className}`
+      )}
       disabled={disabled || isLoading}
       {...rest}
     >

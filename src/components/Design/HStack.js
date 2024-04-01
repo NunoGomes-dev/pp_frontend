@@ -1,9 +1,12 @@
 import { memo } from "react";
+import { twMerge } from "tailwind-merge";
 
 const HStack = ({ children, className, ...p }) => {
   return (
     <div
-      className={`flex flex-row justify-start items-start ${className}`}
+      className={twMerge(
+        `flex flex-row justify-start items-start gap-2 ${className}`
+      )}
       {...p}
     >
       {children}
